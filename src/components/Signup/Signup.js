@@ -1,28 +1,28 @@
-import React, { useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import React, { useRef, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 
-import InputControl from "../InputControl/InputControl";
-import { auth } from "../../firebase";
+import InputControl from '../InputControl/InputControl';
+import { auth } from '../../firebase';
 
 import bg from './home-bg.png';
-
+import './Signup.css';
 function Signup() {
   const navigate = useNavigate();
   const [values, setValues] = useState({
-    name: "",
-    email: "",
-    pass: "",
+    name: '',
+    email: '',
+    pass: '',
   });
-  const [errorMsg, setErrorMsg] = useState("");
+  const [errorMsg, setErrorMsg] = useState('');
   const [submitButtonDisabled, setSubmitButtonDisabled] = useState(false);
 
   const handleSubmission = () => {
     if (!values.name || !values.email || !values.pass) {
-      setErrorMsg("Fill all fields");
+      setErrorMsg('Fill all fields');
       return;
     }
-    setErrorMsg("");
+    setErrorMsg('');
 
     setSubmitButtonDisabled(true);
     createUserWithEmailAndPassword(auth, values.email, values.pass)
@@ -33,7 +33,7 @@ function Signup() {
         await updateProfile(user, {
           displayName: values.name,
         });
-        navigate("/panel/dashboard");
+        navigate('/panel/dashboard');
       })
       .catch((err) => {
         setSubmitButtonDisabled(false);
@@ -45,14 +45,6 @@ function Signup() {
   const [height, setHeight] = useState(`100%`);
   const [top, setTop] = useState(`6%`);
 
-  const windowSize = useRef([window.innerWidth, window.innerHeight]);
-  if (windowSize.current[0] <= 720) {
-    setWidth(`80%`);
-    setHeight(`auto`);
-    setTop(`40px`)
-  }
-
-
   const containerStyle = {
     width: `${width}`,
     border: `2px solid gray`,
@@ -63,8 +55,8 @@ function Signup() {
     fontWeight: 800,
     backdropFilter: `blur(10px)`,
     position: `relative`,
-    top: `${top}`
-  }
+    top: `${top}`,
+  };
 
   const homeS = {
     background: `url(${bg})`,
@@ -78,40 +70,45 @@ function Signup() {
     height: `${height}`,
     zIndex: `-1`,
     display: `flex`,
-    alignItems: `center`
-  }
+    alignItems: `center`,
+  };
 
   return (
-    <div className="home" style={homeS}>
+    <div className='home' style={homeS}>
       <div className='container my-5' style={containerStyle}>
-        <form>
-          <h4 style={{ textAlign: `center` }} className="my-2">Sign Up Form</h4>
-          <div className="mb-3">
+        <form className='form'>
+          <h4 style={{ textAlign: `center` }} className='my-2'>
+            Sign Up Form
+          </h4>
+          <div className='mb-3'>
             <InputControl
-              className="form-control"
-              label="Name"
-              placeholder="Enter User Name"
+              className='form-control'
+              label='Name'
+              placeholder='Enter User Name'
               onChange={(event) =>
                 setValues((prev) => ({ ...prev, name: event.target.value }))
               }
             />
           </div>
-          <div className="mb-3">
+          <div className='mb-3'>
             <InputControl
-              className="form-control"
-              label="Email"
-              placeholder="Enter Your Email"
+              className='form-control'
+              label='Email'
+              type='password'
+              placeholder='Enter Your Email'
               onChange={(event) =>
                 setValues((prev) => ({ ...prev, email: event.target.value }))
               }
             />
             {/* <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div> */}
           </div>
-          <div className="mb-3">
+          <div className='mb-3'>
             <InputControl
-              className="form-control" id="exampleInputPassword1"
-              label="Password"
-              placeholder="Password"
+              className='form-control'
+              id='exampleInputPassword1'
+              label='Password'
+              type='password'
+              placeholder='Password'
               onChange={(event) =>
                 setValues((prev) => ({ ...prev, pass: event.target.value }))
               }
@@ -120,13 +117,17 @@ function Signup() {
         </form>
         <div>
           <b>{errorMsg}</b>
-          <button disabled={submitButtonDisabled} onClick={handleSubmission} className="btn btn-primary my-4 mx-4">
+          <button
+            disabled={submitButtonDisabled}
+            onClick={handleSubmission}
+            className='btn btn-primary my-4 mx-4'
+          >
             Signup
           </button>
           <p>
-            Already have an account?{" "}
+            Already have an account?{' '}
             <span>
-              <Link to="/login">Login</Link>
+              <Link to='/login'>Login</Link>
             </span>
           </p>
         </div>

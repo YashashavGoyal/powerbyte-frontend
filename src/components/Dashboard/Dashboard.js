@@ -1,13 +1,16 @@
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
-import LocateSign from '../../utils/helper';
 
 
 export default function Dashboard(props) {
   
-  LocateSign();
-  
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.setItem("user", false);
+    navigate("/login");
+  }
 
   return (
     <>
@@ -25,14 +28,14 @@ export default function Dashboard(props) {
         >
           <span className='navbar-toggler-icon'></span>
         </button>
-        <a className='navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6' href=''>
+        <a className='navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6' href='/panel/dashboard'>
           <strong>{props.title}</strong>
         </a>
         <div className='navbar-nav'>
           <div className='nav-item text-nowrap'>
-            <a href='/' className='nav-link px-3' >
+            <button className='nav-link px-3' onClick={handleLogout} >
               Sign out
-            </a>
+            </button>
           </div>
         </div>
       </header>
@@ -122,16 +125,6 @@ export default function Dashboard(props) {
                 className='sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-uppercase'
               >
                 <span>Saved reports</span>
-                <a
-                  className='link-secondary'
-                  href='#'
-                  aria-label='Add a new report'
-                >
-                  <span
-                    data-feather='plus-circle'
-                    className='align-text-bottom'
-                  ></span>
-                </a>
               </h6>
               <ul className='nav flex-column mb-2'>
                 <li   className='nav-item'>

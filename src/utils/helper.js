@@ -1,19 +1,8 @@
-import { useNavigate } from 'react-router-dom';
-
-
-function isUserLoggedin() {
+ export function isUserLoggedin() {
   const user = localStorage.getItem('user');
-  if (user) {
+  if (user === "true") {
     return true;
   } else {
     return false;
   }
 }
-function LocateSign() {
-      const navigate = useNavigate();
-      if (!isUserLoggedin()) {
-          navigate('/login');
-        }
-    }
-
-export default LocateSign;

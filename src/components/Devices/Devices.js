@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { child, get, getDatabase, ref } from 'firebase/database';
-import { doc, updateDoc, arrayUnion } from 'firebase/firestore';
 
-import { db } from '../../firebase';
+import { isUserLoggedin } from '../../utils/helper';
 
 export default function Devices(props) {
 
@@ -37,18 +36,20 @@ export default function Devices(props) {
     }
 
     // function to write data from realtime database to firestore databse
-    async function writeData(value, collectionName, equipment) {
-        try {
-            const tempRef = doc(db, collectionName, equipment);
-            await updateDoc(tempRef, {
-                current: arrayUnion(value['Current(A)']),
-                power: arrayUnion(value['Power(Watt)']),
-                voltage: arrayUnion(value['Voltage(Volt)']),
-            });
-        } catch (err) {
-            console.log(err);
-        }
-    }
+    // async function writeData(value, collectionName, equipment) {
+    //     try {
+    //         const tempRef = doc(db, collectionName, equipment);
+    //         await updateDoc(tempRef, {
+    //             current: arrayUnion(value['Current(A)']),
+    //             power: arrayUnion(value['Power(Watt)']),
+    //             voltage: arrayUnion(value['Voltage(Volt)']),
+    //         });
+    //     } catch (err) {
+    //         console.log(err);
+    //     }
+    // }
+
+    const navigate = useNavigate();
 
     useEffect(() => {
 
@@ -56,6 +57,9 @@ export default function Devices(props) {
         setInterval(() => {
             readData('Kitchen', 'Kitchen', setKitchen, kitchen);
         }, 5000);
+        if (!isUserLoggedin()) {
+            navigate("/login");
+        }
     }, []);
 
     if (loading) return <div>Loading...</div>;
@@ -172,21 +176,21 @@ export default function Devices(props) {
 
                         <div className="container-fluid">
                             <div className="list">
-                                <h1>Kitchen</h1>
+                                <h1>Kitchen Data</h1>
                                 <div className="collection">
                                     <h4>
-                                        Temperature (oC) : {kitchen["Temprature(oC)"]}
+                                        Temperature (oC) : {kitchen["Temprature(oC)"]}°C
                                     </h4>
                                 </div>
 
                                 <div className="collection">
-                                    <h1>Heater</h1>
+                                    <h3>Heater</h3>
                                     <div className="device">
 
                                         <ul>
-                                            <li>Current (A) : {kitchen.Heater["Current(A)"]}</li>
-                                            <li>Power (Watt) : {kitchen.Heater["Power(Watt)"]}</li>
-                                            <li>Voltage (Volt) : {kitchen.Heater["Voltage(Volt)"]}</li>
+                                            <li>Current (A) : {kitchen.Heater["Current(A)"]}A</li>
+                                            <li>Power (Watt) : {kitchen.Heater["Power(Watt)"]}W</li>
+                                            <li>Voltage (Volt) : {kitchen.Heater["Voltage(Volt)"]}V</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -194,20 +198,20 @@ export default function Devices(props) {
                                     <h3>Bulb</h3>
                                     <div className="device">
                                         <ul>
-                                            <li>Power(Watt) : {kitchen.Bulb["Power(Watt)"]}</li>
-                                            <li>Current(A) : {kitchen.Bulb["Current(A)"]}</li>
-                                            <li>Voltage(Volt) : {kitchen.Bulb["Voltage(Volt)"]}</li>
+                                            <li>Current(A) : {kitchen.Bulb["Current(A)"]}A</li>
+                                            <li>Power(Watt) : {kitchen.Bulb["Power(Watt)"]}W</li>
+                                            <li>Voltage(Volt) : {kitchen.Bulb["Voltage(Volt)"]}V</li>
                                         </ul>
                                     </div>
                                 </div>
 
                                 <div className="collection">
-                                    <h1>Fan</h1>
+                                    <h3>Fan</h3>
                                     <div className="device">
                                         <ul>
-                                            <li>Current (A) : {kitchen.fan["Current(A)"]}</li>
-                                            <li>Power (Watt) : {kitchen.fan["Power(Watt)"]}</li>
-                                            <li>Voltage (Volt) : {kitchen.fan["Voltage(Volt)"]}</li>
+                                            <li>Current (A) : {kitchen.fan["Current(A)"]}A</li>
+                                            <li>Power (Watt) : {kitchen.fan["Power(Watt)"]}W</li>
+                                            <li>Voltage (Volt) : {kitchen.fan["Voltage(Volt)"]}V</li>
                                         </ul>
                                     </div>
                                 </div>

@@ -34,6 +34,7 @@ function Signup(props) {
           displayName: values.name,
         });
         setUserLoggedin();
+        localStorage.setItem("user", true)
         navigate('/panel/dashboard');
       })
       .catch((err) => {
@@ -63,7 +64,7 @@ function Signup(props) {
     <>
      <nav style={navS} className="navbar navbar-expand-lg ">
         <div className="container-fluid">
-          <a style={titleS} className="navbar-brand" href="">{props.title}</a>
+          <span style={titleS} className="navbar-brand" href="">{props.title}</span>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li>

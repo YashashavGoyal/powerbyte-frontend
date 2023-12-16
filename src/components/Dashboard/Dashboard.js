@@ -1,56 +1,21 @@
-import React, { useRef } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-// import './Dashboardjs.mjs'
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
-import bg from './home-bg.png'
+import LocateSign from '../../utils/helper';
 
-// const navigate = useNavigate();
 
-// function isUserLoggedin() {
-//     const user = localStorage.getItem('user');
-//     if (user) {
-//       return true;
-//     } else {
-//       return false;
-//     }
-//   }
-//   if (!isUserLoggedin()) {
-//     navigate('/login');
-//   }
 export default function Dashboard(props) {
-  const navS = {
-    // backgroundColor: `#41464b`
-    backgroundColor: `#41464b`,
-  };
-
-  const li = {
-    background: `#ffffff82`,
-    borderRadius: `10px`,
-    marginTop: `4px`,
-  };
-
-  const sideMenuS = {
-    // background:`url("/static/media/home-bg.34f3b0a4010921ee3770.png") 2% 0% / cover`
-    background: `linear-gradient(45deg, #009cd1, #20af24)`,
-  };
-
-  const aS = {
-    color: `black`,
-  };
-
-  props.setNavStyle(false);
+  
+  LocateSign();
+  
 
   return (
     <>
       <header
-        style={navS}
         className='navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow'
       >
-        <a className='navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6' href=''>
-          <strong>{props.userName}</strong>
-        </a>
         <button
-          className='navbar-toggler position-absolute d-md-none collapsed'
+          className='navbar-toggler d-md-none collapsed'
           type='button'
           data-bs-toggle='collapse'
           data-bs-target='#sidebarMenu'
@@ -60,9 +25,12 @@ export default function Dashboard(props) {
         >
           <span className='navbar-toggler-icon'></span>
         </button>
+        <a className='navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6' href=''>
+          <strong>{props.title}</strong>
+        </a>
         <div className='navbar-nav'>
           <div className='nav-item text-nowrap'>
-            <a href='/' className='nav-link px-3'>
+            <a href='/' className='nav-link px-3' >
               Sign out
             </a>
           </div>
@@ -72,15 +40,14 @@ export default function Dashboard(props) {
       <div className='container-fluid'>
         <div className='row'>
           <nav
-            style={sideMenuS}
             id='sidebarMenu'
             className='col-md-3 col-lg-2 d-md-block bg-light sidebar collapse'
           >
             <div className='position-sticky pt-3 sidebar-sticky'>
               <ul className='nav flex-column'>
-                <li style={li} className='nav-item'>
+                <li   className='nav-item'>
                   <Link
-                    style={aS}
+                    
                     to='/panel/dashboard'
                     className='nav-link active'
                     aria-current='page'
@@ -92,8 +59,8 @@ export default function Dashboard(props) {
                     Dashboard
                   </Link>
                 </li>
-                <li style={li} className='nav-item'>
-                  <Link style={aS} className='nav-link' to='/panel/usage'>
+                <li   className='nav-item'>
+                  <Link  className='nav-link' to='/panel/usage'>
                     <span
                       data-feather='file'
                       className='align-text-bottom'
@@ -101,9 +68,9 @@ export default function Dashboard(props) {
                     Power Consumption
                   </Link>
                 </li>
-                <li style={li} className='nav-item'>
+                <li   className='nav-item'>
                   <Link
-                    style={aS}
+                    
                     className='nav-link'
                     to='/panel/savingmethods'
                   >
@@ -114,8 +81,8 @@ export default function Dashboard(props) {
                     Saving Methods
                   </Link>
                 </li>
-                <li style={li} className='nav-item'>
-                  <Link style={aS} className='nav-link' to='/panel/devices'>
+                <li   className='nav-item'>
+                  <Link  className='nav-link' to='/panel/devices'>
                     <span
                       data-feather='users'
                       className='align-text-bottom'
@@ -123,9 +90,9 @@ export default function Dashboard(props) {
                     Devices
                   </Link>
                 </li>
-                <li style={li} className='nav-item'>
+                <li   className='nav-item'>
                   <Link
-                    style={aS}
+                    
                     className='nav-link'
                     to='/panel/energycalculator'
                   >
@@ -136,9 +103,9 @@ export default function Dashboard(props) {
                     Energy Calculator
                   </Link>
                 </li>
-                <li style={li} className='nav-item'>
+                <li   className='nav-item'>
                   <Link
-                    style={aS}
+                    
                     className='nav-link'
                     to='/panel/integrations'
                   >
@@ -152,11 +119,6 @@ export default function Dashboard(props) {
               </ul>
 
               <h6
-                style={{
-                  color: `white`,
-                  fontSize: `1.5rem`,
-                  fontWeight: `800`,
-                }}
                 className='sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-uppercase'
               >
                 <span>Saved reports</span>
@@ -172,8 +134,8 @@ export default function Dashboard(props) {
                 </a>
               </h6>
               <ul className='nav flex-column mb-2'>
-                <li style={li} className='nav-item'>
-                  <a style={aS} className='nav-link' href='#'>
+                <li   className='nav-item'>
+                  <a  className='nav-link' href='#'>
                     <span
                       data-feather='file-text'
                       className='align-text-bottom'
@@ -181,8 +143,8 @@ export default function Dashboard(props) {
                     Current month
                   </a>
                 </li>
-                <li style={li} className='nav-item'>
-                  <a style={aS} className='nav-link' href='#'>
+                <li   className='nav-item'>
+                  <a  className='nav-link' href='#'>
                     <span
                       data-feather='file-text'
                       className='align-text-bottom'
@@ -190,8 +152,8 @@ export default function Dashboard(props) {
                     Last quarter
                   </a>
                 </li>
-                <li style={li} className='nav-item'>
-                  <a style={aS} className='nav-link' href='#'>
+                <li   className='nav-item'>
+                  <a  className='nav-link' href='#'>
                     <span
                       data-feather='file-text'
                       className='align-text-bottom'
@@ -199,8 +161,8 @@ export default function Dashboard(props) {
                     Social engagement
                   </a>
                 </li>
-                <li style={li} className='nav-item'>
-                  <a style={aS} className='nav-link' href='#'>
+                <li   className='nav-item'>
+                  <a  className='nav-link' href='#'>
                     <span
                       data-feather='file-text'
                       className='align-text-bottom'

@@ -22,35 +22,16 @@ import Energycalculator from './components/EnergyCalculator/Energycalculator';
 import NotFound from './components/NotFound/NotFound';
 
 import { db } from './firebase.js';
+import './Nav.css';
 
 function App() {
-  // const [showNav, setShowNav] = useState(true);
-  // const [userName, setuserName] = useState("");
+
   const [deviceData, setDeviceData] = useState({});
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState();
   const [kitchen, setKitchen] = useState({});
+
   // function to read data from realtime database firebase
-  function readData(dir, collection, stateName, name) {
-    const dbRef = ref(getDatabase());
-    get(child(dbRef, `${dir}/`))
-      .then((snapshot) => {
-        if (snapshot.exists()) {
-          setLoading(false);
-          console.log(snapshot.val().Bulb);
 
-          writeData(snapshot.val().Bulb, `${collection}`, 'Bulb');
-          writeData(snapshot.val().Heater, `${collection}`, 'Heater');
-          writeData(snapshot.val().fan, `${collection}`, 'fan');
-
-          stateName(snapshot.val());
-        } else {
-          console.log('No data available');
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }
 
   // function to write data from realtime database to firestore databse
   async function writeData(value, collectionName, equipment) {
@@ -66,69 +47,38 @@ function App() {
     }
   }
 
-  useEffect(() => {
- 
-    readData('Kitchen', 'Kitchen', setKitchen, kitchen);
-    setInterval(() => {
-      readData('Kitchen', 'Kitchen', setKitchen, kitchen);
-    }, 5000);
-  }, []);
 
   const title = `PowerByte`;
-
-  const [navStyle, setNavStyle] = useState(true);
-  const navS = {
-    backgroundColor: `#fff4008c`,
-  };
-
-  const titleS = {
-    fontColor: `blue`,
-    fontWeight: `700`,
-    fontFamily: `cursive`,
-    fontSize: `1.5rem`,
-  };
-
-  const despS = {
-    color: `blue`,
-    fontSize: `1rem`,
-  };
 
   if (loading) return <div>Loading...</div>;
   return (
     <div className='App'>
       <Router>
-        <Navbar
-          title={title}
-          navStyle={navStyle}
-          navS={navS}
-          titleS={titleS}
-          despS={despS}
-        />
         <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/signup' element={<Signup />} />
+          <Route path='/' element={<Home title={title} loading={setLoading} />} />
+          <Route path='/login' element={<Login title={title} setLoading={setLoading} />} />
+          <Route path='/signup' element={<Signup title={title} loading={setLoading} />} />
           <Route
             path='/panel/dashboard'
-            element={<Dashboard setNavStyle={setNavStyle} />}
+            element={<Dashboard title={title} loading={setLoading} />}
           />
           <Route
             path='/panel/usage'
-            element={<Usage setNavStyle={setNavStyle} />}
+            element={<Usage title={title}  />}
           />
           <Route
             path='/panel/savingmethods'
-            element={<Savingmethods setNavStyle={setNavStyle} />}
+            element={<Savingmethods title={title}  />}
           />
           <Route
             path='/panel/devices'
-            element={<Devices setNavStyle={setNavStyle} device1={kitchen} />}
+            element={<Devices title={title} />}
           />
           <Route
             path='/panel/energycalculator'
-            element={<Energycalculator setNavStyle={setNavStyle} />}
+            element={<Energycalculator title={title}  />}
           />
-          <Route path='*' element={<NotFound setNavStyle={setNavStyle} />} />
+          <Route path='*' element={<NotFound title={title}  />} />
         </Routes>
       </Router>
     </div>

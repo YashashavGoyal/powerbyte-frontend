@@ -1,14 +1,15 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 
 import InputControl from '../InputControl/InputControl';
 import { auth } from '../../firebase';
+import setUserLoggedin from '../../utils/LoggedInSender';
 
-import bg from './home-bg.png';
-import './Login.module.css';
 
-function Login() {
+import './Login.css';
+
+function Login(props) {
   const navigate = useNavigate();
   const [values, setValues] = useState({
     email: '',
@@ -28,7 +29,7 @@ function Login() {
     signInWithEmailAndPassword(auth, values.email, values.pass)
       .then(async (res) => {
         setSubmitButtonDisabled(false);
-
+        setUserLoggedin();
         navigate('/panel/dashboard');
       })
       .catch((err) => {
@@ -37,47 +38,38 @@ function Login() {
       });
   };
 
-  const windowSize = useRef([window.innerWidth, window.innerHeight]);
-  let width = windowSize.current[0] <= 720 ? `80%` : `40%`;
-
-  const containerStyle = {
-    width: `${width}`,
-    border: `2px solid gray`,
-    padding: `20px`,
-    borderRadius: `20px`,
-    background: `#f0f8ff36`,
-    color: `black`,
-    fontWeight: 800,
-    backdropFilter: `blur(10px)`,
+  const navS = {
+    backgroundColor: `#fff4008c`,
   };
 
-  const homeS = {
-    background: `url(${bg})`,
-    backgroundPosition: `center`,
-    backgroundSize: `cover`,
-    height: `100%`,
-    position: `absolute`,
-    top: 0,
-    left: 0,
-    width: `100%`,
-    zIndex: `-1`,
-    display: `flex`,
-    alignItems: `center`,
+  const titleS = {
+    fontColor: `blue`,
+    fontWeight: `700`,
+    fontFamily: `cursive`,
+    fontSize: `1.5rem`,
   };
 
-  const button = {
-    border: `none`,
-    textDecoration: `none`,
-    color: `black`,
-    padding: `10px 20px`,
-    background: `#022bff`,
-    color: `white`,
-    borderRadius: `10px`,
+  const despS = {
+    color: `blue`,
+    fontSize: `1rem`,
   };
 
   return (
-    <div className='home' style={homeS}>
-      <div className='container my-5' style={containerStyle}>
+    <>
+     <nav style={navS} className="navbar navbar-expand-lg ">
+        <div className="container-fluid">
+          <a style={titleS} className="navbar-brand" href="">{props.title}</a>
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <li>
+                <span style={despS} className="nav-link disabled" tabIndex="-1" aria-disabled="true">With us manage your energy consumption</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    <div className='home homeS'>
+      <div className='container my-5 containerStyle'>
         <form>
           <h4 style={{ textAlign: `center` }} className='my-2'>
             Login Form
@@ -112,7 +104,7 @@ function Login() {
           <button
             disabled={submitButtonDisabled}
             onClick={handleSubmission}
-            style={button}
+            className="button"
           >
             Login
           </button>
@@ -127,6 +119,7 @@ function Login() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 

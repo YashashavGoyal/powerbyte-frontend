@@ -1,13 +1,13 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 
 import InputControl from '../InputControl/InputControl';
 import { auth } from '../../firebase';
+import setUserLoggedin from '../../utils/LoggedInSender';
 
-import bg from './home-bg.png';
 import './Signup.css';
-function Signup() {
+function Signup(props) {
   const navigate = useNavigate();
   const [values, setValues] = useState({
     name: '',
@@ -33,6 +33,7 @@ function Signup() {
         await updateProfile(user, {
           displayName: values.name,
         });
+        setUserLoggedin();
         navigate('/panel/dashboard');
       })
       .catch((err) => {
@@ -41,41 +42,39 @@ function Signup() {
       });
   };
 
-  const [width, setWidth] = useState(`40%`);
-  const [height, setHeight] = useState(`100%`);
-  const [top, setTop] = useState(`6%`);
-
-  const containerStyle = {
-    width: `${width}`,
-    border: `2px solid gray`,
-    padding: `20px`,
-    borderRadius: `20px`,
-    background: `#f0f8ff36`,
-    color: `black`,
-    fontWeight: 800,
-    backdropFilter: `blur(10px)`,
-    position: `relative`,
-    top: `${top}`,
+  const navS = {
+    backgroundColor: `#fff4008c`,
   };
 
-  const homeS = {
-    background: `url(${bg})`,
-    backgroundPosition: `center`,
-    backgroundSize: `cover`,
-    height: `auto`,
-    position: `absolute`,
-    top: 0,
-    left: 0,
-    width: `100%`,
-    height: `${height}`,
-    zIndex: `-1`,
-    display: `flex`,
-    alignItems: `center`,
+  const titleS = {
+    fontColor: `blue`,
+    fontWeight: `700`,
+    fontFamily: `cursive`,
+    fontSize: `1.5rem`,
   };
+
+  const despS = {
+    color: `blue`,
+    fontSize: `1rem`,
+  };
+
 
   return (
-    <div className='home' style={homeS}>
-      <div className='container my-5' style={containerStyle}>
+    <>
+     <nav style={navS} className="navbar navbar-expand-lg ">
+        <div className="container-fluid">
+          <a style={titleS} className="navbar-brand" href="">{props.title}</a>
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <li>
+                <span style={despS} className="nav-link disabled" tabIndex="-1" aria-disabled="true">With us manage your energy consumption</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    <div className='home homeS'>
+      <div className='container my-5 containerStyle'>
         <form className='form'>
           <h4 style={{ textAlign: `center` }} className='my-2'>
             Sign Up Form
@@ -133,6 +132,7 @@ function Signup() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import bg from './home-bg.png'
+
+import './Home.css'
 
 function Home(props) {
   const btnS = {
@@ -8,33 +9,6 @@ function Home(props) {
     width: `40%`,
     justifyContent: `center`,
     gap: `10px`
-  }
-
-  const homeS ={
-    background: `url(${bg})`,
-    backgroundPosition: `center`,
-    backgroundSize: `cover`,
-    height: `100%`,
-    position: `absolute`,
-    top: 0,
-    left: 0,
-    width: `100%`,
-    zIndex: `-1`,
-    display:  `flex`,
-    alignItems: `center`
-  }
-
-  const container = {
-    border: `2px solid #066b13`,
-    padding: `20px 10px`,
-    background: `rgb(240 248 255 / 17%)`,
-    borderRadius: `20px`,
-    backdropFilter: `blur(10px)`,
-    height: `50vh`,
-    display: `flex`,
-    flexDirection: `column`,
-    justifyContent: `center`,
-    alignItems: `center`
   }
 
   const button = {
@@ -46,10 +20,39 @@ function Home(props) {
     borderRadius: `10px`
   }
 
+  const navS = {
+    backgroundColor: `#fff4008c`,
+  };
+
+  const titleS = {
+    fontColor: `blue`,
+    fontWeight: `700`,
+    fontFamily: `cursive`,
+    fontSize: `1.5rem`,
+  };
+
+  const despS = {
+    color: `blue`,
+    fontSize: `1rem`,
+  };
+
   return (
     <>
-      <div className="home" style={homeS}>
-        <div className="container my-5" style={container}>
+      <nav style={navS} className="navbar navbar-expand-lg ">
+        <div className="container-fluid">
+          <a style={titleS} className="navbar-brand" href="">{props.title}</a>
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <li>
+                <span style={despS} className="nav-link disabled" tabIndex="-1" aria-disabled="true">With us manage your energy consumption</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <div className="home homeS">
+        <div className="container my-5">
           <div className="head" style={{ textAlign: 'center' }}>
             <h1>Welcome To EnergySavers</h1>
             <p>We are pleased to welcome you</p>

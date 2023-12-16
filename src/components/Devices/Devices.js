@@ -1,19 +1,73 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
+
+import { child, get, getDatabase, ref } from 'firebase/database';
+import { doc, updateDoc, arrayUnion } from 'firebase/firestore';
+
+import { db } from '../../firebase';
 
 export default function Devices(props) {
 
-    props.setNavStyle(false);
+    // console.log(kitchen);
 
+    const [loading, setLoading] = useState(true);
+    const [kitchen, setKitchen] = useState({});
+
+    function readData(dir, collection, stateName, name) {
+        const dbRef = ref(getDatabase());
+        get(child(dbRef, `${dir}/`))
+            .then((snapshot) => {
+                if (snapshot.exists()) {
+                    console.log(snapshot.val());
+
+                    // writeData(snapshot.val().Bulb, `${collection}`, 'Bulb');
+                    // writeData(snapshot.val().Heater, `${collection}`, 'Heater');
+                    // writeData(snapshot.val().fan, `${collection}`, 'fan');
+
+                    stateName(snapshot.val());
+                } else {
+                    console.log('No data available');
+                }
+            }).then(() => {
+                setLoading(false);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }
+
+    // function to write data from realtime database to firestore databse
+    async function writeData(value, collectionName, equipment) {
+        try {
+            const tempRef = doc(db, collectionName, equipment);
+            await updateDoc(tempRef, {
+                current: arrayUnion(value['Current(A)']),
+                power: arrayUnion(value['Power(Watt)']),
+                voltage: arrayUnion(value['Voltage(Volt)']),
+            });
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    useEffect(() => {
+
+        readData('Kitchen', 'Kitchen', setKitchen, kitchen);
+        setInterval(() => {
+            readData('Kitchen', 'Kitchen', setKitchen, kitchen);
+        }, 5000);
+    }, []);
+
+    if (loading) return <div>Loading...</div>;
     return (
         <>
             <header className="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-                <a className="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="">
-                    <strong>{props.title}</strong>
-                </a>
-                <button className="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <button className="navbar-toggler d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
+                <span className="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" >
+                    <strong>{props.title}</strong>
+                </span>
                 <div className="navbar-nav">
                     <div className="nav-item text-nowrap">
                         <Link to="/" className="nav-link px-3">Sign out</Link>
@@ -66,34 +120,34 @@ export default function Devices(props) {
 
                             <h6 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted text-uppercase">
                                 <span>Saved reports</span>
-                                <a className="link-secondary" href="#" aria-label="Add a new report">
+                                <span className="link-secondary" aria-label="Add a new report">
                                     <span data-feather="plus-circle" className="align-text-bottom"></span>
-                                </a>
+                                </span>
                             </h6>
                             <ul className="nav flex-column mb-2">
                                 <li className="nav-item">
-                                    <a className="nav-link" href="#">
+                                    <span className="nav-link" >
                                         <span data-feather="file-text" className="align-text-bottom"></span>
                                         Current month
-                                    </a>
+                                    </span>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="#">
+                                    <span className="nav-link" >
                                         <span data-feather="file-text" className="align-text-bottom"></span>
                                         Last quarter
-                                    </a>
+                                    </span>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="#">
+                                    <span className="nav-link" >
                                         <span data-feather="file-text" className="align-text-bottom"></span>
                                         Social engagement
-                                    </a>
+                                    </span>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="#">
+                                    <span className="nav-link" >
                                         <span data-feather="file-text" className="align-text-bottom"></span>
                                         Year-end sale
-                                    </a>
+                                    </span>
                                 </li>
                             </ul>
                         </div>
@@ -118,45 +172,46 @@ export default function Devices(props) {
 
                         <div className="container-fluid">
                             <div className="list">
+                                <h1>Kitchen</h1>
                                 <div className="collection">
-                                    <h1></h1>
+                                    <h4>
+                                        Temperature (oC) : {kitchen["Temprature(oC)"]}
+                                    </h4>
+                                </div>
+
+                                <div className="collection">
+                                    <h1>Heater</h1>
                                     <div className="device">
-                                        <h3 className="deviceName"></h3>
+
                                         <ul>
-                                            <li></li>
-                                            <li></li>
-                                            <li></li>
-                                            <li></li>
+                                            <li>Current (A) : {kitchen.Heater["Current(A)"]}</li>
+                                            <li>Power (Watt) : {kitchen.Heater["Power(Watt)"]}</li>
+                                            <li>Voltage (Volt) : {kitchen.Heater["Voltage(Volt)"]}</li>
                                         </ul>
                                     </div>
                                 </div>
-                                
                                 <div className="collection">
-                                    <h1></h1>
+                                    <h3>Bulb</h3>
                                     <div className="device">
-                                        <h3 className="deviceName"></h3>
                                         <ul>
-                                            <li></li>
-                                            <li></li>
-                                            <li></li>
-                                            <li></li>
+                                            <li>Power(Watt) : {kitchen.Bulb["Power(Watt)"]}</li>
+                                            <li>Current(A) : {kitchen.Bulb["Current(A)"]}</li>
+                                            <li>Voltage(Volt) : {kitchen.Bulb["Voltage(Volt)"]}</li>
                                         </ul>
                                     </div>
                                 </div>
-                                
+
                                 <div className="collection">
-                                    <h1></h1>
+                                    <h1>Fan</h1>
                                     <div className="device">
-                                        <h3 className="deviceName"></h3>
                                         <ul>
-                                            <li></li>
-                                            <li></li>
-                                            <li></li>
-                                            <li></li>
+                                            <li>Current (A) : {kitchen.fan["Current(A)"]}</li>
+                                            <li>Power (Watt) : {kitchen.fan["Power(Watt)"]}</li>
+                                            <li>Voltage (Volt) : {kitchen.fan["Voltage(Volt)"]}</li>
                                         </ul>
                                     </div>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </main>

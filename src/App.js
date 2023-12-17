@@ -20,6 +20,7 @@ import Savingmethods from './components/SavingMethods/Savingmethods';
 import Devices from './components/Devices/Devices';
 import Energycalculator from './components/EnergyCalculator/Energycalculator';
 import NotFound from './components/NotFound/NotFound';
+import Navbar from './components/Navbar/Navbar';
 
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
   return (
     <div className='App'>
       <Router>
+        <Navbar />
         <Routes>
           <Route path='/' element={<Home loading={setLoading} />} />
           <Route path='/login' element={<Login setLoading={setLoading} />} />

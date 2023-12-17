@@ -1,56 +1,13 @@
-import React, { useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-
-import { isUserLoggedin } from '../../utils/helper';
-
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 
 export default function Dashboard(props) {
 
-  const navigate = useNavigate();
 
-  const handleLogout = () => {
-    localStorage.setItem("user", false);
-    navigate("/login");
-  }
-
-  useEffect(() => {
-
-    if (!isUserLoggedin()) {
-      navigate("/login");
-    }
-  }, []);
 
   return (
     <>
-      <header
-        className='navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow'
-      >
-        <button
-          className='navbar-toggler d-md-none collapsed'
-          type='button'
-          data-bs-toggle='collapse'
-          data-bs-target='#sidebarMenu'
-          aria-controls='sidebarMenu'
-          aria-expanded='false'
-          aria-label='Toggle navigation'
-        >
-          <span className='navbar-toggler-icon'></span>
-        </button>
-        <span className='navbar-brand'>
-          <strong>
-            <span className="logo-full"></span>
-          </strong>
-        </span>
-        <div className='navbar-nav'>
-          <div className='text-nowrap'>
-            <button className='px-3 mx-2 my-2' onClick={handleLogout} >
-              Sign out
-            </button>
-          </div>
-        </div>
-      </header>
-
       <div className='container-fluid'>
         <div className='row'>
           <nav
@@ -139,7 +96,7 @@ export default function Dashboard(props) {
               </h6>
               <ul className='nav flex-column mb-2'>
                 <li className='nav-item'>
-                  <a className='nav-link' href='#'>
+                  <a className='nav-link'>
                     <span
                       data-feather='file-text'
                       className='align-text-bottom'

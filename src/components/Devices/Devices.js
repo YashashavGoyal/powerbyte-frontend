@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { child, get, getDatabase, ref } from 'firebase/database';
-
-import { isUserLoggedin } from '../../utils/helper';
 
 export default function Devices(props) {
 
@@ -17,7 +15,7 @@ export default function Devices(props) {
         get(child(dbRef, `${dir}/`))
             .then((snapshot) => {
                 if (snapshot.exists()) {
-                    console.log(snapshot.val());
+                    // console.log(snapshot.val());
 
                     // writeData(snapshot.val().Bulb, `${collection}`, 'Bulb');
                     // writeData(snapshot.val().Heater, `${collection}`, 'Heater');
@@ -49,41 +47,17 @@ export default function Devices(props) {
     //     }
     // }
 
-    const navigate = useNavigate();
-
-    const handleLogout = () => {
-        localStorage.setItem("user", false);
-        navigate("/login");
-    }
-
     useEffect(() => {
 
         readData('Kitchen', 'Kitchen', setKitchen, kitchen);
         setInterval(() => {
             readData('Kitchen', 'Kitchen', setKitchen, kitchen);
         }, 5000);
-        if (!isUserLoggedin()) {
-            navigate("/login");
-        }
     }, []);
 
     if (loading) return <div>Loading...</div>;
     return (
         <>
-            <header className="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-                <button className="navbar-toggler d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-                <span className="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" >
-                    <strong>{props.title}</strong>
-                </span>
-                <div className="navbar-nav">
-                    <div className="text-nowrap">
-                        <button className="px-2 mx-2 my-2" onClick={handleLogout}>Sign out</button>
-                    </div>
-                </div>
-            </header>
-
             <div className="container-fluid">
                 <div className="row">
                     <nav id="sidebarMenu" className="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">

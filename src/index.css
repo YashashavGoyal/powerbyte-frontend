@@ -1,3 +1,4 @@
+/* Global styles */
 * {
   margin: 0;
   padding: 0;
@@ -6,7 +7,6 @@
 }
 
 /* Calculator CSS */
-/* Global styles */
 
 
 .calculator {
@@ -63,10 +63,23 @@ button {
   align-items: center;
 }
 
+.container-fluid .not-found-img {
+  width: 50%;
+}
+
+.container-fluid .not-found-container {
+  display: flex;
+  justify-content: center;
+}
+
 /* Media query for mobile devices */
 @media only screen and (max-width: 600px) {
   .calculator {
     width: 90% !important;
     max-width: none !important;
+  }
+
+  .container-fluid .not-found-img {
+    width: 100%;
   }
 }

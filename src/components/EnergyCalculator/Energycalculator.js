@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from "react-router-dom";
+
+import { isUserLoggedin } from '../../utils/helper';
 
 export default function Energycalculator(props) {
 
@@ -21,6 +23,20 @@ export default function Energycalculator(props) {
         }
     }
 
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+      localStorage.setItem("user", false);
+      navigate("/login");
+    }
+
+    useEffect(() => {
+
+        if (!isUserLoggedin()) {
+            navigate("/login");
+        }
+    }, []);
+
     return (
         <>
             <header className="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
@@ -31,8 +47,8 @@ export default function Energycalculator(props) {
                     <strong>{props.title}</strong>
                 </a>
                 <div className="navbar-nav">
-                    <div className="nav-item text-nowrap">
-                        <Link to="/" className="nav-link px-3">Sign out</Link>
+                    <div className="text-nowrap">
+                        <button className="px-3 mx-2 my-2" onClick={handleLogout}>Sign out</button>
                     </div>
                 </div>
             </header>

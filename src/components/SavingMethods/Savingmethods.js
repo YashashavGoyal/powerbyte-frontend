@@ -1,7 +1,23 @@
-import React from 'react';
-import { Link } from "react-router-dom";
+import React, { useEffect } from 'react';
+import { Link, useNavigate } from "react-router-dom";
+
+import { isUserLoggedin } from '../../utils/helper';
 
 export default function Savingmethods(props) {
+
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+      localStorage.setItem("user", false);
+      navigate("/login");
+    }
+
+    useEffect(() => {
+
+        if (!isUserLoggedin()) {
+            navigate("/login");
+        }
+    }, []);
 
     return (
         <>
@@ -13,8 +29,8 @@ export default function Savingmethods(props) {
                     <strong>{props.title}</strong>
                 </a>
                 <div className="navbar-nav">
-                    <div className="nav-item text-nowrap">
-                        <Link to="/" className="nav-link px-3">Sign out</Link>
+                    <div className="text-nowrap">
+                        <button className="px-3 my-2 mx-2" onClick={handleLogout}>Sign out</button>
                     </div>
                 </div>
             </header>

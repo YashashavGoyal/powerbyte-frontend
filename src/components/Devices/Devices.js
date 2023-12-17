@@ -51,6 +51,11 @@ export default function Devices(props) {
 
     const navigate = useNavigate();
 
+    const handleLogout = () => {
+      localStorage.setItem("user", false);
+      navigate("/login");
+    }
+
     useEffect(() => {
 
         readData('Kitchen', 'Kitchen', setKitchen, kitchen);
@@ -73,8 +78,8 @@ export default function Devices(props) {
                     <strong>{props.title}</strong>
                 </span>
                 <div className="navbar-nav">
-                    <div className="nav-item text-nowrap">
-                        <Link to="/" className="nav-link px-3">Sign out</Link>
+                    <div className="text-nowrap">
+                        <button className="px-2 mx-2 my-2" onClick={handleLogout}>Sign out</button>
                     </div>
                 </div>
             </header>
@@ -179,7 +184,7 @@ export default function Devices(props) {
                                 <h1>Kitchen Data</h1>
                                 <div className="collection">
                                     <h4>
-                                        Temperature (oC) : {kitchen["Temprature(oC)"]}°C
+                                        Temperature (oC) : {kitchen["Temprature(oC)"]} °C
                                     </h4>
                                 </div>
 
@@ -188,9 +193,9 @@ export default function Devices(props) {
                                     <div className="device">
 
                                         <ul>
-                                            <li>Current (A) : {kitchen.Heater["Current(A)"]}A</li>
-                                            <li>Power (Watt) : {kitchen.Heater["Power(Watt)"]}W</li>
-                                            <li>Voltage (Volt) : {kitchen.Heater["Voltage(Volt)"]}V</li>
+                                            <li>Current (A) : {kitchen.Heater["Current(A)"]} A</li>
+                                            <li>Power (Watt) : {kitchen.Heater["Power(Watt)"]} W</li>
+                                            <li>Voltage (Volt) : {kitchen.Heater["Voltage(Volt)"]} V</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -198,9 +203,9 @@ export default function Devices(props) {
                                     <h3>Bulb</h3>
                                     <div className="device">
                                         <ul>
-                                            <li>Current(A) : {kitchen.Bulb["Current(A)"]}A</li>
-                                            <li>Power(Watt) : {kitchen.Bulb["Power(Watt)"]}W</li>
-                                            <li>Voltage(Volt) : {kitchen.Bulb["Voltage(Volt)"]}V</li>
+                                            <li>Current(A) : {kitchen.Bulb["Current(A)"]} A</li>
+                                            <li>Power(Watt) : {kitchen.Bulb["Power(Watt)"]} W</li>
+                                            <li>Voltage(Volt) : {kitchen.Bulb["Voltage(Volt)"]} V</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -209,9 +214,9 @@ export default function Devices(props) {
                                     <h3>Fan</h3>
                                     <div className="device">
                                         <ul>
-                                            <li>Current (A) : {kitchen.fan["Current(A)"]}A</li>
-                                            <li>Power (Watt) : {kitchen.fan["Power(Watt)"]}W</li>
-                                            <li>Voltage (Volt) : {kitchen.fan["Voltage(Volt)"]}V</li>
+                                            <li>Current (A) : {kitchen.fan["Current(A)"]} A</li>
+                                            <li>Power (Watt) : {kitchen.fan["Power(Watt)"]} W</li>
+                                            <li>Voltage (Volt) : {kitchen.fan["Voltage(Volt)"]} V</li>
                                         </ul>
                                     </div>
                                 </div>

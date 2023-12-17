@@ -1,16 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+
+import { isUserLoggedin } from '../../utils/helper';
 
 
 
 export default function Dashboard(props) {
-  
+
   const navigate = useNavigate();
 
   const handleLogout = () => {
     localStorage.setItem("user", false);
     navigate("/login");
   }
+
+  useEffect(() => {
+
+    if (!isUserLoggedin()) {
+      navigate("/login");
+    }
+  }, []);
 
   return (
     <>
@@ -32,8 +41,8 @@ export default function Dashboard(props) {
           <strong>{props.title}</strong>
         </a>
         <div className='navbar-nav'>
-          <div className='nav-item text-nowrap'>
-            <button className='nav-link px-3' onClick={handleLogout} >
+          <div className='text-nowrap'>
+            <button className='px-3 mx-2 my-2' onClick={handleLogout} >
               Sign out
             </button>
           </div>
@@ -48,9 +57,9 @@ export default function Dashboard(props) {
           >
             <div className='position-sticky pt-3 sidebar-sticky'>
               <ul className='nav flex-column'>
-                <li   className='nav-item'>
+                <li className='nav-item'>
                   <Link
-                    
+
                     to='/panel/dashboard'
                     className='nav-link active'
                     aria-current='page'
@@ -62,8 +71,8 @@ export default function Dashboard(props) {
                     Dashboard
                   </Link>
                 </li>
-                <li   className='nav-item'>
-                  <Link  className='nav-link' to='/panel/usage'>
+                <li className='nav-item'>
+                  <Link className='nav-link' to='/panel/usage'>
                     <span
                       data-feather='file'
                       className='align-text-bottom'
@@ -71,9 +80,9 @@ export default function Dashboard(props) {
                     Power Consumption
                   </Link>
                 </li>
-                <li   className='nav-item'>
+                <li className='nav-item'>
                   <Link
-                    
+
                     className='nav-link'
                     to='/panel/savingmethods'
                   >
@@ -84,8 +93,8 @@ export default function Dashboard(props) {
                     Saving Methods
                   </Link>
                 </li>
-                <li   className='nav-item'>
-                  <Link  className='nav-link' to='/panel/devices'>
+                <li className='nav-item'>
+                  <Link className='nav-link' to='/panel/devices'>
                     <span
                       data-feather='users'
                       className='align-text-bottom'
@@ -93,9 +102,9 @@ export default function Dashboard(props) {
                     Devices
                   </Link>
                 </li>
-                <li   className='nav-item'>
+                <li className='nav-item'>
                   <Link
-                    
+
                     className='nav-link'
                     to='/panel/energycalculator'
                   >
@@ -106,9 +115,9 @@ export default function Dashboard(props) {
                     Energy Calculator
                   </Link>
                 </li>
-                <li   className='nav-item'>
+                <li className='nav-item'>
                   <Link
-                    
+
                     className='nav-link'
                     to='/panel/integrations'
                   >
@@ -127,8 +136,8 @@ export default function Dashboard(props) {
                 <span>Saved reports</span>
               </h6>
               <ul className='nav flex-column mb-2'>
-                <li   className='nav-item'>
-                  <a  className='nav-link' href='#'>
+                <li className='nav-item'>
+                  <a className='nav-link' href='#'>
                     <span
                       data-feather='file-text'
                       className='align-text-bottom'
@@ -136,8 +145,8 @@ export default function Dashboard(props) {
                     Current month
                   </a>
                 </li>
-                <li   className='nav-item'>
-                  <a  className='nav-link' href='#'>
+                <li className='nav-item'>
+                  <a className='nav-link' href='#'>
                     <span
                       data-feather='file-text'
                       className='align-text-bottom'
@@ -145,8 +154,8 @@ export default function Dashboard(props) {
                     Last quarter
                   </a>
                 </li>
-                <li   className='nav-item'>
-                  <a  className='nav-link' href='#'>
+                <li className='nav-item'>
+                  <a className='nav-link' href='#'>
                     <span
                       data-feather='file-text'
                       className='align-text-bottom'
@@ -154,8 +163,8 @@ export default function Dashboard(props) {
                     Social engagement
                   </a>
                 </li>
-                <li   className='nav-item'>
-                  <a  className='nav-link' href='#'>
+                <li className='nav-item'>
+                  <a className='nav-link' href='#'>
                     <span
                       data-feather='file-text'
                       className='align-text-bottom'

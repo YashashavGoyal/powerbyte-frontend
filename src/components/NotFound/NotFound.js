@@ -1,18 +1,32 @@
-import React, { useRef } from 'react';
-import { Link } from "react-router-dom";
+import React, { useEffect, useRef } from 'react';
+import { Link, useNavigate } from "react-router-dom";
 
 import img404 from './404notfound.gif';
+import { isUserLoggedin } from '../../utils/helper';
 
 export default function NotFound(props) {
 
 
-    const windowSize = useRef([window.innerWidth, window.innerHeight]);
-    let width = (windowSize.current[0] <= 720) ? `100%` : `50%`;
+    // const windowSize = useRef([window.innerWidth, window.innerHeight]);
+    // let width = (windowSize.current[0] <= 720) ? `100%` : `50%`;
 
     const imgS = {
-        width: `${width}`,
         height: `auto`
     }
+
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        localStorage.setItem("user", false);
+        navigate("/login");
+    }
+
+    useEffect(() => {
+
+        if (!isUserLoggedin()) {
+            navigate("/login");
+        }
+    }, []);
 
     return (
         <>
@@ -24,8 +38,8 @@ export default function NotFound(props) {
                     <strong>{props.title}</strong>
                 </a>
                 <div className="navbar-nav">
-                    <div className="nav-item text-nowrap">
-                        <Link to="/" className="nav-link px-3">Sign out</Link>
+                    <div className="text-nowrap">
+                        <button className="px-3 my-2 mx-2" onClick={handleLogout}>Sign out</button>
                     </div>
                 </div>
             </header>
@@ -116,7 +130,9 @@ export default function NotFound(props) {
                         {/* <canvas className="my-4 w-100" id="myChart" width="900" height="380"></canvas> */}
 
                         <div className="container-fluid">
-                            <img src={img404} alt="404 Not Found" style={imgS} />
+                            <div className="not-found-container">
+                                <img src={img404} className='not-found-img' alt="404 Not Found" style={imgS} />
+                            </div>
                         </div>
                     </main>
                 </div>

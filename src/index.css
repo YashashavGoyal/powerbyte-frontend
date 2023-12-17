@@ -48,6 +48,21 @@ button {
   font-size: 18px;
 }
 
+/* bg-img */
+.homeS {
+  background: url(home-bg.png);
+  background-position: center;
+  background-size: cover;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: -1;
+  display: flex;
+  align-items: center;
+}
+
 /* Media query for mobile devices */
 @media only screen and (max-width: 600px) {
   .calculator {

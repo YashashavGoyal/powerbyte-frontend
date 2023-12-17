@@ -7,6 +7,7 @@ import { auth } from '../../firebase';
 import setUserLoggedin from '../../utils/LoggedInSender';
 
 import './Signup.css';
+
 function Signup(props) {
   const navigate = useNavigate();
   const [values, setValues] = useState({

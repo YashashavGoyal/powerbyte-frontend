@@ -52,8 +52,8 @@ export default function Devices(props) {
     const navigate = useNavigate();
 
     const handleLogout = () => {
-      localStorage.setItem("user", false);
-      navigate("/login");
+        localStorage.setItem("user", false);
+        navigate("/login");
     }
 
     useEffect(() => {
@@ -180,48 +180,44 @@ export default function Devices(props) {
                         {/* <canvas className="my-4 w-100" id="myChart" width="900" height="380"></canvas> */}
 
                         <div className="container-fluid">
-                            <div className="list">
-                                <h1>Kitchen Data</h1>
-                                <div className="collection">
-                                    <h4>
-                                        Temperature (oC) : {kitchen["Temprature(oC)"]} °C
-                                    </h4>
-                                </div>
+                            <table className="table table-striped table-bordered">
+                                <thead className="bg-success">
+                                    <tr>
+                                        <th style={{color: `white`, fontSize: `20px`}} className='center' colSpan={4} scope="col">Room-1 Data</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr className='table-primary'>
+                                        <th className='center' colSpan={2} scope="col">Temperature (oC)</th>
+                                        <th className='center' colSpan={2} scope="col">{kitchen["Temprature(oC)"]} °C</th>
+                                    </tr>
+                                    <tr className='table-primary'>
+                                        <th scope="col">Device</th>
+                                        <th scope="col">Power (Watt)</th>
+                                        <th scope="col">Voltage (Volt)</th>
+                                        <th scope="col">Current (A)</th>
+                                    </tr>
+                                    <tr className='table-primary'>
+                                        <th scope="row">Bulb</th>
+                                        <td>{kitchen.Bulb["Power(Watt)"]}</td>
+                                        <td>{kitchen.Bulb["Voltage(Volt)"]}</td>
+                                        <td>{kitchen.Bulb["Current(A)"]}</td>
+                                    </tr>
+                                    <tr className='table-primary'>
+                                        <th scope="row">Heater</th>
+                                        <td>{kitchen.Heater["Power(Watt)"]}</td>
+                                        <td>{kitchen.Heater["Voltage(Volt)"]}</td>
+                                        <td>{kitchen.Heater["Current(A)"]}</td>
+                                    </tr>
+                                    <tr className='table-primary'>
+                                        <th scope="row">Fan</th>
+                                        <td>{kitchen.fan["Power(Watt)"]}</td>
+                                        <td>{kitchen.fan["Voltage(Volt)"]}</td>
+                                        <td>{kitchen.fan["Current(A)"]}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
 
-                                <div className="collection">
-                                    <h3>Heater</h3>
-                                    <div className="device">
-
-                                        <ul>
-                                            <li>Current (A) : {kitchen.Heater["Current(A)"]} A</li>
-                                            <li>Power (Watt) : {kitchen.Heater["Power(Watt)"]} W</li>
-                                            <li>Voltage (Volt) : {kitchen.Heater["Voltage(Volt)"]} V</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div className="collection">
-                                    <h3>Bulb</h3>
-                                    <div className="device">
-                                        <ul>
-                                            <li>Current(A) : {kitchen.Bulb["Current(A)"]} A</li>
-                                            <li>Power(Watt) : {kitchen.Bulb["Power(Watt)"]} W</li>
-                                            <li>Voltage(Volt) : {kitchen.Bulb["Voltage(Volt)"]} V</li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div className="collection">
-                                    <h3>Fan</h3>
-                                    <div className="device">
-                                        <ul>
-                                            <li>Current (A) : {kitchen.fan["Current(A)"]} A</li>
-                                            <li>Power (Watt) : {kitchen.fan["Power(Watt)"]} W</li>
-                                            <li>Voltage (Volt) : {kitchen.fan["Voltage(Volt)"]} V</li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                            </div>
                         </div>
                     </main>
                 </div>

@@ -7,6 +7,7 @@ import { auth } from '../../firebase';
 import setUserLoggedin from '../../utils/LoggedInSender';
 
 import './Signup.css';
+import './logo_full.png';
 
 function Signup(props) {
   const navigate = useNavigate();
@@ -63,9 +64,11 @@ function Signup(props) {
 
   return (
     <>
-     <nav style={navS} className="navbar navbar-expand-lg ">
+      <nav style={navS} className="navbar navbar-expand-lg ">
         <div className="container-fluid">
-          <span style={titleS} className="navbar-brand" href="">{props.title}</span>
+          <span style={titleS} className="navbar-brand" href="">
+            <span className="logo-full"></span>
+          </span>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li>
@@ -75,65 +78,65 @@ function Signup(props) {
           </div>
         </div>
       </nav>
-    <div className='home homeS'>
-      <div className='container my-5 containerStyle'>
-        <form className='form'>
-          <h4 style={{ textAlign: `center` }} className='my-2'>
-            Sign Up Form
-          </h4>
-          <div className='mb-3'>
-            <InputControl
-              className='form-control'
-              label='Name'
-              placeholder='Enter User Name'
-              onChange={(event) =>
-                setValues((prev) => ({ ...prev, name: event.target.value }))
-              }
-            />
+      <div className='home homeS'>
+        <div className='container my-5 containerStyle'>
+          <form className='form'>
+            <h4 style={{ textAlign: `center` }} className='my-2'>
+              Sign Up Form
+            </h4>
+            <div className='mb-3'>
+              <InputControl
+                className='form-control'
+                label='Name'
+                placeholder='Enter User Name'
+                onChange={(event) =>
+                  setValues((prev) => ({ ...prev, name: event.target.value }))
+                }
+              />
+            </div>
+            <div className='mb-3'>
+              <InputControl
+                className='form-control'
+                label='Email'
+                type='password'
+                placeholder='Enter Your Email'
+                onChange={(event) =>
+                  setValues((prev) => ({ ...prev, email: event.target.value }))
+                }
+              />
+              {/* <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div> */}
+            </div>
+            <div className='mb-3'>
+              <InputControl
+                className='form-control'
+                id='exampleInputPassword1'
+                label='Password'
+                type='password'
+                placeholder='Password'
+                onChange={(event) =>
+                  setValues((prev) => ({ ...prev, pass: event.target.value }))
+                }
+              />
+            </div>
+          </form>
+          <div>
+            <b>{errorMsg}</b>
+            <button
+              disabled={submitButtonDisabled}
+              onClick={handleSubmission}
+              className='btn btn-primary my-4 mx-4'
+            >
+              Signup
+            </button>
+            <p>
+              Already have an account?{' '}
+              <span>
+                <Link to='/login'>Login</Link>
+              </span>
+            </p>
           </div>
-          <div className='mb-3'>
-            <InputControl
-              className='form-control'
-              label='Email'
-              type='password'
-              placeholder='Enter Your Email'
-              onChange={(event) =>
-                setValues((prev) => ({ ...prev, email: event.target.value }))
-              }
-            />
-            {/* <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div> */}
-          </div>
-          <div className='mb-3'>
-            <InputControl
-              className='form-control'
-              id='exampleInputPassword1'
-              label='Password'
-              type='password'
-              placeholder='Password'
-              onChange={(event) =>
-                setValues((prev) => ({ ...prev, pass: event.target.value }))
-              }
-            />
-          </div>
-        </form>
-        <div>
-          <b>{errorMsg}</b>
-          <button
-            disabled={submitButtonDisabled}
-            onClick={handleSubmission}
-            className='btn btn-primary my-4 mx-4'
-          >
-            Signup
-          </button>
-          <p>
-            Already have an account?{' '}
-            <span>
-              <Link to='/login'>Login</Link>
-            </span>
-          </p>
         </div>
       </div>
-    </div>
     </>
   );
 }

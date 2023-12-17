@@ -37,9 +37,11 @@ export default function Dashboard(props) {
         >
           <span className='navbar-toggler-icon'></span>
         </button>
-        <a className='navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6' href='/panel/dashboard'>
-          <strong>{props.title}</strong>
-        </a>
+        <span className='navbar-brand'>
+          <strong>
+            <span className="logo-full"></span>
+          </strong>
+        </span>
         <div className='navbar-nav'>
           <div className='text-nowrap'>
             <button className='px-3 mx-2 my-2' onClick={handleLogout} >

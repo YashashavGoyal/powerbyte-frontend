@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import './Home.css'
+import './Home.css';
 
 function Home(props) {
   const btnS = {
@@ -24,12 +24,6 @@ function Home(props) {
     backgroundColor: `#fff4008c`,
   };
 
-  const titleS = {
-    fontColor: `blue`,
-    fontWeight: `700`,
-    fontFamily: `cursive`,
-    fontSize: `1.5rem`,
-  };
 
   const despS = {
     color: `blue`,
@@ -40,7 +34,9 @@ function Home(props) {
     <>
       <nav style={navS} className="navbar navbar-expand-lg ">
         <div className="container-fluid">
-          <span style={titleS} className="navbar-brand">{props.title}</span>
+          <span className="navbar-brand logo-container">
+            <span className="logo-full"></span>
+          </span>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li>

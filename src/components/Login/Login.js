@@ -24,7 +24,7 @@ function Login(props) {
       return;
     }
     setErrorMsg('');
-    
+
     setSubmitButtonDisabled(true);
     signInWithEmailAndPassword(auth, values.email, values.pass)
       .then(async (res) => {
@@ -57,9 +57,11 @@ function Login(props) {
 
   return (
     <>
-     <nav style={navS} className="navbar navbar-expand-lg ">
+      <nav style={navS} className="navbar navbar-expand-lg ">
         <div className="container-fluid">
-          <span style={titleS} className="navbar-brand" >{props.title}</span>
+          <span style={titleS} className="navbar-brand" >
+            <span className="logo-full"></span>
+          </span>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li>
@@ -69,57 +71,57 @@ function Login(props) {
           </div>
         </div>
       </nav>
-    <div className='home homeS'>
-      <div className='container my-5 containerStyle'>
-        <form>
-          <h4 style={{ textAlign: `center` }} className='my-2'>
-            Login Form
-          </h4>
-          <div className='mb-3'>
-            <InputControl
-              className='form-control'
-              label='Email'
-              type='text'
-              placeholder='Enter Your Email'
-              onChange={(event) =>
-                setValues((prev) => ({ ...prev, email: event.target.value }))
-              }
-            />
-            {/* <div id="emailHelp" className="form-text" style={{color:`green`}}>We'll never share your phone number with anyone else.</div> */}
+      <div className='home homeS'>
+        <div className='container my-5 containerStyle'>
+          <form>
+            <h4 style={{ textAlign: `center` }} className='my-2'>
+              Login Form
+            </h4>
+            <div className='mb-3'>
+              <InputControl
+                className='form-control'
+                label='Email'
+                type='text'
+                placeholder='Enter Your Email'
+                onChange={(event) =>
+                  setValues((prev) => ({ ...prev, email: event.target.value }))
+                }
+              />
+              {/* <div id="emailHelp" className="form-text" style={{color:`green`}}>We'll never share your phone number with anyone else.</div> */}
+            </div>
+            <div className='mb-3'>
+              <InputControl
+                className='form-control'
+                id='exampleInputPassword1'
+                label='Password'
+                type='password'
+                placeholder='Password'
+                onChange={(event) =>
+                  setValues((prev) => ({ ...prev, pass: event.target.value }))
+                }
+              />
+            </div>
+          </form>
+          <div>
+            <b>{errorMsg}</b>
+            <button
+              disabled={submitButtonDisabled}
+              onClick={handleSubmission}
+              className="button"
+            >
+              Login
+            </button>
+            <p>
+              Don't have an account?{' '}
+              <span>
+                <Link to='/signup' style={{ color: `blue` }}>
+                  Sign up
+                </Link>
+              </span>
+            </p>
           </div>
-          <div className='mb-3'>
-            <InputControl
-              className='form-control'
-              id='exampleInputPassword1'
-              label='Password'
-              type='password'
-              placeholder='Password'
-              onChange={(event) =>
-                setValues((prev) => ({ ...prev, pass: event.target.value }))
-              }
-            />
-          </div>
-        </form>
-        <div>
-          <b>{errorMsg}</b>
-          <button
-            disabled={submitButtonDisabled}
-            onClick={handleSubmission}
-            className="button"
-          >
-            Login
-          </button>
-          <p>
-            Don't have an account?{' '}
-            <span>
-              <Link to='/signup' style={{ color: `blue` }}>
-                Sign up
-              </Link>
-            </span>
-          </p>
         </div>
       </div>
-    </div>
     </>
   );
 }

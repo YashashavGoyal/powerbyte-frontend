@@ -6,6 +6,10 @@
   font-family: sans-serif;
 }
 
+.center {
+  text-align: center;
+}
+
 /* Calculator CSS */
 
 
@@ -50,7 +54,7 @@ button {
 
 /* bg-img */
 .home {
-  background: url(home-bg.png);
+  background: url(img/home-bg.png);
   background-position: center;
   background-size: cover;
   height: 100%;
@@ -72,6 +76,29 @@ button {
   justify-content: center;
 }
 
+/* Navbar */
+.navbar{
+  flex-wrap: nowrap;
+}
+
+.navbar>.navbar-brand{
+  margin-left: 2rem;
+}
+
+.navbar>.navbar-brand>strong{display: flex;}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo-full {
+  background: url(img/logo-full.png) center/cover no-repeat;
+  display: inline-block;
+  width: 180px;
+  height: 30px;
+}
+
 /* Media query for mobile devices */
 @media only screen and (max-width: 600px) {
   .calculator {
@@ -81,5 +108,15 @@ button {
 
   .container-fluid .not-found-img {
     width: 100%;
+  }
+}
+
+@media only screen and (max-width: 440px) {
+  .navbar .logo-full{
+    width: 100px;
+    height: 18px;
+  }
+  .navbar>.navbar-brand{
+    margin: 0;
   }
 }

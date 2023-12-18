@@ -75,7 +75,7 @@ function Login(props) {
         <div className='container my-5 containerStyle'>
           <form>
             <h4 style={{ textAlign: `center` }} className='my-2'>
-              Login Form
+              Login
             </h4>
             <div className='mb-3'>
               <InputControl

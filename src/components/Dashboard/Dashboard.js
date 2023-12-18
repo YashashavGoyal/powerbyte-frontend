@@ -40,12 +40,12 @@ export default function Dashboard(props) {
               </div>
             </div>
 
-            <canvas
+            {/* <canvas
               className='my-4 w-100'
               id='myChart'
               width='900'
               height='380'
-            ></canvas>
+            ></canvas> */}
 
             <h2>Section title</h2>
             <div className='table-responsive'>

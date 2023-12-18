@@ -5,13 +5,11 @@
   box-sizing: border-box;
   font-family: sans-serif;
 }
-
 .center {
   text-align: center;
 }
 
 /* Calculator CSS */
-
 
 .calculator {
   max-width: 500px;
@@ -31,7 +29,7 @@
   margin-bottom: 5px;
 }
 
-input[type="number"] {
+input[type='number'] {
   width: calc(100% - 10px);
   padding: 10px;
   border-radius: 5px;
@@ -77,15 +75,17 @@ button {
 }
 
 /* Navbar */
-.navbar{
+.navbar {
   flex-wrap: nowrap;
 }
 
-.navbar>.navbar-brand{
+.navbar > .navbar-brand {
   margin-left: 2rem;
 }
 
-.navbar>.navbar-brand>strong{display: flex;}
+.navbar > .navbar-brand > strong {
+  display: flex;
+}
 
 .logo-container {
   display: flex;
@@ -112,11 +112,11 @@ button {
 }
 
 @media only screen and (max-width: 440px) {
-  .navbar .logo-full{
+  .navbar .logo-full {
     width: 100px;
     height: 18px;
   }
-  .navbar>.navbar-brand{
+  .navbar > .navbar-brand {
     margin: 0;
   }
 }

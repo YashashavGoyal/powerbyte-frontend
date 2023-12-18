@@ -2,24 +2,23 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { isUserLoggedin } from '../../utils/helper';
 
-
 export default function Navbar(props) {
-
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.setItem("user", false);
-    navigate("/login");
-  }
-  
+    localStorage.setItem('user', false);
+    navigate('/login');
+  };
+
   const path = window.location.pathname;
-  console.log(path);
-  
+  // console.log(path);
+
   useEffect(() => {
-    if (path != '/login' || path != '/signup' || path != '/') {
-      if (!isUserLoggedin()) {
-        navigate("/login");
-      }
+    if (path !== '/login' || path !== '/signup' || path !== '/') {
+      return;
+    }
+    if (!isUserLoggedin()) {
+      navigate('/login');
     }
   }, []);
 
@@ -28,9 +27,7 @@ export default function Navbar(props) {
   }
   return (
     <>
-      <header
-        className='navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow'
-      >
+      <header className='navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow'>
         <button
           className='navbar-toggler d-md-none collapsed'
           type='button'
@@ -44,18 +41,17 @@ export default function Navbar(props) {
         </button>
         <span className='navbar-brand'>
           <strong>
-            <span className="logo-full"></span>
+            <span className='logo-full'></span>
           </strong>
         </span>
         <div className='navbar-nav'>
           <div className='text-nowrap'>
-            <button className='px-3 mx-2 my-2' onClick={handleLogout} >
+            <button className='px-3 mx-2 my-2' onClick={handleLogout}>
               Sign out
             </button>
           </div>
         </div>
       </header>
-
     </>
-  )
+  );
 }

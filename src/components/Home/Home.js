@@ -1,14 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import './Home.css';
-
 function Home(props) {
   const btnS = {
     display: `flex`,
     width: `40%`,
     justifyContent: `center`,
-    gap: `10px`
+    gap: `10px`,
+    fontWeight: 800
   }
 
   const button = {
@@ -20,19 +19,9 @@ function Home(props) {
     borderRadius: `10px`
   }
 
-  const navS = {
-    backgroundColor: `#fff4008c`,
-  };
-
-
-  const despS = {
-    color: `blue`,
-    fontSize: `1rem`,
-  };
-
   return (
     <>
-      <nav style={navS} className="navbar navbar-expand-lg ">
+      <nav className="navbar navbar-bg navbar-expand-lg ">
         <div className="container-fluid">
           <span className="navbar-brand logo-container">
             <span className="logo-full"></span>
@@ -40,7 +29,7 @@ function Home(props) {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li>
-                <span style={despS} className="nav-link disabled" tabIndex="-1" aria-disabled="true">With us manage your energy consumption</span>
+                <span className="nav-link disabled" tabIndex="-1" aria-disabled="true">With us manage your energy consumption</span>
               </li>
             </ul>
           </div>

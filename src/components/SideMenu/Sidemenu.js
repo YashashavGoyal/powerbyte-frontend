@@ -65,9 +65,9 @@ export default function Sidemenu() {
                     <span className="sr-only">Toggle Dropdown</span>
                   </button>
                   <div className="dropdown-menu">
-                    <a className="dropdown-item" href="#">Room-1</a>
-                    <a className="dropdown-item" href="#">Room-2</a>
-                    <a className="dropdown-item" href="/">Room-3</a>
+                    <Link to='/panel/devices' className="dropdown-item" >Room-1</Link>
+                    <Link to='/panel/devices' className="dropdown-item" >Room-2</Link>
+                    <Link to='/panel/devices' className="dropdown-item" >Room-3</Link>
                     <div className="dropdown-divider"></div>
                     <a className="dropdown-item" href="/panel/devices">All</a>
                   </div>

@@ -8,8 +8,10 @@ import {
 // import { doc, updateDoc, arrayUnion } from 'firebase/firestore';
 // import { useLocation } from 'react-router-dom';
 
-import './App.css';
-import './Nav.css';
+import './css/App.css';
+import './css/Nav.css';
+import './css/Home.css';
+import './css/Form.css';
 
 import Home from './components/Home/Home';
 import Login from './components/Login/Login';

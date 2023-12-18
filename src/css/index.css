@@ -52,7 +52,7 @@ button {
 
 /* bg-img */
 .home {
-  background: url(img/home-bg.png);
+  background: url(../img/bg.webp);
   background-position: center;
   background-size: cover;
   height: 100%;
@@ -77,6 +77,7 @@ button {
 /* Navbar */
 .navbar {
   flex-wrap: nowrap;
+  background-color: rgb(61 61 59 / 55%);
 }
 
 .navbar > .navbar-brand {
@@ -93,10 +94,15 @@ button {
 }
 
 .logo-full {
-  background: url(img/logo-full.png) center/cover no-repeat;
+  background: url(../img/logo-full.png) center/cover no-repeat;
   display: inline-block;
   width: 180px;
   height: 30px;
+  filter: drop-shadow(2px 4px 10px black);
+}
+
+.nav-link.disabled {
+  color: white;
 }
 
 /* Media query for mobile devices */

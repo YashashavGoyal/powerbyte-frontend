@@ -17,12 +17,18 @@
     border: 2px solid gray;
     padding: 20px;
     border-radius: 20px;
-    background: rgb(237 202 16 / 38%);
-    color: black;
-    font-weight: 800;
+    color: white;
     backdrop-filter: blur(10px);
     position: relative;
     top: 6%;
+}
+
+.InputControl_container__\+uTuk label{
+    color: beige !important;
+}
+
+.formLink {
+    font-weight: 800;
 }
 
 @media (max-width:768px) {

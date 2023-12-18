@@ -6,7 +6,6 @@ import InputControl from '../InputControl/InputControl';
 import { auth } from '../../firebase';
 import setUserLoggedin from '../../utils/LoggedInSender';
 
-import './Signup.css';
 import './logo_full.png';
 
 function Signup(props) {
@@ -45,10 +44,6 @@ function Signup(props) {
       });
   };
 
-  const navS = {
-    backgroundColor: `#fff4008c`,
-  };
-
   const titleS = {
     fontColor: `blue`,
     fontWeight: `700`,
@@ -56,15 +51,9 @@ function Signup(props) {
     fontSize: `1.5rem`,
   };
 
-  const despS = {
-    color: `blue`,
-    fontSize: `1rem`,
-  };
-
-
   return (
     <>
-      <nav style={navS} className="navbar navbar-expand-lg ">
+      <nav className="navbar navbar-bg navbar-expand-lg ">
         <div className="container-fluid">
           <span style={titleS} className="navbar-brand" href="">
             <span className="logo-full"></span>
@@ -72,7 +61,7 @@ function Signup(props) {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li>
-                <span style={despS} className="nav-link disabled" tabIndex="-1" aria-disabled="true">With us manage your energy consumption</span>
+                <span className="nav-link disabled" tabIndex="-1" aria-disabled="true">With us manage your energy consumption</span>
               </li>
             </ul>
           </div>
@@ -131,7 +120,7 @@ function Signup(props) {
             <p>
               Already have an account?{' '}
               <span>
-                <Link to='/login'>Login</Link>
+                <Link to='/login' className='formLink'>Login</Link>
               </span>
             </p>
           </div>

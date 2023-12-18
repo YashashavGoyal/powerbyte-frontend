@@ -56,7 +56,7 @@ const DataState = (props) => {
     setInterval(() => {
       readData('Kitchen', 'Kitchen', setKitchen, kitchen);
     }, 5000);
-    // eslint-disable-line
+    // eslint-disable-next-line
   }, []);
 
   const state = {

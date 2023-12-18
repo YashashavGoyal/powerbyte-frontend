@@ -5,28 +5,30 @@ import { isUserLoggedin } from '../../utils/helper';
 
 export default function Navbar(props) {
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const handleLogout = () => {
-      localStorage.setItem("user", false);
-      navigate("/login");
-    }
+  const handleLogout = () => {
+    localStorage.setItem("user", false);
+    navigate("/login");
+  }
   
-    useEffect(() => {
+  const path = window.location.pathname;
+  console.log(path);
   
+  useEffect(() => {
+    if (path != '/login' || path != '/signup' || path != '/') {
       if (!isUserLoggedin()) {
         navigate("/login");
       }
-    }, []);
-  
-    const path = window.location.pathname;
-    console.log(path);
-    if (path === '/login' || path === '/signup' || path === '/') {
-        return <></>;
     }
-    return (
-        <>
-        <header
+  }, []);
+
+  if (path === '/login' || path === '/signup' || path === '/') {
+    return null;
+  }
+  return (
+    <>
+      <header
         className='navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow'
       >
         <button
@@ -54,6 +56,6 @@ export default function Navbar(props) {
         </div>
       </header>
 
-        </>
-    )
+    </>
+  )
 }

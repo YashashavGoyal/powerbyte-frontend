@@ -21,6 +21,7 @@ import Devices from './components/Devices/Devices';
 import Energycalculator from './components/EnergyCalculator/Energycalculator';
 import NotFound from './components/NotFound/NotFound';
 import Navbar from './components/Navbar/Navbar';
+import Sidemenu from './components/SideMenu/Sidemenu';
 
 
 function App() {
@@ -50,32 +51,37 @@ function App() {
     <div className='App'>
       <Router>
         <Navbar />
-        <Routes>
-          <Route path='/' element={<Home loading={setLoading} />} />
-          <Route path='/login' element={<Login setLoading={setLoading} />} />
-          <Route path='/signup' element={<Signup loading={setLoading} />} />
-          <Route
-            path='/panel/dashboard'
-            element={<Dashboard loading={setLoading} />}
-          />
-          <Route
-            path='/panel/usage'
-            element={<Usage />}
-          />
-          <Route
-            path='/panel/savingmethods'
-            element={<Savingmethods />}
-          />
-          <Route
-            path='/panel/devices'
-            element={<Devices />}
-          />
-          <Route
-            path='/panel/energycalculator'
-            element={<Energycalculator />}
-          />
-          <Route path='*' element={<NotFound />} />
-        </Routes>
+        <div className='container-fluid'>
+          <div className='row'>
+            <Sidemenu />
+            <Routes>
+              <Route path='/' element={<Home loading={setLoading} />} />
+              <Route path='/login' element={<Login setLoading={setLoading} />} />
+              <Route path='/signup' element={<Signup loading={setLoading} />} />
+              <Route
+                path='/panel/dashboard'
+                element={<Dashboard loading={setLoading} />}
+              />
+              <Route
+                path='/panel/usage'
+                element={<Usage />}
+              />
+              <Route
+                path='/panel/savingmethods'
+                element={<Savingmethods />}
+              />
+              <Route
+                path='/panel/devices'
+                element={<Devices />}
+              />
+              <Route
+                path='/panel/energycalculator'
+                element={<Energycalculator />}
+              />
+              <Route path='*' element={<NotFound />} />
+            </Routes>
+          </div>
+        </div>
       </Router>
     </div>
   );

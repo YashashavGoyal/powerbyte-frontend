@@ -52,7 +52,7 @@ button {
 
 /* bg-img */
 .home {
-  background: url(../img/bg.webp);
+  background: url(../img/bg.webp) center/cover no-repeat;
   background-position: center;
   background-size: cover;
   height: 100%;

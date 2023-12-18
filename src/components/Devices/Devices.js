@@ -41,7 +41,7 @@ export default function Devices(props) {
         {/* <canvas className="my-4 w-100" id="myChart" width="900" height="380"></canvas> */}
 
         <div className='container-fluid'>
-          <div className='table-responsive'>
+          <div className='table-responsive' style={{borderRadius: `20px`}}>
             <table className='table table-striped table-bordered'>
               <thead className='bg-success'>
                 <tr>

@@ -87,7 +87,7 @@ function Signup(props) {
               <InputControl
                 className='form-control'
                 label='Email'
-                type='password'
+                type='text'
                 placeholder='Enter Your Email'
                 onChange={(event) =>
                   setValues((prev) => ({ ...prev, email: event.target.value }))

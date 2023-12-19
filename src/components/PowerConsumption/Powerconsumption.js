@@ -45,13 +45,13 @@ export default function Devices(props) {
         <div className='container-fluid'>
           <div class="card">
             <div class="card-body d-flex">
-             <Link to="/panel/powerconsumption/device_A" className="card border-secondary">
+             <Link to="/panel/powerconsumption/device_A" className="card border-secondary nav-link">
                 <h5>Device-A</h5>
              </Link>
-             <Link to="/panel/powerconsumption/device_B" className="card border-secondary">
+             <Link to="/panel/powerconsumption/device_B" className="card border-secondary nav-link">
                 <h5>Device-B</h5>
              </Link>
-             <Link to ="/panel/powerconsumption/device_C" className="card border-secondary">
+             <Link to ="/panel/powerconsumption/device_C" className="card border-secondary nav-link">
                 <h5>Device-C</h5>
              </Link>
             </div>

@@ -28,6 +28,7 @@
 .input-section label {
   display: block;
   margin-bottom: 5px;
+  color: black !important;
 }
 
 input[type='number'] {

@@ -1,6 +1,7 @@
 {
   "short_name": "PowerByte",
   "name": "PowerByte: An app that helps you to manage power",
+  "description": "Web that intereact with hardware and displays real time data and by ML model we predict your usage and suggest saving method and also we displays data of individual device",
   "icons": [
     {
       "src": "favicon.ico",

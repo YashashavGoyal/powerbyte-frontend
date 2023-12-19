@@ -118,10 +118,31 @@ button {
   overflow: auto;
 }
 
-.predicTrend img{
+.predicTrend img {
   overflow-x: auto;
   object-fit: contain;
-  background-position:left;
+  background-position: left;
+}
+
+/* Dashboard Objectives */
+.objective img {
+  box-shadow: 0 0 8px 4px #00000063;
+  width: 100%;
+  position: relative;
+  z-index: -1;
+}
+
+/* Dashboard Objectives */
+.model-images {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.model-images img{
+  width: 300px;
+  height: fit-content;
+  /* box-shadow: 0 0 8px 4px #00000063; */
 }
 
 /* Media query for mobile devices */
@@ -130,9 +151,15 @@ button {
     width: 90% !important;
     max-width: none !important;
   }
-
+  
   .container-fluid .not-found-img {
     width: 100%;
+  }
+
+  .model-images {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }
 

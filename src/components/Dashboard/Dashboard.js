@@ -1,5 +1,9 @@
 import React from 'react';
 
+import objective from './img/objective.jpg';
+import model1 from './img/Hardware Demo (1).jpeg';
+import model2 from './img/Hardware Demo (2).jpeg';
+import model3 from './img/Hardware Demo (3).jpeg';
 
 export default function Dashboard(props) {
 
@@ -7,55 +11,49 @@ export default function Dashboard(props) {
 
   return (
     <>
-          
 
-          <main className='col-md-9 ms-sm-auto col-lg-10 px-md-4'>
-            <div className='d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom'>
-              <h1 className='h2'>Dashboard</h1>
-              <div className='btn-toolbar mb-2 mb-md-0'>
-                <div className='btn-group me-2'>
-                  <button
-                    type='button'
-                    className='btn btn-sm btn-outline-secondary'
-                  >
-                    Share
-                  </button>
-                  <button
-                    type='button'
-                    className='btn btn-sm btn-outline-secondary'
-                  >
-                    Download Usage
-                  </button>
-                </div>
-                <button
-                  type='button'
-                  className='btn btn-sm btn-outline-secondary dropdown-toggle'
-                >
-                  <span
-                    data-feather='calendar'
-                    className='align-text-bottom'
-                  ></span>
-                  This week
-                </button>
-              </div>
+
+      <main className='col-md-9 ms-sm-auto col-lg-10 px-md-4'>
+        <div className='d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom'>
+          <h1 className='h2'>Dashboard</h1>
+          <div className='btn-toolbar mb-2 mb-md-0'>
+            <div className='btn-group me-2'>
+              <button
+                type='button'
+                className='btn btn-sm btn-outline-secondary'
+              >
+                Share
+              </button>
+              <button
+                type='button'
+                className='btn btn-sm btn-outline-secondary'
+              >
+                Download Usage
+              </button>
             </div>
+            <button
+              type='button'
+              className='btn btn-sm btn-outline-secondary dropdown-toggle'
+            >
+              <span
+                data-feather='calendar'
+                className='align-text-bottom'
+              ></span>
+              This week
+            </button>
+          </div>
+        </div>
 
-            {/* <canvas
-              className='my-4 w-100'
-              id='myChart'
-              width='900'
-              height='380'
-            ></canvas> */}
+        {/* <canvas className='my-4 w-100' id='myChart' width='900' height='380'></canvas> */}
 
-            <h2>Section title</h2>
-            <div className='table-responsive'>
+        {/* <div className='table-responsive'>
               <table className='table table-striped table-sm'>
-                <thead>
-                  <tr>
-                    <th scope='col'>#</th>
-                    <th scope='col'>Header</th>
-                    <th scope='col'>Header</th>
-                    <th scope='col'>Header</th>
+              <thead>
+              <tr>
+              <th scope='col'>#</th>
+              <th scope='col'>Header</th>
+              <th scope='col'>Header</th>
+              <th scope='col'>Header</th>
                     <th scope='col'>Header</th>
                   </tr>
                 </thead>
@@ -174,8 +172,23 @@ export default function Dashboard(props) {
                   </tr>
                 </tbody>
               </table>
-            </div>
-          </main>
+            </div> */}
+
+        <h3 style={{ color: `palevioletred`, fontFamily: `monospace` }}>About PowerByte</h3>
+        <div className="objective">
+          <img src={objective} alt="" />
+        </div>
+        <div className="model my-4">
+          <h4 style={{ color: `darkgreen`, fontFamily: `monospace` }}>Prototype Images</h4>
+          <div className="model-images">
+            <img src={model1} alt="" />
+            <img src={model2} alt="" />
+            <img src={model3} alt="" />
+          </div>
+        </div>
+
+
+      </main>
     </>
   );
 }

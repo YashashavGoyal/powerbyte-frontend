@@ -71,7 +71,7 @@ function Signup(props) {
         <div className='container my-5 containerStyle'>
           <form className='form'>
             <h4 style={{ textAlign: `center` }} className='my-2'>
-              We are pleased to Welcome you - Sign Up
+              Welcome You To PowerByte - Sign Up
             </h4>
             <div className='mb-3'>
               <InputControl

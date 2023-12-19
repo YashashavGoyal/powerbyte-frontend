@@ -118,8 +118,8 @@ button {
 }
 
 .predicTrend img{
-  overflow: auto;
-  object-fit: cover;
+  overflow-x: auto;
+  object-fit: contain;
   background-position:left;
 }
 

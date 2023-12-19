@@ -54,13 +54,13 @@ export default function Sidemenu() {
                 <span className='sr-only'>Toggle Dropdown</span>
               </button>
               <div className='dropdown-menu'>
-                <Link to='/panel/devices/data1' className='dropdown-item'>
+                <Link to='/panel/powerconsumption/device_A' className='dropdown-item'>
                   Room-1
                 </Link>
-                <Link to='/panel/devices/data2' className='dropdown-item'>
+                <Link to='/panel/powerconsumption/device_B' className='dropdown-item'>
                   Room-2
                 </Link>
-                <Link to='/panel/devices/data3' className='dropdown-item'>
+                <Link to='/panel/powerconsumption/device_C' className='dropdown-item'>
                   Room-3
                 </Link>
                 <div className='dropdown-divider'></div>

@@ -145,6 +145,19 @@ button {
   /* box-shadow: 0 0 8px 4px #00000063; */
 }
 
+/* Device List */
+.card-body {
+  justify-content: space-around;
+}
+
+.card-body .card {
+  padding: 10px;
+}
+
+.card-body .card h5 {
+  margin: 0% !important;
+}
+
 /* Media query for mobile devices */
 @media only screen and (max-width: 600px) {
   .calculator {

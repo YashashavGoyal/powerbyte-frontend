@@ -19,12 +19,15 @@ import Signup from './components/Signup/Signup';
 import Dashboard from './components/Dashboard/Dashboard';
 import Usage from './components/Usage/Usage';
 import Savingmethods from './components/SavingMethods/Savingmethods';
-import Devices from './components/Devices/Devices';
+import Power from './components/PowerConsumption/Powerconsumption';
 import Energycalculator from './components/EnergyCalculator/Energycalculator';
 import NotFound from './components/NotFound/NotFound';
 import Navbar from './components/Navbar/Navbar';
 import DataState from './context/data/DataState';
 import Layout from './components/Layout/Layout';
+import DeviceA from './components/Devices/DeviceA';
+import DevicesB from './components/Devices/DevicesB';
+import DevicesC from './components/Devices/DevicesC';
 
 
 function App() {
@@ -74,10 +77,11 @@ function App() {
                     path='/panel/savingmethods'
                     element={<Savingmethods />}
                   />
-                  <Route
-                    path='/panel/powerconsumption'
-                    element={<Devices />}
-                  />
+                  <Route path='/panel/powerconsumption' element={<Power />} >
+                    <Route path='/panel/powerconsumption/device_A' element={<DeviceA />} />
+                    <Route path='/panel/powerconsumption/device_B' element={<DevicesB />} />
+                    <Route path='/panel/powerconsumption/device_C' element={<DevicesC />} />
+                  </Route>
                   <Route
                     path='/panel/energycalculator'
                     element={<Energycalculator />}

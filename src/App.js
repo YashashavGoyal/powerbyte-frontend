@@ -75,7 +75,7 @@ function App() {
                   element={<Savingmethods />}
                 />
                 <Route
-                  path='/panel/devices'
+                  path='/panel/powerconsumption'
                   element={<Devices />}
                 />
                 <Route

@@ -1,13 +1,15 @@
 import React from 'react';
 // import { Link } from "react-router-dom";
 
+import graph from './predict.jpeg'
+
 export default function Usage(props) {
 
     return (
         <>
             <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 className="h2">Power Consumption</h1>
+                    <h1 className="h2">Energy Consumption</h1>
                     <div className="btn-toolbar mb-2 mb-md-0">
                         <div className="btn-group me-2">
                             <button type="button" className="btn btn-sm btn-outline-secondary">Share</button>
@@ -23,10 +25,10 @@ export default function Usage(props) {
                 {/* <canvas className="my-4 w-100" id="myChart" width="900" height="380"></canvas> */}
 
                 <div className="container-fluid">
-                    <h2>Previous Usage Trend</h2>
-                    <div className="prevTrend">graph</div>
-                    <h2>Predicted Usage Trend</h2>
-                    <div className="predicTrend">graph</div>
+                    <h3 className='graph-design'>Predicted Usage Trend</h3>
+                    <div className="predicTrend">
+                        <img src={graph} style={{objectFit: `contain`}} className="my-4 w-100" id="myChart" width="900" height="380"></img>
+                    </div>
 
                 </div>
             </main>

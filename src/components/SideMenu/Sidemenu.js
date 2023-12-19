@@ -38,7 +38,7 @@ export default function Sidemenu() {
                   data-feather='file'
                   className='align-text-bottom'
                 ></span>
-                Power Consumption
+                Energy Consumption
               </Link>
             </li>
             <li className='nav-item'>
@@ -55,23 +55,25 @@ export default function Sidemenu() {
               </Link>
             </li>
             <li className='nav-item'>
-              <Link className='nav-link' to='/panel/devices'>
+              <div className='nav-link d-flex'>
                 <span
                   data-feather='users'
                   className='align-text-bottom'
                 ></span>
-                  <span type="button">Devices</span>
-                  <button type="button" className="btn dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span className="sr-only">Toggle Dropdown</span>
-                  </button>
-                  <div className="dropdown-menu">
-                    <Link to='/panel/devices' className="dropdown-item" >Room-1</Link>
-                    <Link to='/panel/devices' className="dropdown-item" >Room-2</Link>
-                    <Link to='/panel/devices' className="dropdown-item" >Room-3</Link>
-                    <div className="dropdown-divider"></div>
-                    <a className="dropdown-item" href="/panel/devices">All</a>
-                  </div>
-              </Link>
+                <Link className='nav-link' style={{display: `inline-block`}} to='/panel/powerconsumption'>
+                  <span type="button">Power Consumption</span>
+                </Link>
+                <button type="button" className="btn dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span className="sr-only">Toggle Dropdown</span>
+                </button>
+                <div className="dropdown-menu">
+                  <Link to='/panel/devices/data1' className="dropdown-item" >Room-1</Link>
+                  <Link to='/panel/devices/data2' className="dropdown-item" >Room-2</Link>
+                  <Link to='/panel/devices/data3' className="dropdown-item" >Room-3</Link>
+                  <div className="dropdown-divider"></div>
+                  <a className="dropdown-item" href="/panel/devices">All</a>
+                </div>
+              </div>
             </li>
             <li className='nav-item'>
               <Link

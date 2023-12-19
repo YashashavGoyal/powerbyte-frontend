@@ -24,7 +24,7 @@ export default function Dashboard(props) {
                     type='button'
                     className='btn btn-sm btn-outline-secondary'
                   >
-                    Export
+                    Download Usage
                   </button>
                 </div>
                 <button

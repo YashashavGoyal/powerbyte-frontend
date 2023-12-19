@@ -5,6 +5,7 @@
   box-sizing: border-box;
   font-family: sans-serif;
 }
+
 .center {
   text-align: center;
 }
@@ -80,11 +81,11 @@ button {
   background-color: rgb(61 61 59 / 55%);
 }
 
-.navbar > .navbar-brand {
+.navbar>.navbar-brand {
   margin-left: 2rem;
 }
 
-.navbar > .navbar-brand > strong {
+.navbar>.navbar-brand>strong {
   display: flex;
 }
 
@@ -105,6 +106,12 @@ button {
   color: white;
 }
 
+.graph-design {
+  color: blueviolet;
+  FONT-FAMILY: monospace;
+  text-shadow: 2px 1px 3px black;
+}
+
 /* Media query for mobile devices */
 @media only screen and (max-width: 600px) {
   .calculator {
@@ -122,7 +129,8 @@ button {
     width: 100px;
     height: 18px;
   }
-  .navbar > .navbar-brand {
+
+  .navbar>.navbar-brand {
     margin: 0;
   }
 }

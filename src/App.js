@@ -61,28 +61,28 @@ function App() {
                 <Route path='/' element={<Home loading={setLoading} />} />
                 <Route path='/login' element={<Login setLoading={setLoading} />} />
                 <Route path='/signup' element={<Signup loading={setLoading} />} />
-               <Route path='/panel' element={<Layout/>}>
-               <Route
-                  path='/panel/dashboard'
-                  element={<Dashboard loading={setLoading} />}
-                />
-                <Route
-                  path='/panel/usage'
-                  element={<Usage />}
-                />
-                <Route
-                  path='/panel/savingmethods'
-                  element={<Savingmethods />}
-                />
-                <Route
-                  path='/panel/powerconsumption'
-                  element={<Devices />}
-                />
-                <Route
-                  path='/panel/energycalculator'
-                  element={<Energycalculator />}
-                />
-               </Route>
+                <Route path='/panel' element={<Layout />}>
+                  <Route
+                    path='/panel/dashboard'
+                    element={<Dashboard loading={setLoading} />}
+                  />
+                  <Route
+                    path='/panel/usage'
+                    element={<Usage />}
+                  />
+                  <Route
+                    path='/panel/savingmethods'
+                    element={<Savingmethods />}
+                  />
+                  <Route
+                    path='/panel/powerconsumption'
+                    element={<Devices />}
+                  />
+                  <Route
+                    path='/panel/energycalculator'
+                    element={<Energycalculator />}
+                  />
+                </Route>
                 <Route path='*' element={<NotFound />} />
               </Routes>
             </div>

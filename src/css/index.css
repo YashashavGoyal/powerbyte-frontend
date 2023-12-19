@@ -108,8 +108,19 @@ button {
 
 .graph-design {
   color: blueviolet;
-  FONT-FAMILY: monospace;
-  text-shadow: 2px 1px 3px black;
+  font-family: monospace;
+  font-weight: 700;
+  /* text-shadow: 2px 1px 3px black; */
+}
+
+.predicTrend {
+  overflow: auto;
+}
+
+.predicTrend img{
+  overflow: auto;
+  object-fit: cover;
+  background-position:left;
 }
 
 /* Media query for mobile devices */

@@ -27,7 +27,7 @@ export default function Usage(props) {
                 <div className="container-fluid">
                     <h3 className='graph-design'>Predicted Usage Trend</h3>
                     <div className="predicTrend">
-                        <img src={graph} style={{objectFit: `contain`}} className="my-4 w-100" id="myChart" width="900" height="380"></img>
+                        <img src={graph} width="900" height="380"></img>
                     </div>
 
                 </div>

@@ -1,27 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Sidemenu() {
-  const [shouldRender, setShouldRender] = useState(true);
-
-  useEffect(() => {
-    let path = window.location.pathname;
-    setInterval(() => {
-      path = window.location.pathname;
-      if (path === '/login' || path === '/signup' || path === '/') {
-        setShouldRender(false);
-        // console.log(path);
-      } else {
-        setShouldRender(true);
-        // console.log(path);
-      }
-    }, 10);
-  }, []);
-
-  if (!shouldRender) {
-    return null;
-  }
-
   return (
     <nav
       id='sidebarMenu'
@@ -31,33 +11,22 @@ export default function Sidemenu() {
         <ul className='nav flex-column'>
           <li className='nav-item'>
             <Link
-
               to='/panel/dashboard'
               className='nav-link active'
               aria-current='page'
             >
-              <span
-                data-feather='home'
-                className='align-text-bottom'
-              ></span>
+              <span data-feather='home' className='align-text-bottom'></span>
               Dashboard
             </Link>
           </li>
           <li className='nav-item'>
             <Link className='nav-link' to='/panel/usage'>
-              <span
-                data-feather='file'
-                className='align-text-bottom'
-              ></span>
+              <span data-feather='file' className='align-text-bottom'></span>
               Energy Consumption
             </Link>
           </li>
           <li className='nav-item'>
-            <Link
-
-              className='nav-link'
-              to='/panel/savingmethods'
-            >
+            <Link className='nav-link' to='/panel/savingmethods'>
               <span
                 data-feather='shopping-cart'
                 className='align-text-bottom'
@@ -67,31 +36,42 @@ export default function Sidemenu() {
           </li>
           <li className='nav-item'>
             <div className='nav-link d-flex'>
-              <span
-                data-feather='users'
-                className='align-text-bottom'
-              ></span>
-              <Link className='nav-link' style={{ display: `inline-block` }} to='/panel/powerconsumption'>
-                <span type="button">Power Consumption</span>
+              <span data-feather='users' className='align-text-bottom'></span>
+              <Link
+                className='nav-link'
+                style={{ display: `inline-block` }}
+                to='/panel/powerconsumption'
+              >
+                <span type='button'>Power Consumption</span>
               </Link>
-              <button type="button" className="btn dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span className="sr-only">Toggle Dropdown</span>
+              <button
+                type='button'
+                className='btn dropdown-toggle dropdown-toggle-split'
+                data-toggle='dropdown'
+                aria-haspopup='true'
+                aria-expanded='false'
+              >
+                <span className='sr-only'>Toggle Dropdown</span>
               </button>
-              <div className="dropdown-menu">
-                <Link to='/panel/devices/data1' className="dropdown-item" >Room-1</Link>
-                <Link to='/panel/devices/data2' className="dropdown-item" >Room-2</Link>
-                <Link to='/panel/devices/data3' className="dropdown-item" >Room-3</Link>
-                <div className="dropdown-divider"></div>
-                <a className="dropdown-item" href="/panel/devices">All</a>
+              <div className='dropdown-menu'>
+                <Link to='/panel/devices/data1' className='dropdown-item'>
+                  Room-1
+                </Link>
+                <Link to='/panel/devices/data2' className='dropdown-item'>
+                  Room-2
+                </Link>
+                <Link to='/panel/devices/data3' className='dropdown-item'>
+                  Room-3
+                </Link>
+                <div className='dropdown-divider'></div>
+                <a className='dropdown-item' href='/panel/devices'>
+                  All
+                </a>
               </div>
             </div>
           </li>
           <li className='nav-item'>
-            <Link
-
-              className='nav-link'
-              to='/panel/energycalculator'
-            >
+            <Link className='nav-link' to='/panel/energycalculator'>
               <span
                 data-feather='bar-chart-2'
                 className='align-text-bottom'
@@ -100,23 +80,14 @@ export default function Sidemenu() {
             </Link>
           </li>
           <li className='nav-item'>
-            <Link
-
-              className='nav-link'
-              to='/panel/integrations'
-            >
-              <span
-                data-feather='layers'
-                className='align-text-bottom'
-              ></span>
+            <Link className='nav-link' to='/panel/integrations'>
+              <span data-feather='layers' className='align-text-bottom'></span>
               Integrations
             </Link>
           </li>
         </ul>
 
-        <h6
-          className='sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-uppercase'
-        >
+        <h6 className='sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-uppercase'>
           <span>Saved reports</span>
         </h6>
         <ul className='nav flex-column mb-2'>

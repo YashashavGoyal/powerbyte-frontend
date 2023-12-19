@@ -27,7 +27,7 @@ export default function Usage(props) {
                 <div className="container-fluid">
                     <h3 className='graph-design'>Predicted Usage Trend</h3>
                     <div className="predicTrend">
-                        <img src={graph} width="900" height="380"></img>
+                        <img alt='graph' src={graph} width="900" height="380"></img>
                     </div>
 
                 </div>

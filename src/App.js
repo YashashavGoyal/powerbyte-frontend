@@ -23,8 +23,8 @@ import Devices from './components/Devices/Devices';
 import Energycalculator from './components/EnergyCalculator/Energycalculator';
 import NotFound from './components/NotFound/NotFound';
 import Navbar from './components/Navbar/Navbar';
-import Sidemenu from './components/SideMenu/Sidemenu';
 import DataState from './context/data/DataState';
+import Layout from './components/Layout/Layout';
 
 
 function App() {
@@ -57,12 +57,12 @@ function App() {
           <Navbar />
           <div className='container-fluid'>
             <div className='row'>
-              <Sidemenu />
               <Routes>
                 <Route path='/' element={<Home loading={setLoading} />} />
                 <Route path='/login' element={<Login setLoading={setLoading} />} />
                 <Route path='/signup' element={<Signup loading={setLoading} />} />
-                <Route
+               <Route path='/panel' element={<Layout/>}>
+               <Route
                   path='/panel/dashboard'
                   element={<Dashboard loading={setLoading} />}
                 />
@@ -82,6 +82,7 @@ function App() {
                   path='/panel/energycalculator'
                   element={<Energycalculator />}
                 />
+               </Route>
                 <Route path='*' element={<NotFound />} />
               </Routes>
             </div>

@@ -1,6 +1,6 @@
 import { child, get, getDatabase, ref } from 'firebase/database';
 import { createContext, useContext, useEffect, useState } from 'react';
-import { auth } from '../../firebase';
+// import { auth } from '../../firebase';
 import { limits } from '../../constants';
 
 const DataContext = createContext();
@@ -32,19 +32,19 @@ const DataState = (props) => {
     get(child(dbRef, `${dir}/`))
       .then((snapshot) => {
         if (snapshot.exists()) {
-          console.log(snapshot.val());
-          const { Heater, Induction, Bulb, fan } = snapshot.val();
-          console.log({ Heater, Induction, Bulb, fan });
+          // console.log(snapshot.val());
+          const { Heater, Tubelight, Bulb, fan } = snapshot.val();
+          // console.log({ Heater, Tubelight, Bulb, fan });
 
-          if (Heater['Active Power'] > 200) {
+          if (Heater['Active Power'] > limits.heater) {
             // showAlert();
           }
 
-          if (Induction['Active Power'] > 50) {
+          if (Tubelight['Active Power'] > limits.tubelight) {
             // showAlert();
           }
 
-          if (Bulb['Active Power'] > 3) {
+          if (Bulb['Active Power'] > limits.bulb) {
             // showAlert();
           }
 
@@ -84,14 +84,14 @@ const DataState = (props) => {
   //     }
   // }
 
-  const user = auth.currentUser;
-  let tokenId;
-  useEffect(() => {
-    if (user) {
-      // console.log(user.accessToken);
-      tokenId = user.accessToken;
-    }
-  }, [user]);
+  // const user = auth.currentUser;
+  // let tokenId;
+  // useEffect(() => {
+  //   if (user) {
+  //     // console.log(user.accessToken);
+  //     tokenId = user.accessToken;
+  //   }
+  // }, [user]);
 
   useEffect(() => {
     readData('Kitchen', 'Kitchen', setKitchen, kitchen);

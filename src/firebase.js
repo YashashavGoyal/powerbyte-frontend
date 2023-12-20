@@ -1,11 +1,10 @@
 // import { initializeApp } from "firebase/app";
 import firebase from "firebase/compat/app";
-import { getAuth, getIdToken } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
 import { getDatabase } from "firebase/database";
 import 'firebase/compat/firestore';
 import { getFirestore } from "firebase/firestore";
-import { getMessaging, getToken } from "firebase/messaging";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBQiu3uRke16KhV7xzfcbMc95spXCpfUv8",

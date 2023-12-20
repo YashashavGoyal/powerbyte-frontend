@@ -71,21 +71,21 @@ export default function DeviceA() {
         </tr>
         <tr className='table-primary'>
           <th scope='row'>Bulb</th>
-          <td>{kitchen.Bulb['Active Power']/1000}</td>
+          <td>{(kitchen.Bulb['Active Power']/1000).toFixed(2)}</td>
           <td>{calculateElectricityCost(kitchen.Bulb['Active Power']).costPerDay}</td>
           <td>{calculateElectricityCost(kitchen.Bulb['Active Power']).costPerMonth}</td>
         </tr>
         <tr className='table-primary'>
-        <th scope='row'>Fridge</th>
-          <td>{kitchen.Fridge['Active Power']/1000}</td>
-          <td>{calculateElectricityCost(kitchen.Fridge['Active Power']).costPerDay}</td>
-          <td>{calculateElectricityCost(kitchen.Fridge['Active Power']).costPerMonth}</td>
+        <th scope='row'>Tubelight</th>
+          <td>{(kitchen.Tubelight['Active Power']/1000).toFixed(2)}</td>
+          <td>{calculateElectricityCost(kitchen.Tubelight['Active Power']).costPerDay}</td>
+          <td>{calculateElectricityCost(kitchen.Tubelight['Active Power']).costPerMonth}</td>
         </tr>
         <tr className='table-primary'>
-        <th scope='row'>Induction</th>
-          <td>{kitchen.Induction['Active Power']/1000}</td>
-          <td>{calculateElectricityCost(kitchen.Induction['Active Power']).costPerDay}</td>
-          <td>{calculateElectricityCost(kitchen.Induction['Active Power']).costPerMonth}</td>
+        <th scope='row'>Heater</th>
+          <td>{(kitchen.Heater['Active Power']/1000).toFixed(2)}</td>
+          <td>{calculateElectricityCost(kitchen.Heater['Active Power']).costPerDay}</td>
+          <td>{calculateElectricityCost(kitchen.Heater['Active Power']).costPerMonth}</td>
         </tr>
       </tbody>
     </table>)
@@ -130,16 +130,16 @@ export default function DeviceA() {
                   <td>{kitchen.Bulb['Current(A)']}</td>
                 </tr>
                 <tr className='table-primary'>
-                  <th scope='row'>Fridge</th>
-                  <td>{kitchen.Fridge['Active Power']}</td>
-                  <td>{kitchen.Fridge['Voltage(Volt)']}</td>
-                  <td>{kitchen.Fridge['Current(A)']}</td>
+                  <th scope='row'>Tubelight</th>
+                  <td>{kitchen.Tubelight['Active Power']}</td>
+                  <td>{kitchen.Tubelight['Voltage(Volt)']}</td>
+                  <td>{kitchen.Tubelight['Current(A)']}</td>
                 </tr>
                 <tr className='table-primary'>
-                  <th scope='row'>Induction</th>
-                  <td>{kitchen.Induction['Active Power']}</td>
-                  <td>{kitchen.Induction['Voltage(Volt)']}</td>
-                  <td>{kitchen.Induction['Current(A)']}</td>
+                  <th scope='row'>Heater</th>
+                  <td>{kitchen.Heater['Active Power']}</td>
+                  <td>{kitchen.Heater['Voltage(Volt)']}</td>
+                  <td>{kitchen.Heater['Current(A)']}</td>
                 </tr>
               </tbody>
             </table>

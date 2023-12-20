@@ -43,8 +43,8 @@ export default function Devices(props) {
         {/* <canvas className="my-4 w-100" id="myChart" width="900" height="380"></canvas> */}
 
         <div className='container-fluid'>
-          <div class="card">
-            <div class="card-body d-flex">
+          <div className="card">
+            <div className="card-body d-flex">
              <Link to="/panel/powerconsumption/zone_A" className="card border-secondary nav-link">
                 <h5>Zone-A</h5>
              </Link>

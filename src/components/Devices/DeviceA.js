@@ -71,19 +71,19 @@ export default function DeviceA() {
         </tr>
         <tr className='table-primary'>
           <th scope='row'>Bulb</th>
-          <td>{kitchen.Bulb['Active Power']/1000}</td>
+          <td>{(kitchen.Bulb['Active Power']/1000).toFixed(2)}</td>
           <td>{calculateElectricityCost(kitchen.Bulb['Active Power']).costPerDay}</td>
           <td>{calculateElectricityCost(kitchen.Bulb['Active Power']).costPerMonth}</td>
         </tr>
         <tr className='table-primary'>
         <th scope='row'>Fridge</th>
-          <td>{kitchen.Fridge['Active Power']/1000}</td>
+          <td>{(kitchen.Fridge['Active Power']/1000).toFixed(2)}</td>
           <td>{calculateElectricityCost(kitchen.Fridge['Active Power']).costPerDay}</td>
           <td>{calculateElectricityCost(kitchen.Fridge['Active Power']).costPerMonth}</td>
         </tr>
         <tr className='table-primary'>
         <th scope='row'>Induction</th>
-          <td>{kitchen.Induction['Active Power']/1000}</td>
+          <td>{(kitchen.Induction['Active Power']/1000).toFixed(2)}</td>
           <td>{calculateElectricityCost(kitchen.Induction['Active Power']).costPerDay}</td>
           <td>{calculateElectricityCost(kitchen.Induction['Active Power']).costPerMonth}</td>
         </tr>

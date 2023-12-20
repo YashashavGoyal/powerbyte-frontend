@@ -64,9 +64,9 @@ export default function Sidemenu() {
                   Zone-C
                 </Link>
                 <div className='dropdown-divider'></div>
-                <a className='dropdown-item' href='/panel/devices'>
+                <Link to="/panel/powerconsumption" className='dropdown-item' >
                   All
-                </a>
+                </Link>
               </div>
             </div>
           </li>

@@ -78,9 +78,9 @@ function App() {
                     element={<Savingmethods />}
                   />
                   <Route path='/panel/powerconsumption' element={<Power />} >
-                    <Route path='/panel/powerconsumption/device_A' element={<DeviceA />} />
-                    <Route path='/panel/powerconsumption/device_B' element={<DevicesB />} />
-                    <Route path='/panel/powerconsumption/device_C' element={<DevicesC />} />
+                    <Route path='/panel/powerconsumption/zone_A' element={<DeviceA />} />
+                    <Route path='/panel/powerconsumption/zone_B' element={<DevicesB />} />
+                    <Route path='/panel/powerconsumption/zone_C' element={<DevicesC />} />
                   </Route>
                   <Route
                     path='/panel/energycalculator'

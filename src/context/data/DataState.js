@@ -2,7 +2,13 @@ import { child, get, getDatabase, ref } from 'firebase/database';
 import { createContext, useContext, useEffect, useState } from 'react';
 import { db } from '../../firebase';
 import { limits } from '../../constants';
-import { Firestore, arrayUnion, doc, updateDoc } from '@firebase/firestore';
+import {
+  arrayUnion,
+  collection,
+  doc,
+  updateDoc,
+  getDoc,
+} from 'firebase/firestore/lite';
 
 const DataContext = createContext();
 
@@ -35,7 +41,7 @@ const DataState = (props) => {
         if (snapshot.exists()) {
           // console.log(snapshot.val());
           const { Heater, Tubelight, Bulb, fan } = snapshot.val();
-          // console.log({ Heater, Tubelight, Bulb, fan });
+          console.log({ Heater, Tubelight, Bulb, fan });
 
           if (Heater['Active Power'] > limits.heater) {
             // showAlert();
@@ -53,9 +59,9 @@ const DataState = (props) => {
             // window.alert('FAN ALERT')
             showAlert('Fan', 'Fan is consuming additional power!');
           }
-          writeData(snapshot.val().Bulb, `${collection}`, 'Bulb');
-          // writeData(snapshot.val().Heater, `${collection}`, 'Heater');
-          // writeData(snapshot.val().fan, `${collection}`, 'fan');
+          writeData(Bulb, `${collection}`, 'Bulb');
+          writeData(Heater, `${collection}`, 'Heater');
+          writeData(fan, `${collection}`, 'fan');
 
           stateName(snapshot.val());
           // showAlert(collection,  dir);
@@ -73,36 +79,43 @@ const DataState = (props) => {
 
   // function to write data from realtime database to firestore databse
   async function writeData(value, collectionName, equipment) {
-        try {
-              const tempRef = doc(db, collectionName, equipment);
-              console.log(tempRef);
-              console.log(value['Current(A)']);
-              console.log(value['Power(Watt)']);
-              console.log(value['Voltage(Volt)']);
-              await updateDoc(tempRef, {
-              current: arrayUnion(value['Current(A)']),
-              power: arrayUnion(value['Power(Watt)']),
-              voltage: arrayUnion(value['Voltage(Volt)']),
-          });
-      } catch (err) {
-            console.error(err);
-        }
+    try {
+      const tempRef = doc(db, collectionName, equipment);
+      // console.log({ tempRef });
+
+      await updateDoc(tempRef, {
+        current: arrayUnion({
+          x: value['Current(A)'],
+          y: new Date().toISOString(),
+        }),
+        power: arrayUnion({
+          x: value['Power(Watt)'],
+          y: new Date().toISOString(),
+        }),
+        voltage: arrayUnion({
+          x: value['Voltage(Volt)'],
+          y: new Date().toISOString(),
+        }),
+      });
+    } catch (err) {
+      console.error(err.message);
     }
-    
-    // async function writeData(value, collectionName, equipment) {
-      const writeToFirestore = async (dataObject) => {
-        try {
-          // Access the 'myCollection' collection in Firestore
-          const collectionRef = Firestore.collection('myCollection');
-      
-          // Add the data object to the collection
-          await collectionRef.add(dataObject);
-      
-          console.log('Data successfully written to Firestore!');
-        } catch (error) {
-          console.error('Error writing data to Firestore: ', error);
-        }
-      };
+  }
+
+  // async function writeData(value, collectionName, equipment) {
+  const writeToFirestore = async (dataObject) => {
+    try {
+      // Access the 'myCollection' collection in Firestore
+      const collectionRef = collection('myCollection');
+
+      // Add the data object to the collection
+      await collectionRef.add(dataObject);
+
+      console.log('Data successfully written to Firestore!');
+    } catch (error) {
+      console.error('Error writing data to Firestore: ', error);
+    }
+  };
 
   // const user = auth.currentUser;
   // let tokenId;
@@ -118,7 +131,7 @@ const DataState = (props) => {
     // readData('Room1')
     setInterval(() => {
       readData('Kitchen', 'Kitchen', setKitchen, kitchen);
-    }, 5000);
+    }, 7000);
     // eslint-disable-next-line
   }, []);
 

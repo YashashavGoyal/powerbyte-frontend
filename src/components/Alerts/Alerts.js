@@ -1,11 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react';
+
+import { useGlobalData } from '../../context/data/DataState';
 
 export default function Alerts() {
+
+    const { loading ,alert, alertType, alertMsg } = useGlobalData();
+
+    // if (loading) return <div>Loading...</div>;
     return (
+        alert &&
         <>
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <div style={{margin: 0}} className={`alert alert-${alertType} alert-dismissible fade show`} role="alert">
+                <strong>{alertType.toUpperCase()}</strong> {alertMsg}
+                <button type="button" className="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>

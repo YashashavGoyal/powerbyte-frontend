@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   BrowserRouter as Router,
   Routes,
@@ -28,10 +28,10 @@ import Layout from './components/Layout/Layout';
 import DeviceA from './components/Devices/DeviceA';
 import DevicesB from './components/Devices/DevicesB';
 import DevicesC from './components/Devices/DevicesC';
+import Alerts from './components/Alerts/Alerts';
 
 
 function App() {
-  const [loading, setLoading] = useState();
 
   // function to read data from realtime database firebase
 
@@ -48,26 +48,27 @@ function App() {
   //   } catch (err) {
   //     console.log(err);
   //   }
-  // }
 
 
 
-  if (loading) return <div>Loading...</div>;
+  // console.log(tokenId);
+
   return (
     <div className='App'>
       <DataState>
         <Router>
           <Navbar />
+          <Alerts />
           <div className='container-fluid'>
             <div className='row'>
               <Routes>
-                <Route path='/' element={<Home loading={setLoading} />} />
-                <Route path='/login' element={<Login setLoading={setLoading} />} />
-                <Route path='/signup' element={<Signup loading={setLoading} />} />
+                <Route path='/' element={<Home />} />
+                <Route path='/login' element={<Login />} />
+                <Route path='/signup' element={<Signup />} />
                 <Route path='/panel' element={<Layout />}>
                   <Route
                     path='/panel/dashboard'
-                    element={<Dashboard loading={setLoading} />}
+                    element={<Dashboard />}
                   />
                   <Route
                     path='/panel/usage'

@@ -1,7 +1,8 @@
 import { child, get, getDatabase, ref } from 'firebase/database';
 import { createContext, useContext, useEffect, useState } from 'react';
-// import { auth } from '../../firebase';
+import { db } from '../../firebase';
 import { limits } from '../../constants';
+import { Firestore, arrayUnion, doc, updateDoc } from '@firebase/firestore';
 
 const DataContext = createContext();
 
@@ -52,7 +53,7 @@ const DataState = (props) => {
             // window.alert('FAN ALERT')
             showAlert('Fan', 'Fan is consuming additional power!');
           }
-          // writeData(snapshot.val().Bulb, `${collection}`, 'Bulb');
+          writeData(snapshot.val().Bulb, `${collection}`, 'Bulb');
           // writeData(snapshot.val().Heater, `${collection}`, 'Heater');
           // writeData(snapshot.val().fan, `${collection}`, 'fan');
 
@@ -71,18 +72,37 @@ const DataState = (props) => {
   }
 
   // function to write data from realtime database to firestore databse
-  // async function writeData(value, collectionName, equipment) {
-  //     try {
-  //         const tempRef = doc(db, collectionName, equipment);
-  //         await updateDoc(tempRef, {
-  //             current: arrayUnion(value['Current(A)']),
-  //             power: arrayUnion(value['Power(Watt)']),
-  //             voltage: arrayUnion(value['Voltage(Volt)']),
-  //         });
-  //     } catch (err) {
-  //         console.log(err);
-  //     }
-  // }
+  async function writeData(value, collectionName, equipment) {
+        try {
+              const tempRef = doc(db, collectionName, equipment);
+              console.log(tempRef);
+              console.log(value['Current(A)']);
+              console.log(value['Power(Watt)']);
+              console.log(value['Voltage(Volt)']);
+              await updateDoc(tempRef, {
+              current: arrayUnion(value['Current(A)']),
+              power: arrayUnion(value['Power(Watt)']),
+              voltage: arrayUnion(value['Voltage(Volt)']),
+          });
+      } catch (err) {
+            console.error(err);
+        }
+    }
+    
+    // async function writeData(value, collectionName, equipment) {
+      const writeToFirestore = async (dataObject) => {
+        try {
+          // Access the 'myCollection' collection in Firestore
+          const collectionRef = Firestore.collection('myCollection');
+      
+          // Add the data object to the collection
+          await collectionRef.add(dataObject);
+      
+          console.log('Data successfully written to Firestore!');
+        } catch (error) {
+          console.error('Error writing data to Firestore: ', error);
+        }
+      };
 
   // const user = auth.currentUser;
   // let tokenId;

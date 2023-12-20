@@ -29,6 +29,7 @@ import DeviceA from './components/Devices/DeviceA';
 import DevicesB from './components/Devices/DevicesB';
 import DevicesC from './components/Devices/DevicesC';
 import Alerts from './components/Alerts/Alerts';
+import { Chart } from 'chart.js';
 
 
 function App() {
@@ -66,6 +67,7 @@ function App() {
                 <Route path='/login' element={<Login />} />
                 <Route path='/signup' element={<Signup />} />
                 <Route path='/panel' element={<Layout />}>
+                  <Route path='/panel/chart' element={<Chart />} />
                   <Route
                     path='/panel/dashboard'
                     element={<Dashboard />}

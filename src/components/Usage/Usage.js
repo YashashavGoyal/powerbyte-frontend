@@ -44,7 +44,7 @@ export default function Usage(props) {
         {/* <canvas className="my-4 w-100" id="myChart" width="900" height="380"></canvas> */}
 
         <div className='container-fluid'>
-          <h3 className='graph-design'>Predicted Usage Trend</h3>
+          <h3 className='graph-design'>Recent Usage Trend</h3>
           <div className='predicTrend' style={{ height: '300px' }}>
             {console.log(graph)}
             <ResponsiveLine

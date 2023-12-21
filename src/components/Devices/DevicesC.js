@@ -104,7 +104,7 @@ export default function DeviceA() {
                     colSpan={4}
                     scope='col'
                   >
-                    Room-1 Data
+                    Zone-C Data
                   </th>
                 </tr>
               </thead>

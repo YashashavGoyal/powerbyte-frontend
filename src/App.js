@@ -28,7 +28,6 @@ import Layout from './components/Layout/Layout';
 import DeviceA from './components/Devices/DeviceA';
 import DevicesB from './components/Devices/DevicesB';
 import DevicesC from './components/Devices/DevicesC';
-import Alerts from './components/Alerts/Alerts';
 import { Chart } from 'chart.js';
 
 
@@ -59,7 +58,6 @@ function App() {
       <DataState>
         <Router>
           <Navbar />
-          <Alerts />
           <div className='container-fluid'>
             <div className='row'>
               <Routes>

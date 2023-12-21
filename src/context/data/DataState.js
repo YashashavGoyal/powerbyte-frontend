@@ -20,56 +20,9 @@ const DataState = (props) => {
   const [loading, setLoading] = useState(true);
   const [kitchen, setKitchen] = useState({});
   //   const [room1, setRoom1] = useState({});
-  const [bulb, setbulb] = useState([]);
 
-  const [graph, setGraph] = useState([
-    // {
-    //   id: 'Bulb',
-    //   color: 'hsl(124, 70%, 50%)',
-    //   data: [
-    //     {
-    //       x: bulb[0].x,
-    //       y: bulb[0].y,
-    //     },
-    //     {
-    //       x: bulb[1].x,
-    //       y: bulb[1].y,
-    //     },
-    //     {
-    //       x: bulb[2].x,
-    //       y: bulb[2].y,
-    //     },
-    //     {
-    //       x: bulb[3].x,
-    //       y: bulb[3].y,
-    //     },
-    //     {
-    //       x: bulb[4].x,
-    //       y: bulb[4].y,
-    //     },
-    //     {
-    //       x: bulb[5].x,
-    //       y: bulb[5].y,
-    //     },
-    //     {
-    //       x: bulb[6].x,
-    //       y: bulb[6].y,
-    //     },
-    //     {
-    //       x: bulb[7].x,
-    //       y: bulb[7].y,
-    //     },
-    //     {
-    //       x: bulb[8].x,
-    //       y: bulb[8].y,
-    //     },
-    //     {
-    //       x: bulb[9].x,
-    //       y: bulb[9].y,
-    //     },
-    // ],
-    // },
-  ]);
+  const [Bulb, setBulb] = useState([]);
+  const [Heater, setHeater] = useState([]);
 
   const [alert, setAlert] = useState(false);
   const [alertType, setAlertType] = useState('');
@@ -84,18 +37,14 @@ const DataState = (props) => {
     // console.log(alert, alertMsg, alertType);
   };
 
-  function generateGraphData(data) {
-    setGraph([
+  function generateGraphData(data, id, setVariable) {
+    setVariable([
       {
-        id: 'Bulb',
+        id: id,
         data: getLastTenElements(data).map((data) => ({
           x: new Date(data.y).getSeconds(),
           y: data.x,
         })),
-      },
-      {
-        id: 'Heater',
-        data: [],
       },
     ]);
   }
@@ -105,7 +54,7 @@ const DataState = (props) => {
       .then((snapshot) => {
         if (snapshot.exists()) {
           // console.log(snapshot.val());
-          const { Heater, Tubelight, Bulb, fan } = snapshot.val();
+          const { Heater, Tubelight, Bulb, Induction } = snapshot.val();
           // console.log({ Heater, Tubelight, Bulb, fan });
 
           if (Heater['Active Power'] > limits.heater) {
@@ -129,13 +78,13 @@ const DataState = (props) => {
             );
           }
 
-          if (fan['Active Power'] > limits.fan) {
+          if (Induction['Active Power'] > limits.induction) {
             // window.alert('FAN ALERT')
-            showAlert('Fan', 'Fan is consuming additional power!');
+            showAlert('Induction', 'Induction is consuming additional power!');
           }
           writeData(Bulb, `${collection}`, 'Bulb');
           writeData(Heater, `${collection}`, 'Heater');
-          writeData(fan, `${collection}`, 'fan');
+          writeData(Induction, `${collection}`, 'Induction');
 
           stateName(snapshot.val());
           // showAlert(collection,  dir);
@@ -192,15 +141,15 @@ const DataState = (props) => {
   };
 
   // fuction to read or fetch data from firestore
-  const fetchData = async (collection, subCollection, param) => {
+  const fetchData = async (collection, subCollection, param, assignParam) => {
     try {
       const docRef = doc(db, `${collection}`, `${subCollection}`);
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
         // console.log("Document data:", docSnap.data()[`${param}`]) ;
-        setbulb(docSnap.data()[`${param}`]);
-        generateGraphData(docSnap.data()[`${param}`]);
+        // setbulb(docSnap.data()[`${param}`]);
+        generateGraphData(docSnap.data()[`${param}`],subCollection, assignParam);
         // console.log(bulb);
       } else {
         console.log('No such document!');
@@ -209,6 +158,7 @@ const DataState = (props) => {
       console.error('Error fetching document:', error);
     }
   };
+
 
   function getLastTenElements(arr) {
     const length = arr.length;
@@ -230,11 +180,15 @@ const DataState = (props) => {
 
   useEffect(() => {
     readData('Kitchen', 'Kitchen', setKitchen, kitchen);
-    fetchData('Kitchen', 'Bulb', 'current');
+    fetchData('Kitchen', 'Bulb', 'current', setBulb);
+    fetchData('Kitchen', 'Induction', 'current', setHeater);
+    // fetchData('Kitchen', 'Induction', 'current', setInduction);
     // readData('Room1')
     setInterval(() => {
       readData('Kitchen', 'Kitchen', setKitchen, kitchen);
-      fetchData('Kitchen', 'Bulb', 'current');
+      fetchData('Kitchen', 'Bulb', 'current', setBulb);
+      fetchData('Kitchen', 'Induction', 'current', setHeater);
+      // fetchData('Kitchen', 'Induction', 'current', setInduction);
     }, 7000);
     // eslint-disable-next-line
   }, []);
@@ -260,7 +214,8 @@ const DataState = (props) => {
     setAlertMsg,
     setAlertType,
     showAlert,
-    graph,
+    Bulb,
+    Heater
   };
 
   return (

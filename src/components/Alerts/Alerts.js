@@ -19,6 +19,7 @@ export default function Alerts() {
                 margin: `0px`,
                 right: 0,
                 zIndex: 1,
+                width: `auto`
             }} className={`alert alert-${alertType} alert-dismissible fade show`} role="alert">
             <strong style={{ color: `red` }}>{alertType.toUpperCase()}</strong> : <span style={{ color: `crimson` }}> {alertMsg} </span>
             <button type="button" className="close" data-dismiss="alert" aria-label="Close">

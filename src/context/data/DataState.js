@@ -23,7 +23,7 @@ const DataState = (props) => {
 
   const [bulbGraph, setBulbGraph] = useState([]);
   const [heaterGraph, setHeaterGraph] = useState([]);
-  // const [heaterGraph, setHeaterGraph] = useState([]);
+  const [inductionGraph, setInductionGraph] = useState([]);
 
   const [alert, setAlert] = useState(false);
   const [alertType, setAlertType] = useState('');
@@ -52,13 +52,22 @@ const DataState = (props) => {
         ]);
         break;
       case 'Heater':
-        setHeaterGraph({
+        setHeaterGraph([{
           id: id,
           data: getLastTenElements(data).map((data) => ({
             x: new Date(data.y).getSeconds(),
             y: data.x,
           })),
-        });
+        }]);
+        break;
+      case 'Induction':
+        setInductionGraph([{
+          id: id,
+          data: getLastTenElements(data).map((data) => ({
+            x: new Date(data.y).getSeconds(),
+            y: data.x,
+          })),
+        }]);
         break;
       default:
         break;
@@ -199,13 +208,14 @@ const DataState = (props) => {
 
     fetchData('Kitchen', 'Bulb', 'current');
     fetchData('Kitchen', 'Induction', 'current');
+    fetchData('Kitchen', 'Heater', 'current');
 
     setInterval(() => {
       readData('Kitchen', 'Kitchen', setKitchen, kitchen);
       fetchData('Kitchen', 'Bulb', 'current');
       fetchData('Kitchen', 'Induction', 'current');
-      // fetchData('Kitchen', 'Induction', 'current', setInduction);
-    }, 7000);
+      fetchData('Kitchen', 'Heater', 'current');
+    }, 10000);
     // eslint-disable-next-line
   }, []);
 
@@ -232,6 +242,7 @@ const DataState = (props) => {
     showAlert,
     bulbGraph,
     heaterGraph,
+    inductionGraph
   };
 
   return (

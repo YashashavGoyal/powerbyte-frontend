@@ -5,7 +5,7 @@ import { ResponsiveLine } from '@nivo/line';
 import { useGlobalData } from '../../context/data/DataState';
 
 export default function Usage(props) {
-  const { Bulb, Heater } = useGlobalData();
+  const { bulbGraph, heaterGraph } = useGlobalData();
 
   return (
     <>
@@ -44,10 +44,12 @@ export default function Usage(props) {
 
         <div className='container-fluid'>
           <h3 className='graph-design'>Recent Usage Trend</h3>
-          <div className='predicTrend' >
-            {console.log(Bulb, Heater)}
+          <div
+            className='predicTrend'
+            style={{ height: '30vh', width: '70vw' }}
+          >
             <ResponsiveLine
-              data={Bulb}
+              data={bulbGraph}
               margin={{ bottom: 60, left: 60, right: 30, top: 50 }}
               xScale={{ type: 'point' }}
               curve='step'
@@ -84,8 +86,13 @@ export default function Usage(props) {
               pointLabelYOffset={-12}
               useMesh={true}
             />
+          </div>
+          <div
+            className='predicTrend'
+            style={{ height: '30vh', width: '70vw' }}
+          >
             <ResponsiveLine
-              data={Heater}
+              data={heaterGraph}
               margin={{ bottom: 60, left: 60, right: 30, top: 50 }}
               xScale={{ type: 'point' }}
               curve='step'

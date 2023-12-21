@@ -21,8 +21,9 @@ const DataState = (props) => {
   const [kitchen, setKitchen] = useState({});
   //   const [room1, setRoom1] = useState({});
 
-  const [Bulb, setBulb] = useState([]);
-  const [Heater, setHeater] = useState([]);
+  const [bulbGraph, setBulbGraph] = useState([]);
+  const [heaterGraph, setHeaterGraph] = useState([]);
+  // const [heaterGraph, setHeaterGraph] = useState([]);
 
   const [alert, setAlert] = useState(false);
   const [alertType, setAlertType] = useState('');
@@ -37,16 +38,31 @@ const DataState = (props) => {
     // console.log(alert, alertMsg, alertType);
   };
 
-  function generateGraphData(data, id, setVariable) {
-    setVariable([
-      {
-        id: id,
-        data: getLastTenElements(data).map((data) => ({
-          x: new Date(data.y).getSeconds(),
-          y: data.x,
-        })),
-      },
-    ]);
+  function generateGraphData(data, id) {
+    switch (id) {
+      case 'Bulb':
+        setBulbGraph([
+          {
+            id: id,
+            data: getLastTenElements(data).map((data) => ({
+              x: new Date(data.y).getSeconds(),
+              y: data.x,
+            })),
+          },
+        ]);
+        break;
+      case 'Heater':
+        setHeaterGraph({
+          id: id,
+          data: getLastTenElements(data).map((data) => ({
+            x: new Date(data.y).getSeconds(),
+            y: data.x,
+          })),
+        });
+        break;
+      default:
+        break;
+    }
   }
   function readData(dir, collection, stateName, name) {
     const dbRef = ref(getDatabase());
@@ -56,7 +72,7 @@ const DataState = (props) => {
           // console.log(snapshot.val());
           const { Heater, Tubelight, Bulb, Induction } = snapshot.val();
           // console.log({ Heater, Tubelight, Bulb, fan });
-
+          console.log({ Induction });
           if (Heater['Active Power'] > limits.heater) {
             showAlert(
               'Active',
@@ -141,7 +157,7 @@ const DataState = (props) => {
   };
 
   // fuction to read or fetch data from firestore
-  const fetchData = async (collection, subCollection, param, assignParam) => {
+  const fetchData = async (collection, subCollection, param) => {
     try {
       const docRef = doc(db, `${collection}`, `${subCollection}`);
       const docSnap = await getDoc(docRef);
@@ -149,7 +165,8 @@ const DataState = (props) => {
       if (docSnap.exists()) {
         // console.log("Document data:", docSnap.data()[`${param}`]) ;
         // setbulb(docSnap.data()[`${param}`]);
-        generateGraphData(docSnap.data()[`${param}`],subCollection, assignParam);
+        generateGraphData(docSnap.data()[`${param}`], subCollection);
+        console.log({ subCollection });
         // console.log(bulb);
       } else {
         console.log('No such document!');
@@ -158,7 +175,6 @@ const DataState = (props) => {
       console.error('Error fetching document:', error);
     }
   };
-
 
   function getLastTenElements(arr) {
     const length = arr.length;
@@ -180,14 +196,14 @@ const DataState = (props) => {
 
   useEffect(() => {
     readData('Kitchen', 'Kitchen', setKitchen, kitchen);
-    fetchData('Kitchen', 'Bulb', 'current', setBulb);
-    fetchData('Kitchen', 'Induction', 'current', setHeater);
-    // fetchData('Kitchen', 'Induction', 'current', setInduction);
-    // readData('Room1')
+
+    fetchData('Kitchen', 'Bulb', 'current');
+    fetchData('Kitchen', 'Induction', 'current');
+
     setInterval(() => {
       readData('Kitchen', 'Kitchen', setKitchen, kitchen);
-      fetchData('Kitchen', 'Bulb', 'current', setBulb);
-      fetchData('Kitchen', 'Induction', 'current', setHeater);
+      fetchData('Kitchen', 'Bulb', 'current');
+      fetchData('Kitchen', 'Induction', 'current');
       // fetchData('Kitchen', 'Induction', 'current', setInduction);
     }, 7000);
     // eslint-disable-next-line
@@ -214,8 +230,8 @@ const DataState = (props) => {
     setAlertMsg,
     setAlertType,
     showAlert,
-    Bulb,
-    Heater
+    bulbGraph,
+    heaterGraph,
   };
 
   return (

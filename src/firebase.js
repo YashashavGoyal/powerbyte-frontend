@@ -4,6 +4,7 @@ import { getAnalytics } from 'firebase/analytics';
 import { getDatabase } from 'firebase/database';
 import { getFirestore } from 'firebase/firestore/lite';
 
+
 const firebaseConfig = {
   apiKey: 'AIzaSyBQiu3uRke16KhV7xzfcbMc95spXCpfUv8',
   authDomain: 'energysavers-es.firebaseapp.com',
@@ -25,6 +26,8 @@ const analytics = getAnalytics(app);
 const database = getDatabase(app);
 
 const db = getFirestore(app); // Initialize Firestore
+
+// const firstore = firebase.firestore();
 
 // console.log(auth.currentUser.getIdToken().then((token) => {
 //   console.log(token);

@@ -9,6 +9,7 @@ import {
   updateDoc,
   getDoc,
 } from 'firebase/firestore/lite';
+import { toast } from 'react-toastify';
 
 const DataContext = createContext();
 
@@ -42,10 +43,30 @@ const DataState = (props) => {
   const showAlert = (device, message) => {
     // console.log({ device, message });
 
-    setAlert(true);
-    setAlertType('danger');
-    setAlertMsg(message);
+    // setAlert(true);
+    // setAlertType('danger');
+    // setAlertMsg(message);
     // console.log(alert, alertMsg, alertType);
+    const path = window.location.pathname;
+    if (path === '/login' || path === '/signup' || path === '/') {
+      console.log(path);
+      return;
+    }
+    else {
+      // console.log('Working');
+      // toast(`${device} ${message}`, {
+      //   position: "top-right",
+      //   autoClose: 5000,
+      //   hideProgressBar: false,
+      //   closeOnClick: true,
+      //   pauseOnHover: true,
+      //   draggable: true,
+      //   progress: undefined,
+      //   theme: "colored",
+      //   type: "error"
+      // });
+      return;
+    }
   };
 
   function generateGraphData(data, id) {
@@ -69,7 +90,7 @@ const DataState = (props) => {
             })),
           },
         ]);
-        
+
         setBulbGraphPower([
           {
             id: id,
@@ -79,7 +100,7 @@ const DataState = (props) => {
             })),
           },
         ]);
-        console.log(data);
+        // console.log(data);
         break;
       case 'Heater':
         setHeaterGraphCurrent([{
@@ -114,7 +135,7 @@ const DataState = (props) => {
             y: data.x,
           })),
         }]);
-        
+
         setInductionGraphVoltage([{
           id: id,
           data: getLastTenElements(data.voltage).map((data) => ({
@@ -147,8 +168,8 @@ const DataState = (props) => {
           // console.log({ Induction });
           if (Heater['ActivePower'] > limits.heater) {
             showAlert(
-              'Active',
-              'Active is Consuming excess power then i required'
+              'Zone-A Heater',
+              'is Consuming excess power then i required'
             );
           }
 
@@ -161,14 +182,14 @@ const DataState = (props) => {
 
           if (Bulb['ActivePower'] > limits.bulb) {
             showAlert(
-              'Kitchen-Bulb',
-              'Bulb is Consuming excess power then it required'
+              'Zone-A Bulb',
+              'is Consuming excess power then it required'
             );
           }
 
           if (Induction['ActivePower'] > limits.induction) {
             // window.alert('FAN ALERT')
-            showAlert('Induction', 'Induction is consuming additional power!');
+            showAlert('Zone-A Induction', 'is consuming additional power!');
           }
           writeData(Bulb, `${collection}`, 'Bulb');
           writeData(Heater, `${collection}`, 'Heater');

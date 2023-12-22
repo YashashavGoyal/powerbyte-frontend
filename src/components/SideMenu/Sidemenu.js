@@ -39,7 +39,11 @@ export default function Sidemenu() {
               <span data-feather='users' className='align-text-bottom'></span>
               <Link
                 className='nav-link'
-                style={{ display: `inline-block` }}
+                style={{
+                  display: `inline-flex`,
+                  padding: `unset`,
+                  alignItems: `center`
+                }}
                 to='/panel/powerconsumption'
               >
                 <span type='button'>Power Consumption</span>

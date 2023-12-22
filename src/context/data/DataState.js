@@ -36,38 +36,100 @@ const DataState = (props) => {
   const [inductionGraphVoltage, setInductionGraphVoltage] = useState([]);
   const [inductionGraphPower, setInductionGraphPower] = useState([]);
 
-  const [alert, setAlert] = useState(false);
-  const [alertType, setAlertType] = useState('');
-  const [alertMsg, setAlertMsg] = useState('');
+
+  const [bulbGaugeCurrent, setBulbGaugeCurrent] = useState();
+  const [bulbGaugeVoltage, setBulbGaugeVoltage] = useState();
+  const [bulbGaugePower, setBulbGaugePower] = useState();
+
+  const [heaterGaugeCurrent, setHeaterGaugeCurrent] = useState();
+  const [heaterGaugeVoltage, setHeaterGaugeVoltage] = useState();
+  const [heaterGaugePower, setHeaterGaugePower] = useState();
+
+  const [inductionGaugeCurrent, setInductionGaugeCurrent] = useState();
+  const [inductionGaugeVoltage, setInductionGaugeVoltage] = useState();
+  const [inductionGaugePower, setInductionGaugePower] = useState();
+
+  const [sameAlert, setSameAlert] = useState(false);
 
   const showAlert = (device, message) => {
     // console.log({ device, message });
-
-    // setAlert(true);
-    // setAlertType('danger');
-    // setAlertMsg(message);
-    // console.log(alert, alertMsg, alertType);
+    if (sameAlert) {
+      return;
+    }
+    setSameAlert(true);
     const path = window.location.pathname;
     if (path === '/login' || path === '/signup' || path === '/') {
-      console.log(path);
+      // console.log(path);
       return;
     }
     else {
       // console.log('Working');
       // toast(`${device} ${message}`, {
       //   position: "top-right",
-      //   autoClose: 5000,
+      //   autoClose: 10000,
       //   hideProgressBar: false,
       //   closeOnClick: true,
-      //   pauseOnHover: true,
+      //   pauseOnHover: false,
+      //   pauseOnFocusLoss: false,
       //   draggable: true,
       //   progress: undefined,
       //   theme: "colored",
       //   type: "error"
       // });
+      setTimeout(() => {
+        console.log(alert);
+      }, 60000);
       return;
     }
   };
+
+  function generateGaugeValue(data, id) {
+    switch (id) {
+      case 'Bulb':
+        setBulbGaugeCurrent(
+          data.current[data.current.length - 1].x
+          );
+        setBulbGaugeVoltage(
+          data.voltage[data.voltage.length - 1].x
+          );
+        setBulbGaugePower(
+          data.power[data.power.length - 1].x
+          );
+          console.log(data.current[data.current.length - 1].x)
+          console.log(data.voltage[data.voltage.length - 1].x)
+          console.log(data.power[data.power.length - 1].x)
+          // console.log(data);
+        break;
+
+      case 'Heater':
+        setHeaterGaugeCurrent(
+          data.current[data.current.length - 1].x
+          );
+        setHeaterGaugeVoltage(
+          data.voltage[data.voltage.length - 1].x
+          );
+        setHeaterGaugePower(
+          data.power[data.power.length - 1].x
+          );
+          break;
+
+      case 'Induction':
+        setInductionGaugeCurrent(
+          data.current[data.current.length - 1].x
+          );
+        setInductionGaugeVoltage(
+          data.voltage[data.voltage.length - 1].x
+          );
+        setInductionGaugePower(
+          data.power[data.power.length - 1].x
+          );
+        break;
+
+      default:
+        break;
+    }
+  }
+
 
   function generateGraphData(data, id) {
     switch (id) {
@@ -80,7 +142,7 @@ const DataState = (props) => {
               x: new Date(data.y).getSeconds(),
               y: data.x,
             })),
-            "hidden":false,
+            "hidden": false,
             "label": "Machine-1"
           },
         ]);
@@ -162,6 +224,8 @@ const DataState = (props) => {
         break;
     }
   }
+
+
   function readData(dir, collection, stateName, name) {
     const dbRef = ref(getDatabase());
     get(child(dbRef, `${dir}/`))
@@ -265,8 +329,7 @@ const DataState = (props) => {
         // console.log("Document data:", docSnap.data()) ;
         // setbulb(docSnap.data()[`${param}`]);
         generateGraphData(docSnap.data(), subCollection);
-        // console.log({ subCollection });
-        // console.log(bulb);
+        generateGaugeValue(docSnap.data(), subCollection);
       } else {
         console.log('No such document!');
       }
@@ -284,6 +347,7 @@ const DataState = (props) => {
     }
   }
 
+  // To get user token
   // const user = auth.currentUser;
   // let tokenId;
   // useEffect(() => {
@@ -309,12 +373,6 @@ const DataState = (props) => {
     // eslint-disable-next-line
   }, []);
 
-  // useEffect(() => {
-  //   setInterval(() => {
-  //     setbulb(getLastTenElements(bulb));
-  //     console.log(bulb);
-  //   }, 7000);
-  // }, [bulb]);
 
   // useEffect(() => {
   //   console.log(alert, alertMsg, alertType);
@@ -323,13 +381,6 @@ const DataState = (props) => {
   const state = {
     kitchen,
     loading,
-    alert,
-    alertType,
-    alertMsg,
-    setAlert,
-    setAlertMsg,
-    setAlertType,
-    showAlert,
     bulbGraphCurrent,
     bulbGraphVoltage,
     bulbGraphPower,
@@ -338,7 +389,16 @@ const DataState = (props) => {
     heaterGraphPower,
     inductionGraphCurrent,
     inductionGraphVoltage,
-    inductionGraphPower
+    inductionGraphPower,
+    bulbGaugeCurrent,
+    bulbGaugeVoltage,
+    bulbGaugePower,
+    heaterGaugeCurrent,
+    heaterGaugeVoltage,
+    heaterGaugePower,
+    inductionGaugeCurrent,
+    inductionGaugeVoltage,
+    inductionGaugePower
   };
 
   return (

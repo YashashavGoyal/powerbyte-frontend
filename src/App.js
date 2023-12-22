@@ -29,6 +29,9 @@ import DeviceA from './components/Devices/DeviceA';
 import DevicesB from './components/Devices/DevicesB';
 import DevicesC from './components/Devices/DevicesC';
 import Mainline from './components/Devices/MainLine';
+import UsageA from './components/DevicesConsumption/UsageA';
+import UsageB from './components/DevicesConsumption/UsageB';
+import UsageC from './components/DevicesConsumption/UsageC';
 
 
 function App() {
@@ -69,10 +72,11 @@ function App() {
                     path='/panel/dashboard'
                     element={<Dashboard />}
                   />
-                  <Route
-                    path='/panel/usage'
-                    element={<Usage />}
-                  />
+                  <Route path='/panel/usage' element={<Usage />}>
+                    <Route path='/panel/usage/zone_A' element={<UsageA />} />
+                    <Route path='/panel/usage/zone_B' element={<UsageB />} />
+                    <Route path='/panel/usage/zone_C' element={<UsageC />} />
+                  </Route>
                   <Route
                     path='/panel/savingmethods'
                     element={<Savingmethods />}

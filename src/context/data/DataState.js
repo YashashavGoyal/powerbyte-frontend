@@ -81,7 +81,7 @@ const DataState = (props) => {
           // console.log(snapshot.val());
           const { Heater, Bulb, Induction } = snapshot.val();
           // console.log({ Heater, Tubelight, Bulb, fan });
-          console.log({ Induction });
+          // console.log({ Induction });
           if (Heater['Power(Watt)'] > limits.heater) {
             showAlert(
               'Active',
@@ -172,10 +172,10 @@ const DataState = (props) => {
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
-        console.log("Document data:", docSnap.data()[`${param}`]) ;
+        // console.log("Document data:", docSnap.data()) ;
         // setbulb(docSnap.data()[`${param}`]);
         generateGraphData(docSnap.data()[`${param}`], subCollection);
-        console.log({ subCollection });
+        // console.log({ subCollection });
         // console.log(bulb);
       } else {
         console.log('No such document!');

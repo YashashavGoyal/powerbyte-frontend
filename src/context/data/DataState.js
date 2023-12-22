@@ -79,31 +79,31 @@ const DataState = (props) => {
       .then((snapshot) => {
         if (snapshot.exists()) {
           // console.log(snapshot.val());
-          const { Heater, Tubelight, Bulb, Induction } = snapshot.val();
+          const { Heater, Bulb, Induction } = snapshot.val();
           // console.log({ Heater, Tubelight, Bulb, fan });
           console.log({ Induction });
-          if (Heater['Active Power'] > limits.heater) {
+          if (Heater['Power(Watt)'] > limits.heater) {
             showAlert(
               'Active',
               'Active is Consuming excess power then i required'
             );
           }
 
-          if (Tubelight['Active Power'] > limits.tubelight) {
-            showAlert(
-              'Tubelight',
-              'Tubelight is Consuming excess power then it required'
-            );
-          }
+          // if (Tubelight['Power(Watt)'] > limits.tubelight) {
+          //   showAlert(
+          //     'Tubelight',
+          //     'Tubelight is Consuming excess power then it required'
+          //   );
+          // }
 
-          if (Bulb['Active Power'] > limits.bulb) {
+          if (Bulb['Power(Watt)'] > limits.bulb) {
             showAlert(
               'Kitchen-Bulb',
               'Bulb is Consuming excess power then it required'
             );
           }
 
-          if (Induction['Active Power'] > limits.induction) {
+          if (Induction['Power(Watt)'] > limits.induction) {
             // window.alert('FAN ALERT')
             showAlert('Induction', 'Induction is consuming additional power!');
           }
@@ -172,7 +172,7 @@ const DataState = (props) => {
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
-        // console.log("Document data:", docSnap.data()[`${param}`]) ;
+        console.log("Document data:", docSnap.data()[`${param}`]) ;
         // setbulb(docSnap.data()[`${param}`]);
         generateGraphData(docSnap.data()[`${param}`], subCollection);
         console.log({ subCollection });

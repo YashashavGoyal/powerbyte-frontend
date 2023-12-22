@@ -6,15 +6,14 @@ import { getFirestore } from 'firebase/firestore/lite';
 
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyBQiu3uRke16KhV7xzfcbMc95spXCpfUv8',
-  authDomain: 'energysavers-es.firebaseapp.com',
-  databaseURL:
-    'https://energysavers-es-default-rtdb.asia-southeast1.firebasedatabase.app',
-  projectId: 'energysavers-es',
-  storageBucket: 'energysavers-es.appspot.com',
-  messagingSenderId: '247785639120',
-  appId: '1:247785639120:web:903d77d43f678011b8a2d5',
-  measurementId: 'G-2ESQZCQBRN',
+  apiKey: "AIzaSyBI8uxjlqLRyxO_Pka25313Io0v1l4RDsc",
+  authDomain: "powerbyte-bs.firebaseapp.com",
+  databaseURL: "https://powerbyte-bs-default-rtdb.firebaseio.com",
+  projectId: "powerbyte-bs",
+  storageBucket: "powerbyte-bs.appspot.com",
+  messagingSenderId: "420256539317",
+  appId: "1:420256539317:web:d0085da66ef926311a54fc",
+  measurementId: "G-MG0YP34DXR"
 };
 
 const app = initializeApp(firebaseConfig);

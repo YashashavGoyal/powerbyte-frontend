@@ -1,7 +1,7 @@
 export const limits = {
-  fan: 75,
-  heater: 1500,
-  induction: 2000,
-  bulb: 20,
+  fan: 30,
+  heater: 150,
+  induction: 3,
+  bulb: 50,
   tubelight: 40
 };

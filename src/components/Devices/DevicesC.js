@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useGlobalData } from '../../context/data/DataState';
 
-export default function DeviceA() {
+export default function DevicesC() {
 
     const { kitchen } = useGlobalData();
     // console.log(kitchen);

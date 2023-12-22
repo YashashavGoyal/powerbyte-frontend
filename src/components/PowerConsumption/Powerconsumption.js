@@ -27,6 +27,16 @@ export default function Devices(props) {
                 Export
               </button>
             </div>
+            <Link to="/panel/powerconsumption/main"
+              type='button'
+              className=' mx-2  btn btn-sm btn-outline-secondary'
+            >
+              <span
+                data-feather='calendar'
+                className='align-text-bottom'
+              ></span>
+              Main Line Comsumption
+            </Link>
             <button
               type='button'
               className='btn btn-sm btn-outline-secondary dropdown-toggle'

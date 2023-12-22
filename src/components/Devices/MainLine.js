@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useGlobalData } from '../../context/data/DataState';
 
-export default function DevicesB() {
+export default function Mainline() {
 
     const { kitchen } = useGlobalData();
     // console.log(kitchen);
@@ -104,7 +104,7 @@ export default function DevicesB() {
                     colSpan={4}
                     scope='col'
                   >
-                    Zone-B Data
+                    Main Line Data
                   </th>
                 </tr>
               </thead>

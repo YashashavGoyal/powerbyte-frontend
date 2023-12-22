@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {
   BrowserRouter as Router,
   Routes,
@@ -28,7 +28,7 @@ import Layout from './components/Layout/Layout';
 import DeviceA from './components/Devices/DeviceA';
 import DevicesB from './components/Devices/DevicesB';
 import DevicesC from './components/Devices/DevicesC';
-import { Chart } from 'chart.js';
+import Mainline from './components/Devices/MainLine';
 
 
 function App() {
@@ -65,7 +65,6 @@ function App() {
                 <Route path='/login' element={<Login />} />
                 <Route path='/signup' element={<Signup />} />
                 <Route path='/panel' element={<Layout />}>
-                  <Route path='/panel/chart' element={<Chart />} />
                   <Route
                     path='/panel/dashboard'
                     element={<Dashboard />}
@@ -82,6 +81,7 @@ function App() {
                     <Route path='/panel/powerconsumption/zone_A' element={<DeviceA />} />
                     <Route path='/panel/powerconsumption/zone_B' element={<DevicesB />} />
                     <Route path='/panel/powerconsumption/zone_C' element={<DevicesC />} />
+                    <Route path='/panel/powerconsumption/main' element={<Mainline />} />
                   </Route>
                   <Route
                     path='/panel/energycalculator'

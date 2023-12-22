@@ -17,6 +17,8 @@ export function useGlobalData() {
 }
 
 const DataState = (props) => {
+
+
   const [loading, setLoading] = useState(true);
   const [kitchen, setKitchen] = useState({});
   //   const [room1, setRoom1] = useState({});
@@ -77,7 +79,7 @@ const DataState = (props) => {
             })),
           },
         ]);
-        
+        console.log(data);
         break;
       case 'Heater':
         setHeaterGraphCurrent([{
@@ -143,28 +145,28 @@ const DataState = (props) => {
           const { Heater, Bulb, Induction } = snapshot.val();
           // console.log({ Heater, Tubelight, Bulb, fan });
           // console.log({ Induction });
-          if (Heater['Power(Watt)'] > limits.heater) {
+          if (Heater['ActivePower'] > limits.heater) {
             showAlert(
               'Active',
               'Active is Consuming excess power then i required'
             );
           }
 
-          // if (Tubelight['Power(Watt)'] > limits.tubelight) {
+          // if (Tubelight['ActivePower'] > limits.tubelight) {
           //   showAlert(
           //     'Tubelight',
           //     'Tubelight is Consuming excess power then it required'
           //   );
           // }
 
-          if (Bulb['Power(Watt)'] > limits.bulb) {
+          if (Bulb['ActivePower'] > limits.bulb) {
             showAlert(
               'Kitchen-Bulb',
               'Bulb is Consuming excess power then it required'
             );
           }
 
-          if (Induction['Power(Watt)'] > limits.induction) {
+          if (Induction['ActivePower'] > limits.induction) {
             // window.alert('FAN ALERT')
             showAlert('Induction', 'Induction is consuming additional power!');
           }
@@ -198,7 +200,7 @@ const DataState = (props) => {
           y: new Date().toISOString(),
         }),
         power: arrayUnion({
-          x: value['Power(Watt)'],
+          x: value['ActivePower'],
           y: new Date().toISOString(),
         }),
         voltage: arrayUnion({
@@ -230,6 +232,7 @@ const DataState = (props) => {
   const fetchData = async (collection, subCollection, param) => {
     try {
       const docRef = doc(db, `${collection}`, `${subCollection}`);
+      // const docRef = doc(db, `${collection}`);
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {

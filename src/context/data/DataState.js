@@ -21,9 +21,17 @@ const DataState = (props) => {
   const [kitchen, setKitchen] = useState({});
   //   const [room1, setRoom1] = useState({});
 
-  const [bulbGraph, setBulbGraph] = useState([]);
-  const [heaterGraph, setHeaterGraph] = useState([]);
-  const [inductionGraph, setInductionGraph] = useState([]);
+  const [bulbGraphCurrent, setBulbGraphCurrent] = useState([]);
+  const [bulbGraphVoltage, setBulbGraphVoltage] = useState([]);
+  const [bulbGraphPower, setBulbGraphPower] = useState([]);
+
+  const [heaterGraphCurrent, setHeaterGraphCurrent] = useState([]);
+  const [heaterGraphVoltage, setHeaterGraphVoltage] = useState([]);
+  const [heaterGraphPower, setHeaterGraphPower] = useState([]);
+
+  const [inductionGraphCurrent, setInductionGraphCurrent] = useState([]);
+  const [inductionGraphVoltage, setInductionGraphVoltage] = useState([]);
+  const [inductionGraphPower, setInductionGraphPower] = useState([]);
 
   const [alert, setAlert] = useState(false);
   const [alertType, setAlertType] = useState('');
@@ -41,33 +49,86 @@ const DataState = (props) => {
   function generateGraphData(data, id) {
     switch (id) {
       case 'Bulb':
-        setBulbGraph([
+        setBulbGraphCurrent([
           {
             id: id,
-            data: getLastTenElements(data).map((data) => ({
+            data: getLastTenElements(data.current).map((data) => ({
               x: new Date(data.y).getSeconds(),
               y: data.x,
             })),
           },
         ]);
+        setBulbGraphVoltage([
+          {
+            id: id,
+            data: getLastTenElements(data.voltage).map((data) => ({
+              x: new Date(data.y).getSeconds(),
+              y: data.x,
+            })),
+          },
+        ]);
+        
+        setBulbGraphPower([
+          {
+            id: id,
+            data: getLastTenElements(data.power).map((data) => ({
+              x: new Date(data.y).getSeconds(),
+              y: data.x,
+            })),
+          },
+        ]);
+        
         break;
       case 'Heater':
-        setHeaterGraph([{
+        setHeaterGraphCurrent([{
           id: id,
-          data: getLastTenElements(data).map((data) => ({
+          data: getLastTenElements(data.current).map((data) => ({
             x: new Date(data.y).getSeconds(),
             y: data.x,
           })),
         }]);
+
+        setHeaterGraphVoltage([{
+          id: id,
+          data: getLastTenElements(data.voltage).map((data) => ({
+            x: new Date(data.y).getSeconds(),
+            y: data.x,
+          })),
+        }]);
+        setHeaterGraphPower([{
+          id: id,
+          data: getLastTenElements(data.power).map((data) => ({
+            x: new Date(data.y).getSeconds(),
+            y: data.x,
+          })),
+        }]);
+
         break;
       case 'Induction':
-        setInductionGraph([{
+        setInductionGraphCurrent([{
           id: id,
-          data: getLastTenElements(data).map((data) => ({
+          data: getLastTenElements(data.current).map((data) => ({
             x: new Date(data.y).getSeconds(),
             y: data.x,
           })),
         }]);
+        
+        setInductionGraphVoltage([{
+          id: id,
+          data: getLastTenElements(data.voltage).map((data) => ({
+            x: new Date(data.y).getSeconds(),
+            y: data.x,
+          })),
+        }]);
+
+        setInductionGraphPower([{
+          id: id,
+          data: getLastTenElements(data.power).map((data) => ({
+            x: new Date(data.y).getSeconds(),
+            y: data.x,
+          })),
+        }]);
+
         break;
       default:
         break;
@@ -174,7 +235,7 @@ const DataState = (props) => {
       if (docSnap.exists()) {
         // console.log("Document data:", docSnap.data()) ;
         // setbulb(docSnap.data()[`${param}`]);
-        generateGraphData(docSnap.data()[`${param}`], subCollection);
+        generateGraphData(docSnap.data(), subCollection);
         // console.log({ subCollection });
         // console.log(bulb);
       } else {
@@ -240,9 +301,15 @@ const DataState = (props) => {
     setAlertMsg,
     setAlertType,
     showAlert,
-    bulbGraph,
-    heaterGraph,
-    inductionGraph
+    bulbGraphCurrent,
+    bulbGraphVoltage,
+    bulbGraphPower,
+    heaterGraphCurrent,
+    heaterGraphVoltage,
+    heaterGraphPower,
+    inductionGraphCurrent,
+    inductionGraphVoltage,
+    inductionGraphPower
   };
 
   return (

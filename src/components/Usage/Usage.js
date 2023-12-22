@@ -1,11 +1,8 @@
 import React from 'react';
-import { ResponsiveLine } from '@nivo/line';
 import { Link, Outlet } from 'react-router-dom';
 
-import { useGlobalData } from '../../context/data/DataState';
 
 export default function Usage(props) {
-  const { bulbGraph, heaterGraph, inductionGraph } = useGlobalData();
 
   return (
     <>

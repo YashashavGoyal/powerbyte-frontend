@@ -169,7 +169,7 @@ const DataState = (props) => {
           if (Heater['ActivePower'] > limits.heater) {
             showAlert(
               'Zone-A Heater',
-              'is Consuming excess power then i required'
+              'is Consuming Excess Power'
             );
           }
 
@@ -183,13 +183,13 @@ const DataState = (props) => {
           if (Bulb['ActivePower'] > limits.bulb) {
             showAlert(
               'Zone-A Bulb',
-              'is Consuming excess power then it required'
+              'is Consuming Excess Power'
             );
           }
 
           if (Induction['ActivePower'] > limits.induction) {
             // window.alert('FAN ALERT')
-            showAlert('Zone-A Induction', 'is consuming additional power!');
+            showAlert('Zone-A Induction', 'is Consuming Additional Power!');
           }
           writeData(Bulb, `${collection}`, 'Bulb');
           writeData(Heater, `${collection}`, 'Heater');

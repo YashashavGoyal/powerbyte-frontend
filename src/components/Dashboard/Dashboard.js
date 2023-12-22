@@ -1,9 +1,5 @@
 import React from 'react';
-
-import objective from './img/objective.jpg';
-import model1 from './img/Hardware Demo (1).jpeg';
-import model2 from './img/Hardware Demo (2).jpeg';
-import model3 from './img/Hardware Demo (3).jpeg';
+import { Link, Outlet } from 'react-router-dom';
 
 export default function Dashboard(props) {
 
@@ -44,149 +40,22 @@ export default function Dashboard(props) {
           </div>
         </div>
 
-        {/* <canvas className='my-4 w-100' id='myChart' width='900' height='380'></canvas> */}
-
-        {/* <div className='table-responsive'>
-              <table className='table table-striped table-sm'>
-              <thead>
-              <tr>
-              <th scope='col'>#</th>
-              <th scope='col'>Header</th>
-              <th scope='col'>Header</th>
-              <th scope='col'>Header</th>
-                    <th scope='col'>Header</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1,001</td>
-                    <td>random</td>
-                    <td>data</td>
-                    <td>placeholder</td>
-                    <td>text</td>
-                  </tr>
-                  <tr>
-                    <td>1,002</td>
-                    <td>placeholder</td>
-                    <td>irrelevant</td>
-                    <td>visual</td>
-                    <td>layout</td>
-                  </tr>
-                  <tr>
-                    <td>1,003</td>
-                    <td>data</td>
-                    <td>rich</td>
-                    <td>dashboard</td>
-                    <td>tabular</td>
-                  </tr>
-                  <tr>
-                    <td>1,003</td>
-                    <td>information</td>
-                    <td>placeholder</td>
-                    <td>illustrative</td>
-                    <td>data</td>
-                  </tr>
-                  <tr>
-                    <td>1,004</td>
-                    <td>text</td>
-                    <td>random</td>
-                    <td>layout</td>
-                    <td>dashboard</td>
-                  </tr>
-                  <tr>
-                    <td>1,005</td>
-                    <td>dashboard</td>
-                    <td>irrelevant</td>
-                    <td>text</td>
-                    <td>placeholder</td>
-                  </tr>
-                  <tr>
-                    <td>1,006</td>
-                    <td>dashboard</td>
-                    <td>illustrative</td>
-                    <td>rich</td>
-                    <td>data</td>
-                  </tr>
-                  <tr>
-                    <td>1,007</td>
-                    <td>placeholder</td>
-                    <td>tabular</td>
-                    <td>information</td>
-                    <td>irrelevant</td>
-                  </tr>
-                  <tr>
-                    <td>1,008</td>
-                    <td>random</td>
-                    <td>data</td>
-                    <td>placeholder</td>
-                    <td>text</td>
-                  </tr>
-                  <tr>
-                    <td>1,009</td>
-                    <td>placeholder</td>
-                    <td>irrelevant</td>
-                    <td>visual</td>
-                    <td>layout</td>
-                  </tr>
-                  <tr>
-                    <td>1,010</td>
-                    <td>data</td>
-                    <td>rich</td>
-                    <td>dashboard</td>
-                    <td>tabular</td>
-                  </tr>
-                  <tr>
-                    <td>1,011</td>
-                    <td>information</td>
-                    <td>placeholder</td>
-                    <td>illustrative</td>
-                    <td>data</td>
-                  </tr>
-                  <tr>
-                    <td>1,012</td>
-                    <td>text</td>
-                    <td>placeholder</td>
-                    <td>layout</td>
-                    <td>dashboard</td>
-                  </tr>
-                  <tr>
-                    <td>1,013</td>
-                    <td>dashboard</td>
-                    <td>irrelevant</td>
-                    <td>text</td>
-                    <td>visual</td>
-                  </tr>
-                  <tr>
-                    <td>1,014</td>
-                    <td>dashboard</td>
-                    <td>illustrative</td>
-                    <td>rich</td>
-                    <td>data</td>
-                  </tr>
-                  <tr>
-                    <td>1,015</td>
-                    <td>random</td>
-                    <td>tabular</td>
-                    <td>information</td>
-                    <td>text</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div> */}
-
-        <h3 style={{ color: `palevioletred`, fontFamily: `monospace` }}>About PowerByte</h3>
-        <div className="objective">
-          <img src={objective} alt="" />
-        </div>
-        <div className="model my-4">
-          <h4 style={{ color: `darkgreen`, fontFamily: `monospace` }}>Prototype Images</h4>
-          <div className="model-images">
-            <img src={model1} alt="" />
-            <img src={model2} alt="" />
-            <img src={model3} alt="" />
+        <div className='container-fluid'>
+          <div className="card my-4">
+            <div className="card-body d-flex">
+              <Link to="/panel/dashboard/zone_A" className="card border-secondary nav-link">
+                <h5>Zone-A</h5>
+              </Link>
+              <Link to="/panel/dashboard/zone_B" className="card border-secondary nav-link">
+                <h5>Zone-B</h5>
+              </Link>
+              <Link to="/panel/dashboard/zone_C" className="card border-secondary nav-link">
+                <h5>Zone-C</h5>
+              </Link>
+            </div>
           </div>
+          <Outlet />
         </div>
-
 
       </main>
     </>

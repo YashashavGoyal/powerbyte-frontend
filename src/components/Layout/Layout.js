@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Sidemenu from '../SideMenu/Sidemenu';
 import { Outlet } from 'react-router-dom';
 import Alerts from '../Alerts/Alerts';

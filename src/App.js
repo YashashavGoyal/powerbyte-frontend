@@ -34,6 +34,9 @@ import Mainline from './components/Devices/MainLine';
 import UsageA from './components/DevicesConsumption/UsageA';
 import UsageB from './components/DevicesConsumption/UsageB';
 import UsageC from './components/DevicesConsumption/UsageC';
+import MeterA from './components/Meter/MeterA';
+import MeterB from './components/Meter/MeterB';
+import MeterC from './components/Meter/MeterC';
 
 
 function App() {
@@ -70,10 +73,11 @@ function App() {
                 <Route path='/login' element={<Login />} />
                 <Route path='/signup' element={<Signup />} />
                 <Route path='/panel' element={<Layout />}>
-                  <Route
-                    path='/panel/dashboard'
-                    element={<Dashboard />}
-                  />
+                  <Route path='/panel/dashboard' element={<Dashboard />}>
+                    <Route path='/panel/dashboard/zone_A' element={<MeterA />}/>
+                    <Route path='/panel/dashboard/zone_B' element={<MeterB />}/>
+                    <Route path='/panel/dashboard/zone_C' element={<MeterC />}/>
+                  </Route>
                   <Route path='/panel/usage' element={<Usage />}>
                     <Route path='/panel/usage/zone_A' element={<UsageA />} />
                     <Route path='/panel/usage/zone_B' element={<UsageB />} />

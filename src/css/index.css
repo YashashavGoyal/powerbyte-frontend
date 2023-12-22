@@ -139,7 +139,7 @@ button {
   gap: 20px;
 }
 
-.model-images img{
+.model-images img {
   width: 300px;
   height: fit-content;
   /* box-shadow: 0 0 8px 4px #00000063; */
@@ -159,13 +159,27 @@ button {
   margin: 0% !important;
 }
 
+/* Gauge Meter CSS */
+.gauge-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.gauge-container .gauge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 /* Media query for mobile devices */
 @media only screen and (max-width: 600px) {
   .calculator {
     width: 90% !important;
     max-width: none !important;
   }
-  
+
   .container-fluid .not-found-img {
     width: 100%;
   }

@@ -54,17 +54,17 @@ const DataState = (props) => {
     }
     else {
       // console.log('Working');
-      toast(`${device} ${message}`, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-        type: "error"
-      });
+      // toast(`${device} ${message}`, {
+      //   position: "top-right",
+      //   autoClose: 5000,
+      //   hideProgressBar: false,
+      //   closeOnClick: true,
+      //   pauseOnHover: true,
+      //   draggable: true,
+      //   progress: undefined,
+      //   theme: "colored",
+      //   type: "error"
+      // });
       return;
     }
   };
@@ -74,16 +74,20 @@ const DataState = (props) => {
       case 'Bulb':
         setBulbGraphCurrent([
           {
-            id: id,
+            "id": "id",
+            "color": "#hsl(0, 100%, 50%)",
             data: getLastTenElements(data.current).map((data) => ({
               x: new Date(data.y).getSeconds(),
               y: data.x,
             })),
+            "hidden":false,
+            "label": "Machine-1"
           },
         ]);
         setBulbGraphVoltage([
           {
             id: id,
+            "color": "hsl(117, 70%, 50%)",
             data: getLastTenElements(data.voltage).map((data) => ({
               x: new Date(data.y).getSeconds(),
               y: data.x,
@@ -94,6 +98,7 @@ const DataState = (props) => {
         setBulbGraphPower([
           {
             id: id,
+            color: "hsl(88, 70%, 50%)",
             data: getLastTenElements(data.power).map((data) => ({
               x: new Date(data.y).getSeconds(),
               y: data.x,

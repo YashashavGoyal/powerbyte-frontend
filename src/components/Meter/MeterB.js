@@ -16,7 +16,7 @@ export default function MeterB() {
     return (
         <>
             <div className="machine">
-                <h2>Machine-2</h2>
+                <h2>Machine-1</h2>
                 <div className="gauge-container">
                     <div className="gauge">
                         <h5>Zone-A Power</h5>

@@ -41,6 +41,9 @@ export default function Dashboard(props) {
         </div>
 
         <div className='container-fluid'>
+          <div className="heading">
+            <h2></h2>
+          </div>
           <div className="card my-4">
             <div className="card-body d-flex">
               <Link to="/panel/dashboard/zone_A" className="card border-secondary nav-link">

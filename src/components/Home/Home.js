@@ -39,7 +39,7 @@ function Home(props) {
       <div className="home homeS">
         <div className="container my-5">
           <div className="head" style={{ textAlign: 'center' }}>
-            <h1>Welcome To EnergySavers</h1>
+            <h1>Welcome To PowerBytes</h1>
             <p>We are pleased to welcome you</p>
           </div>
           <div className="btns" style={btnS}>

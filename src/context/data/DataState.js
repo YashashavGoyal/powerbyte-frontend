@@ -4,7 +4,6 @@ import { db } from '../../firebase';
 import { limits } from '../../constants';
 import {
   arrayUnion,
-  collection,
   doc,
   updateDoc,
   getDoc,
@@ -49,8 +48,9 @@ const DataState = (props) => {
   const [inductionGaugeVoltage, setInductionGaugeVoltage] = useState();
   const [inductionGaugePower, setInductionGaugePower] = useState();
 
+  const [predictDataGraph, setPredictDataGraph] = useState([]);
+  
   const [sameAlert, setSameAlert] = useState(false);
-
   const showAlert = (device, message) => {
     // console.log({ device, message });
     if (sameAlert) {
@@ -63,22 +63,19 @@ const DataState = (props) => {
       return;
     }
     else {
-      // console.log('Working');
-      // toast(`${device} ${message}`, {
-      //   position: "top-right",
-      //   autoClose: 10000,
-      //   hideProgressBar: false,
-      //   closeOnClick: true,
-      //   pauseOnHover: false,
-      //   pauseOnFocusLoss: false,
-      //   draggable: true,
-      //   progress: undefined,
-      //   theme: "colored",
-      //   type: "error"
-      // });
-      setTimeout(() => {
-        console.log(alert);
-      }, 60000);
+      console.log('Working');
+      toast(`${device} ${message}`, {
+        position: "top-right",
+        autoClose: 10000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        pauseOnFocusLoss: false,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        type: "error"
+      });
       return;
     }
   };
@@ -95,9 +92,9 @@ const DataState = (props) => {
         setBulbGaugePower(
           data.power[data.power.length - 1].x
           );
-          console.log(data.current[data.current.length - 1].x)
-          console.log(data.voltage[data.voltage.length - 1].x)
-          console.log(data.power[data.power.length - 1].x)
+          // console.log(data.current[data.current.length - 1].x)
+          // console.log(data.voltage[data.voltage.length - 1].x)
+          // console.log(data.power[data.power.length - 1].x)
           // console.log(data);
         break;
 
@@ -304,19 +301,19 @@ const DataState = (props) => {
   }
 
   // async function writeData(value, collectionName, equipment) {
-  const writeToFirestore = async (dataObject) => {
-    try {
-      // Access the 'myCollection' collection in Firestore
-      const collectionRef = collection('myCollection');
+  // const writeToFirestore = async (dataObject) => {
+  //   try {
+  //     // Access the 'myCollection' collection in Firestore
+  //     const collectionRef = collection('myCollection');
 
-      // Add the data object to the collection
-      await collectionRef.add(dataObject);
+  //     // Add the data object to the collection
+  //     await collectionRef.add(dataObject);
 
-      console.log('Data successfully written to Firestore!');
-    } catch (error) {
-      console.error('Error writing data to Firestore: ', error);
-    }
-  };
+  //     console.log('Data successfully written to Firestore!');
+  //   } catch (error) {
+  //     console.error('Error writing data to Firestore: ', error);
+  //   }
+  // };
 
   // fuction to read or fetch data from firestore
   const fetchData = async (collection, subCollection, param) => {
@@ -338,7 +335,38 @@ const DataState = (props) => {
     }
   };
 
-  function getLastTenElements(arr) {
+
+  const fetchPridictData = async (collection, subCollection, param) => {
+    try {
+      const docRef = doc(db, `${collection}`, `${subCollection}`);
+      // const docRef = doc(db, `${collection}`);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        // console.log("Document data:", docSnap.data()) ;
+        // setbulb(docSnap.data()[`${param}`]);
+        makeGraphFromPredictData(docSnap.data(), param);
+      } else {
+        console.log('No such document!');
+      }
+    } catch (error) {
+      console.error('Error fetching document:', error);
+    }
+  };
+
+  const makeGraphFromPredictData = (PredictData, id) => {
+    console.log(PredictData);
+    setPredictDataGraph([{
+      id: id,
+      data: PredictData.data.map((data) => ({
+        x: new Date(data.input_date).getDate(),
+        y: data.predicted_Active_Power,
+      })),
+    }]);
+    console.log(predictDataGraph);
+  }
+
+  function getLastTenElements(arr) {  
     const length = arr.length;
     if (length <= 10) {
       return arr.slice(); // Return a copy of the whole array if it has 10 or fewer elements
@@ -363,12 +391,14 @@ const DataState = (props) => {
     fetchData('Kitchen', 'Bulb', 'current');
     fetchData('Kitchen', 'Induction', 'current');
     fetchData('Kitchen', 'Heater', 'current');
-
+    fetchPridictData('predictions102', 'Line102', 'data')
+    
     setInterval(() => {
       readData('Kitchen', 'Kitchen', setKitchen, kitchen);
       fetchData('Kitchen', 'Bulb', 'current');
       fetchData('Kitchen', 'Induction', 'current');
       fetchData('Kitchen', 'Heater', 'current');
+      fetchPridictData('predictions102', 'Line102', 'data');
     }, 10000);
     // eslint-disable-next-line
   }, []);
@@ -381,6 +411,7 @@ const DataState = (props) => {
   const state = {
     kitchen,
     loading,
+    predictDataGraph,
     bulbGraphCurrent,
     bulbGraphVoltage,
     bulbGraphPower,

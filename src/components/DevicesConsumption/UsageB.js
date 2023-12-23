@@ -44,6 +44,7 @@ export default function UsageB(props) {
             legendOffset: -50,
             legendPosition: 'middle',
           }}
+          colors={{ scheme: 'set1' }}
           pointSize={10}
           pointColor={{ theme: 'background' }}
           pointBorderWidth={2}
@@ -89,6 +90,7 @@ export default function UsageB(props) {
             legendOffset: -50,
             legendPosition: 'middle',
           }}
+          colors={{ scheme: 'set1' }}
           pointSize={10}
           pointColor={{ theme: 'background' }}
           pointBorderWidth={2}
@@ -133,6 +135,7 @@ export default function UsageB(props) {
             legendOffset: -50,
             legendPosition: 'middle',
           }}
+          colors={{ scheme: 'set1' }}
           pointSize={10}
           pointColor={{ theme: 'background' }}
           pointBorderWidth={2}

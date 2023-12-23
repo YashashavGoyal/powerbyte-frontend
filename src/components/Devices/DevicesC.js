@@ -111,7 +111,7 @@ export default function DevicesC() {
               <tbody>
                 <tr className='table-primary'>
                   <th className='center' colSpan={2} scope='col'>
-                    Temperature (oC)
+                     Machine Temperature (oC)
                   </th>
                   <th className='center' colSpan={2} scope='col'>
                     {kitchen['Temprature(oC)']} °C

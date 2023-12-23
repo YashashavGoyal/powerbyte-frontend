@@ -220,6 +220,7 @@ const DataState = (props) => {
         if (snapshot.exists()) {
           // console.log(snapshot.val());
           const { Heater, Bulb, Induction } = snapshot.val();
+          const Temprature = snapshot.val()[`Temprature(oC)`]
           // console.log({ Heater, Tubelight, Bulb, fan });
           // console.log({ Induction });
 
@@ -227,6 +228,13 @@ const DataState = (props) => {
             showAlert(
               'Zone-A Machine-3',
               'is Consuming Excess Power'
+            );
+          }
+
+          if (Temprature > limits.temperature) {
+            showAlert(
+              'Zone-A Machine',
+              'has high power'
             );
           }
 

@@ -234,7 +234,7 @@ const DataState = (props) => {
           if (Temprature > limits.temperature) {
             showAlert(
               'Zone-A Machine',
-              'has high power'
+              'has high Temperature'
             );
           }
 

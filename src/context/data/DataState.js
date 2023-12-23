@@ -1,6 +1,6 @@
 import { child, get, getDatabase, ref } from 'firebase/database';
 import { createContext, useContext, useEffect, useState } from 'react';
-import { db } from '../../firebase';
+import { db, getDownloadURL, storage, storageRef } from '../../firebase';
 import { limits } from '../../constants';
 import {
   arrayUnion,
@@ -9,6 +9,7 @@ import {
   getDoc,
 } from 'firebase/firestore/lite';
 import { toast } from 'react-toastify';
+import { usePageVisibility } from '../utils/UserVisible';
 
 const DataContext = createContext();
 
@@ -18,6 +19,7 @@ export function useGlobalData() {
 
 const DataState = (props) => {
 
+  const [downloadURL, setDownloadURL] = useState('');
 
   const [loading, setLoading] = useState(true);
   const [kitchen, setKitchen] = useState({});
@@ -49,7 +51,7 @@ const DataState = (props) => {
   const [inductionGaugePower, setInductionGaugePower] = useState();
 
   const [predictDataGraph, setPredictDataGraph] = useState([]);
-  
+
   const [sameAlert, setSameAlert] = useState(false);
   const showAlert = (device, message) => {
     // console.log({ device, message });
@@ -63,7 +65,6 @@ const DataState = (props) => {
       return;
     }
     else {
-      console.log('Working');
       toast.error(`${device} ${message}`);
       return;
     }
@@ -74,41 +75,41 @@ const DataState = (props) => {
       case 'Bulb':
         setBulbGaugeCurrent(
           data.current[data.current.length - 1].x
-          );
+        );
         setBulbGaugeVoltage(
           data.voltage[data.voltage.length - 1].x
-          );
+        );
         setBulbGaugePower(
           data.power[data.power.length - 1].x
-          );
-          // console.log(data.current[data.current.length - 1].x)
-          // console.log(data.voltage[data.voltage.length - 1].x)
-          // console.log(data.power[data.power.length - 1].x)
-          // console.log(data);
+        );
+        // console.log(data.current[data.current.length - 1].x)
+        // console.log(data.voltage[data.voltage.length - 1].x)
+        // console.log(data.power[data.power.length - 1].x)
+        // console.log(data);
         break;
 
       case 'Heater':
         setHeaterGaugeCurrent(
           data.current[data.current.length - 1].x
-          );
+        );
         setHeaterGaugeVoltage(
           data.voltage[data.voltage.length - 1].x
-          );
+        );
         setHeaterGaugePower(
           data.power[data.power.length - 1].x
-          );
-          break;
+        );
+        break;
 
       case 'Induction':
         setInductionGaugeCurrent(
           data.current[data.current.length - 1].x
-          );
+        );
         setInductionGaugeVoltage(
           data.voltage[data.voltage.length - 1].x
-          );
+        );
         setInductionGaugePower(
           data.power[data.power.length - 1].x
-          );
+        );
         break;
 
       default:
@@ -221,7 +222,7 @@ const DataState = (props) => {
           const { Heater, Bulb, Induction } = snapshot.val();
           // console.log({ Heater, Tubelight, Bulb, fan });
           // console.log({ Induction });
-          
+
           if (Heater['ActivePower'] > limits.heater) {
             showAlert(
               'Zone-A Machine-3',
@@ -345,7 +346,7 @@ const DataState = (props) => {
   };
 
   const makeGraphFromPredictData = (PredictData, id) => {
-    console.log(PredictData);
+    // console.log(PredictData);
     setPredictDataGraph([{
       id: id,
       data: PredictData.data.map((data) => ({
@@ -353,10 +354,10 @@ const DataState = (props) => {
         y: data.predicted_Active_Power,
       })),
     }]);
-    console.log(predictDataGraph);
+    // console.log(predictDataGraph);
   }
 
-  function getLastTenElements(arr) {  
+  function getLastTenElements(arr) {
     const length = arr.length;
     if (length <= 10) {
       return arr.slice(); // Return a copy of the whole array if it has 10 or fewer elements
@@ -375,22 +376,38 @@ const DataState = (props) => {
   //   }
   // }, [user]);
 
-  useEffect(() => {
-    readData('Kitchen', 'Kitchen', setKitchen, kitchen);
+  const getCsvUrl = () =>{
+    getDownloadURL(storageRef(storage, 'predictions_jan.csv'))
+    .then((url)=> {
+      // console.log({ url });
+      setDownloadURL(url);
+    })
+  };
 
-    fetchData('Kitchen', 'Bulb', 'current');
-    fetchData('Kitchen', 'Induction', 'current');
-    fetchData('Kitchen', 'Heater', 'current');
-    fetchPridictData('predictions102', 'Line102', 'data')
+  const isVisible = usePageVisibility();
+
+  useEffect(() => {
     
-    setInterval(() => {
+    if (isVisible) {
+
       readData('Kitchen', 'Kitchen', setKitchen, kitchen);
+
       fetchData('Kitchen', 'Bulb', 'current');
       fetchData('Kitchen', 'Induction', 'current');
       fetchData('Kitchen', 'Heater', 'current');
       fetchPridictData('predictions102', 'Line102', 'data');
-    }, 10000);
-    // eslint-disable-next-line
+      getCsvUrl();
+
+      setInterval(() => {
+        readData('Kitchen', 'Kitchen', setKitchen, kitchen);
+        fetchData('Kitchen', 'Bulb', 'current');
+        fetchData('Kitchen', 'Induction', 'current');
+        fetchData('Kitchen', 'Heater', 'current');
+        fetchPridictData('predictions102', 'Line102', 'data');
+      }, 10000);
+      // eslint-disable-next-line
+
+    }
   }, []);
 
 
@@ -401,6 +418,7 @@ const DataState = (props) => {
   const state = {
     kitchen,
     loading,
+    downloadURL,
     predictDataGraph,
     bulbGraphCurrent,
     bulbGraphVoltage,

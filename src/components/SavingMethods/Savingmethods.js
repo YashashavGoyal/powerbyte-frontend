@@ -6,7 +6,7 @@ import { ResponsiveLine } from '@nivo/line';
 
 export default function Savingmethods() {
 
-    const { predictDataGraph } = useGlobalData();
+    const { predictDataGraph, downloadURL } = useGlobalData();
 
     return (
         <>
@@ -16,7 +16,7 @@ export default function Savingmethods() {
                     <div className="btn-toolbar mb-2 mb-md-0">
                         <div className="btn-group me-2">
                             <button type="button" className="btn btn-sm btn-outline-secondary">Share</button>
-                            <button type="button" className="btn btn-sm btn-outline-secondary">Export</button>
+                            <a type="button" className="btn btn-sm btn-outline-secondary" href={downloadURL} >Export</a>
                         </div>
                         <button type="button" className="btn btn-sm btn-outline-secondary dropdown-toggle">
                             <span data-feather="calendar" className="align-text-bottom"></span>

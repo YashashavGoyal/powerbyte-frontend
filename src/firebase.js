@@ -1,8 +1,10 @@
+import { getStorage, ref, getDownloadURL } from 'firebase/storage';
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getAnalytics } from 'firebase/analytics';
 import { getDatabase } from 'firebase/database';
 import { getFirestore } from 'firebase/firestore/lite';
+import 'firebase/storage';
 
 
 const firebaseConfig = {
@@ -26,10 +28,14 @@ const database = getDatabase(app);
 
 const db = getFirestore(app); // Initialize Firestore
 
+const storage = getStorage();
+
+const storageRef = ref;
+
 // const firstore = firebase.firestore();
 
 // console.log(auth.currentUser.getIdToken().then((token) => {
 //   console.log(token);
 // }));
 
-export { app, auth, analytics, database, db };
+export { app, auth, analytics, database, db, storageRef, storage, getDownloadURL };

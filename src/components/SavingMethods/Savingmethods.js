@@ -29,10 +29,14 @@ export default function Savingmethods() {
 
                 <div className="container-fluid">
                     <h2>Prediction Of Power Consumption Of Next Month</h2>
-                    <div className="prevTrend">
+                    <h4>-JANUARY</h4>
+                    <div className="prevTrend" style={
+                       { width: `100%`,
+                        overflowX: `auto`,}
+                    }>
                     <div
                 className='predicTrend'
-                style={{ height: '50vh', width: '100%' }}
+                style={{ height: '50vh', width: '200vw' }}
             >
                 <ResponsiveLine
                     data={predictDataGraph}

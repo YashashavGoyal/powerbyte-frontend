@@ -74,9 +74,9 @@ function App() {
                 <Route path='/signup' element={<Signup />} />
                 <Route path='/panel' element={<Layout />}>
                   <Route path='/panel/dashboard' element={<Dashboard />}>
-                    <Route path='/panel/dashboard/zone_A' element={<MeterA />}/>
-                    <Route path='/panel/dashboard/zone_B' element={<MeterB />}/>
-                    <Route path='/panel/dashboard/zone_C' element={<MeterC />}/>
+                    <Route path='/panel/dashboard/zone_A' element={<MeterA />} />
+                    <Route path='/panel/dashboard/zone_B' element={<MeterB />} />
+                    <Route path='/panel/dashboard/zone_C' element={<MeterC />} />
                   </Route>
                   <Route path='/panel/usage' element={<Usage />}>
                     <Route path='/panel/usage/zone_A' element={<UsageA />} />
@@ -104,17 +104,17 @@ function App() {
           </div>
         </Router>
         <ToastContainer
-        position="bottom-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
+          position="top-right"
+          autoClose={10000}
+          hideProgressBar={false}
+          closeOnClick={true}
+          pauseOnHover={false}
+          pauseOnFocusLoss={false}
+          draggable={true}
+          progress={undefined}
+          theme="colored"
+          type="error"
+        />
       </DataState>
     </div>
   );

@@ -64,18 +64,7 @@ const DataState = (props) => {
     }
     else {
       console.log('Working');
-      toast(`${device} ${message}`, {
-        position: "top-right",
-        autoClose: 10000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: false,
-        pauseOnFocusLoss: false,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-        type: "error"
-      });
+      toast.error(`${device} ${message}`);
       return;
     }
   };
@@ -232,6 +221,7 @@ const DataState = (props) => {
           const { Heater, Bulb, Induction } = snapshot.val();
           // console.log({ Heater, Tubelight, Bulb, fan });
           // console.log({ Induction });
+          
           if (Heater['ActivePower'] > limits.heater) {
             showAlert(
               'Zone-A Machine-3',

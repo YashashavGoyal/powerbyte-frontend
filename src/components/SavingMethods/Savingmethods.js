@@ -53,7 +53,7 @@ export default function Savingmethods() {
                         // tickSize: 7,
                         tickPadding: 10,
                         tickRotation: 0,
-                        legend: 'Seconds',
+                        legend: 'Date',
                         legendOffset: 36,
                         legendPosition: 'middle',
                     }}

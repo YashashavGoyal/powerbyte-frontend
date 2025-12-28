@@ -15,9 +15,10 @@ export default function Devices(props) {
   return (
     <div className="w-full">
       {/* Header Section */}
-      <div className='flex flex-wrap items-center justify-between pb-4 mb-6 border-b border-gray-200'>
-        <h1 className='text-3xl font-bold text-gray-900'>Device Power</h1>
-        <div className='flex items-center space-x-3'>
+      {/* Header Section */}
+      <div className='flex flex-col md:flex-row md:items-center justify-between pb-4 mb-6 border-b border-gray-200 gap-4'>
+        <h1 className='text-2xl md:text-3xl font-bold text-gray-900'>Device Power</h1>
+        <div className='flex flex-wrap items-center gap-3'>
           <div className='flex shadow-sm rounded-md'>
             <button
               type='button'

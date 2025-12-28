@@ -39,18 +39,18 @@ export default function Mainline() {
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="bg-gray-50 border-b border-gray-100">
-                <th className="px-6 py-3 text-xs font-semibold tracking-wider text-gray-500 uppercase">Device</th>
-                <th className="px-6 py-3 text-xs font-semibold tracking-wider text-gray-500 uppercase">Active Power (Watt)</th>
-                <th className="px-6 py-3 text-xs font-semibold tracking-wider text-gray-500 uppercase">Voltage (Volt)</th>
-                <th className="px-6 py-3 text-xs font-semibold tracking-wider text-gray-500 uppercase">Current (A)</th>
+                <th className="px-6 py-3 text-xs font-semibold tracking-wider text-gray-500 uppercase whitespace-nowrap">Device</th>
+                <th className="px-6 py-3 text-xs font-semibold tracking-wider text-gray-500 uppercase whitespace-nowrap">Active Power (Watt)</th>
+                <th className="px-6 py-3 text-xs font-semibold tracking-wider text-gray-500 uppercase whitespace-nowrap">Voltage (Volt)</th>
+                <th className="px-6 py-3 text-xs font-semibold tracking-wider text-gray-500 uppercase whitespace-nowrap">Current (A)</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
               <tr className="hover:bg-gray-50 transition-colors">
-                <td className="px-6 py-4 text-sm font-medium text-gray-900">Main</td>
-                <td className="px-6 py-4 text-sm text-gray-600">{kitchen.Line['Power']} W</td>
-                <td className="px-6 py-4 text-sm text-gray-600">{kitchen.Bulb['Voltage(Volt)']} V</td>
-                <td className="px-6 py-4 text-sm text-gray-600">{kitchen.Bulb['Current(A)']} A</td>
+                <td className="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">Main</td>
+                <td className="px-6 py-4 text-sm text-gray-600 whitespace-nowrap">{kitchen.Line['Power']} W</td>
+                <td className="px-6 py-4 text-sm text-gray-600 whitespace-nowrap">{kitchen.Bulb['Voltage(Volt)']} V</td>
+                <td className="px-6 py-4 text-sm text-gray-600 whitespace-nowrap">{kitchen.Bulb['Current(A)']} A</td>
               </tr>
             </tbody>
           </table>
@@ -66,18 +66,18 @@ export default function Mainline() {
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="bg-gray-50 border-b border-gray-100">
-                <th className="px-6 py-3 text-xs font-semibold tracking-wider text-gray-500 uppercase">Device</th>
-                <th className="px-6 py-3 text-xs font-semibold tracking-wider text-gray-500 uppercase">Units (kW)</th>
-                <th className="px-6 py-3 text-xs font-semibold tracking-wider text-gray-500 uppercase">Cost / Day (Rs)</th>
-                <th className="px-6 py-3 text-xs font-semibold tracking-wider text-gray-500 uppercase">Cost / Month (Rs)</th>
+                <th className="px-6 py-3 text-xs font-semibold tracking-wider text-gray-500 uppercase whitespace-nowrap">Device</th>
+                <th className="px-6 py-3 text-xs font-semibold tracking-wider text-gray-500 uppercase whitespace-nowrap">Units (kW)</th>
+                <th className="px-6 py-3 text-xs font-semibold tracking-wider text-gray-500 uppercase whitespace-nowrap">Cost / Day (Rs)</th>
+                <th className="px-6 py-3 text-xs font-semibold tracking-wider text-gray-500 uppercase whitespace-nowrap">Cost / Month (Rs)</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
               <tr className="hover:bg-gray-50 transition-colors">
-                <td className="px-6 py-4 text-sm font-medium text-gray-900">Main</td>
-                <td className="px-6 py-4 text-sm text-gray-600">{(kitchen.Line['Power'] / 1000).toFixed(3)} kW</td>
-                <td className="px-6 py-4 text-sm text-gray-600">{calculateElectricityCost(kitchen.Line['Power']).costPerDay}</td>
-                <td className="px-6 py-4 text-sm text-gray-600">{calculateElectricityCost(kitchen.Line['Power']).costPerMonth}</td>
+                <td className="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">Main</td>
+                <td className="px-6 py-4 text-sm text-gray-600 whitespace-nowrap">{(kitchen.Line['Power'] / 1000).toFixed(3)} kW</td>
+                <td className="px-6 py-4 text-sm text-gray-600 whitespace-nowrap">{calculateElectricityCost(kitchen.Line['Power']).costPerDay}</td>
+                <td className="px-6 py-4 text-sm text-gray-600 whitespace-nowrap">{calculateElectricityCost(kitchen.Line['Power']).costPerMonth}</td>
               </tr>
             </tbody>
           </table>

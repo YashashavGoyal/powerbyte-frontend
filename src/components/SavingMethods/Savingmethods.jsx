@@ -45,37 +45,39 @@ export default function Savingmethods() {
                     <h4 className="text-gray-500 uppercase font-semibold text-sm tracking-wide">- {month}</h4>
                 </div>
 
-                <div className="w-full h-[500px] bg-gray-50 rounded-lg border border-gray-100 p-4">
-                    <ResponsiveLine
-                        data={predictDataGraph}
-                        margin={{ bottom: 60, left: 60, right: 30, top: 50 }}
-                        xScale={{ type: 'point' }}
-                        curve='linear'
-                        lineWidth={3}
-                        axisTop={null}
-                        axisRight={null}
-                        axisBottom={{
-                            tickPadding: 10,
-                            tickRotation: 0,
-                            legend: 'Date',
-                            legendOffset: 36,
-                            legendPosition: 'middle',
-                        }}
-                        axisLeft={{
-                            tickPadding: 10,
-                            tickRotation: 0,
-                            legend: 'Predicted Power',
-                            legendOffset: -50,
-                            legendPosition: 'middle',
-                        }}
-                        colors={{ scheme: 'set1' }}
-                        pointSize={10}
-                        pointColor={{ theme: 'background' }}
-                        pointBorderWidth={2}
-                        pointBorderColor={{ from: 'serieColor' }}
-                        pointLabelYOffset={-12}
-                        useMesh={true}
-                    />
+                <div className="h-[500px] bg-gray-50 rounded-lg border border-gray-100 p-4 overflow-x-auto">
+                    <div className="min-w-[800px] h-full">
+                        <ResponsiveLine
+                            data={predictDataGraph}
+                            margin={{ bottom: 100, left: 60, right: 30, top: 50 }}
+                            xScale={{ type: 'point' }}
+                            curve='linear'
+                            lineWidth={3}
+                            axisTop={null}
+                            axisRight={null}
+                            axisBottom={{
+                                tickPadding: 10,
+                                tickRotation: -45,
+                                legend: 'Date',
+                                legendOffset: 70,
+                                legendPosition: 'middle',
+                            }}
+                            axisLeft={{
+                                tickPadding: 10,
+                                tickRotation: 0,
+                                legend: 'Predicted Power',
+                                legendOffset: -50,
+                                legendPosition: 'middle',
+                            }}
+                            colors={{ scheme: 'set1' }}
+                            pointSize={10}
+                            pointColor={{ theme: 'background' }}
+                            pointBorderWidth={2}
+                            pointBorderColor={{ from: 'serieColor' }}
+                            pointLabelYOffset={-12}
+                            useMesh={true}
+                        />
+                    </div>
                 </div>
             </div>
         </div>

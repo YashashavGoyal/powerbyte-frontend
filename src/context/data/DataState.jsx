@@ -1,5 +1,5 @@
 import { child, get, getDatabase, ref } from 'firebase/database';
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState, useRef } from 'react';
 import { db, getDownloadURL, storage, storageRef } from '../../firebase';
 import { limits } from '../../constants';
 import {
@@ -52,6 +52,28 @@ const DataState = (props) => {
 
   const [predictDataGraph, setPredictDataGraph] = useState([]);
 
+  // Alert System State
+  // Alert System State
+  const [alertsEnabled, setAlertsEnabled] = useState(true);
+  const alertsEnabledRef = useRef(alertsEnabled);
+  const [alertCount, setAlertCount] = useState(0);
+  const suppressedToastIds = useRef(new Set());
+
+  // Keep ref in sync with state for setInterval closure
+  useEffect(() => {
+    alertsEnabledRef.current = alertsEnabled;
+  }, [alertsEnabled]);
+
+  const toggleAlerts = () => {
+    // console.log("toggleAlerts called. Previous state enabled:", alertsEnabled);
+    const newState = !alertsEnabled;
+    setAlertsEnabled(newState);
+    if (newState) {
+      setAlertCount(0); // Reset count when re-enabling
+      suppressedToastIds.current.clear();
+    }
+  };
+
   const showAlert = (device, message) => {
     const path = window.location.pathname;
     if (path === '/login' || path === '/signup' || path === '/') {
@@ -59,10 +81,24 @@ const DataState = (props) => {
     }
 
     const toastId = `${device}-${message}`;
-    if (!toast.isActive(toastId)) {
-      toast.error(`${device} ${message}`, {
-        toastId: toastId
-      });
+
+    // Use ref to avoid stale closure issues in setInterval
+    if (alertsEnabledRef.current) {
+      if (!toast.isActive(toastId)) {
+        toast.error(`${device} ${message}`, {
+          toastId: toastId
+        });
+      }
+    } else {
+      // Logic for disabled alerts: Count them, but dedup heavily to avoid spamming the counter
+      if (!suppressedToastIds.current.has(toastId)) {
+        setAlertCount(prev => prev + 1);
+        suppressedToastIds.current.add(toastId);
+        // Clear this ID from suppressed list after 10 seconds to allow re-counting if improper state persists
+        setTimeout(() => {
+          suppressedToastIds.current.delete(toastId);
+        }, 10000);
+      }
     }
   };
 
@@ -120,9 +156,9 @@ const DataState = (props) => {
         setBulbGraphCurrent([
           {
             "id": "id",
-            "color": "#hsl(0, 100%, 50%)",
+            "color": "hsl(0, 100%, 50%)",
             data: getLastTenElements(data.current).map((data) => ({
-              x: new Date(data.y).getSeconds(),
+              x: new Date(data.y).toLocaleTimeString('en-US', { hour12: false }),
               y: data.x,
             })),
             "hidden": false,
@@ -134,7 +170,7 @@ const DataState = (props) => {
             id: id,
             "color": "hsl(117, 70%, 50%)",
             data: getLastTenElements(data.voltage).map((data) => ({
-              x: new Date(data.y).getSeconds(),
+              x: new Date(data.y).toLocaleTimeString('en-US', { hour12: false }),
               y: data.x,
             })),
           },
@@ -145,7 +181,7 @@ const DataState = (props) => {
             id: id,
             color: "hsl(88, 70%, 50%)",
             data: getLastTenElements(data.power).map((data) => ({
-              x: new Date(data.y).getSeconds(),
+              x: new Date(data.y).toLocaleTimeString('en-US', { hour12: false }),
               y: data.x,
             })),
           },
@@ -156,7 +192,7 @@ const DataState = (props) => {
         setHeaterGraphCurrent([{
           id: id,
           data: getLastTenElements(data.current).map((data) => ({
-            x: new Date(data.y).getSeconds(),
+            x: new Date(data.y).toLocaleTimeString(),
             y: data.x,
           })),
         }]);
@@ -164,14 +200,14 @@ const DataState = (props) => {
         setHeaterGraphVoltage([{
           id: id,
           data: getLastTenElements(data.voltage).map((data) => ({
-            x: new Date(data.y).getSeconds(),
+            x: new Date(data.y).toLocaleTimeString(),
             y: data.x,
           })),
         }]);
         setHeaterGraphPower([{
           id: id,
           data: getLastTenElements(data.power).map((data) => ({
-            x: new Date(data.y).getSeconds(),
+            x: new Date(data.y).toLocaleTimeString(),
             y: data.x,
           })),
         }]);
@@ -181,7 +217,7 @@ const DataState = (props) => {
         setInductionGraphCurrent([{
           id: id,
           data: getLastTenElements(data.current).map((data) => ({
-            x: new Date(data.y).getSeconds(),
+            x: new Date(data.y).toLocaleTimeString(),
             y: data.x,
           })),
         }]);
@@ -189,7 +225,7 @@ const DataState = (props) => {
         setInductionGraphVoltage([{
           id: id,
           data: getLastTenElements(data.voltage).map((data) => ({
-            x: new Date(data.y).getSeconds(),
+            x: new Date(data.y).toLocaleTimeString(),
             y: data.x,
           })),
         }]);
@@ -197,7 +233,7 @@ const DataState = (props) => {
         setInductionGraphPower([{
           id: id,
           data: getLastTenElements(data.power).map((data) => ({
-            x: new Date(data.y).getSeconds(),
+            x: new Date(data.y).toLocaleTimeString(),
             y: data.x,
           })),
         }]);
@@ -441,7 +477,10 @@ const DataState = (props) => {
     heaterGaugePower,
     inductionGaugeCurrent,
     inductionGaugeVoltage,
-    inductionGaugePower
+    inductionGaugePower,
+    alertsEnabled,
+    alertCount,
+    toggleAlerts
   };
 
   return (

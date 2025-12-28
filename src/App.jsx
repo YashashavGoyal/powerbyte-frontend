@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   BrowserRouter as Router,
   Routes,
@@ -15,6 +14,8 @@ import './css/Nav.css';
 import './css/Home.css';
 import './css/Form.css';
 
+
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import Home from './components/Home/Home';
 import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
@@ -72,32 +73,37 @@ function App() {
                 <Route path='/' element={<Home />} />
                 <Route path='/login' element={<Login />} />
                 <Route path='/signup' element={<Signup />} />
-                <Route path='/panel' element={<Layout />}>
-                  <Route path='/panel/dashboard' element={<Dashboard />}>
-                    <Route path='/panel/dashboard/zone_A' element={<MeterA />} />
-                    <Route path='/panel/dashboard/zone_B' element={<MeterB />} />
-                    <Route path='/panel/dashboard/zone_C' element={<MeterC />} />
+
+                {/* Protected Panel Routes */}
+                <Route element={<ProtectedRoute />}>
+                  <Route path='/panel' element={<Layout />}>
+                    <Route path='/panel/dashboard' element={<Dashboard />}>
+                      <Route path='/panel/dashboard/zone_A' element={<MeterA />} />
+                      <Route path='/panel/dashboard/zone_B' element={<MeterB />} />
+                      <Route path='/panel/dashboard/zone_C' element={<MeterC />} />
+                    </Route>
+                    <Route path='/panel/usage' element={<Usage />}>
+                      <Route path='/panel/usage/zone_A' element={<UsageA />} />
+                      <Route path='/panel/usage/zone_B' element={<UsageB />} />
+                      <Route path='/panel/usage/zone_C' element={<UsageC />} />
+                    </Route>
+                    <Route
+                      path='/panel/savingmethods'
+                      element={<Savingmethods />}
+                    />
+                    <Route path='/panel/powerconsumption' element={<Power />} >
+                      <Route path='/panel/powerconsumption/zone_A' element={<DeviceA />} />
+                      <Route path='/panel/powerconsumption/zone_B' element={<DevicesB />} />
+                      <Route path='/panel/powerconsumption/zone_C' element={<DevicesC />} />
+                      <Route path='/panel/powerconsumption/main' element={<Mainline />} />
+                    </Route>
+                    <Route
+                      path='/panel/energycalculator'
+                      element={<Energycalculator />}
+                    />
                   </Route>
-                  <Route path='/panel/usage' element={<Usage />}>
-                    <Route path='/panel/usage/zone_A' element={<UsageA />} />
-                    <Route path='/panel/usage/zone_B' element={<UsageB />} />
-                    <Route path='/panel/usage/zone_C' element={<UsageC />} />
-                  </Route>
-                  <Route
-                    path='/panel/savingmethods'
-                    element={<Savingmethods />}
-                  />
-                  <Route path='/panel/powerconsumption' element={<Power />} >
-                    <Route path='/panel/powerconsumption/zone_A' element={<DeviceA />} />
-                    <Route path='/panel/powerconsumption/zone_B' element={<DevicesB />} />
-                    <Route path='/panel/powerconsumption/zone_C' element={<DevicesC />} />
-                    <Route path='/panel/powerconsumption/main' element={<Mainline />} />
-                  </Route>
-                  <Route
-                    path='/panel/energycalculator'
-                    element={<Energycalculator />}
-                  />
                 </Route>
+
                 <Route path='*' element={<NotFound />} />
               </Routes>
             </div>

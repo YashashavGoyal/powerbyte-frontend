@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import logoFull from "../../img/logo-full.png";
 
 import InputControl from '../InputControl/InputControl';
 import { auth } from '../../firebase';
@@ -9,7 +8,6 @@ import setUserLoggedin from '../../utils/LoggedInSender';
 
 import PublicLayout from '../Layout/PublicLayout';
 
-// import './logo_full.png';
 
 function Signup(props) {
   const navigate = useNavigate();

@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { isUserLoggedin } from '../../utils/helper';
 
+import logoFull from '../../img/logo-full.png';
+
 export default function Navbar(props) {
   const navigate = useNavigate();
 
@@ -27,29 +29,30 @@ export default function Navbar(props) {
   }
   return (
     <>
-      <header className='navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow'>
-        <button
-          className='navbar-toggler d-md-none collapsed'
-          type='button'
-          data-bs-toggle='collapse'
-          data-bs-target='#sidebarMenu'
-          aria-controls='sidebarMenu'
-          aria-expanded='false'
-          aria-label='Toggle navigation'
-        >
-          <span className='navbar-toggler-icon'></span>
-        </button>
-        <span className='navbar-brand'>
-          <strong>
-            <span className='logo-full'></span>
-          </strong>
-        </span>
-        <div className='navbar-nav'>
-          <div className='text-nowrap'>
-            <button className='px-3 mx-2 my-2' onClick={handleLogout}>
-              Sign out
-            </button>
-          </div>
+      <header className='sticky top-0 z-50 flex items-center justify-between w-full px-4 py-2 bg-gray-900 shadow-md md:flex-nowrap'>
+        <div className='flex items-center'>
+          <button
+            className='p-2 text-white md:hidden focus:outline-none'
+            type='button'
+            aria-label='Toggle navigation'
+          // Add state handling for sidebar toggle if needed, or rely on existing logic
+          >
+            <span className='block w-6 h-0.5 bg-white mb-1.5'></span>
+            <span className='block w-6 h-0.5 bg-white mb-1.5'></span>
+            <span className='block w-6 h-0.5 bg-white'></span>
+          </button>
+          <span className='ml-4 text-xl font-bold text-white navbar-brand'>
+            <img src={logoFull} alt="PowerByte Logo" className="w-[180px] h-auto" />
+          </span>
+        </div>
+
+        <div className='flex items-center'>
+          <button
+            className='px-4 py-2 mx-2 text-sm font-medium text-white transition-colors bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-gray-900'
+            onClick={handleLogout}
+          >
+            Sign out
+          </button>
         </div>
       </header>
     </>

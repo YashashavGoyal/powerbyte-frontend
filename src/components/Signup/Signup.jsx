@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import logoFull from "../../img/logo-full.png";
 
 import InputControl from '../InputControl/InputControl';
 import { auth } from '../../firebase';
 import setUserLoggedin from '../../utils/LoggedInSender';
 
-import './logo_full.png';
+import PublicLayout from '../Layout/PublicLayout';
+
+// import './logo_full.png';
 
 function Signup(props) {
   const navigate = useNavigate();
@@ -44,89 +47,64 @@ function Signup(props) {
       });
   };
 
-  const titleS = {
-    fontColor: `blue`,
-    fontWeight: `700`,
-    fontFamily: `cursive`,
-    fontSize: `1.5rem`,
-  };
-
   return (
-    <>
-      <nav className="navbar navbar-bg navbar-expand-lg ">
-        <div className="container-fluid">
-          <span style={titleS} className="navbar-brand" href="">
-            <span className="logo-full"></span>
-          </span>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li>
-                <span className="nav-link disabled" tabIndex="-1" aria-disabled="true">With us manage your energy consumption</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-      <div className='home homeS'>
-        <div className='container my-5 containerStyle'>
-          <form className='form'>
-            <h4 style={{ textAlign: `center` }} className='my-2'>
-              Welcome You To PowerByte - Sign Up
-            </h4>
-            <div className='mb-3'>
-              <InputControl
-                className='form-control'
-                label='Name'
-                placeholder='Enter User Name'
-                onChange={(event) =>
-                  setValues((prev) => ({ ...prev, name: event.target.value }))
-                }
-              />
-            </div>
-            <div className='mb-3'>
-              <InputControl
-                className='form-control'
-                label='Email'
-                type='text'
-                placeholder='Enter Your Email'
-                onChange={(event) =>
-                  setValues((prev) => ({ ...prev, email: event.target.value }))
-                }
-              />
-              {/* <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div> */}
-            </div>
-            <div className='mb-3'>
-              <InputControl
-                className='form-control'
-                id='exampleInputPassword1'
-                label='Password'
-                type='password'
-                placeholder='Password'
-                onChange={(event) =>
-                  setValues((prev) => ({ ...prev, pass: event.target.value }))
-                }
-              />
-            </div>
-          </form>
-          <div>
-            <b>{errorMsg}</b>
-            <button
-              disabled={submitButtonDisabled}
-              onClick={handleSubmission}
-              className='btn btn-primary my-4 mx-4'
-            >
-              Signup
-            </button>
-            <p>
-              Already have an account?{' '}
-              <span>
-                <Link to='/login' className='formLink'>Login</Link>
-              </span>
-            </p>
-          </div>
+    <PublicLayout>
+      <div className='w-full max-w-md mx-auto p-8 bg-white rounded-xl shadow-2xl border border-gray-100'>
+        <h2 className='mb-6 text-2xl font-bold text-center text-gray-900'>
+          Create Account
+        </h2>
+
+        <form>
+          <InputControl
+            label='Name'
+            placeholder='Enter User Name'
+            value={values.name || ''}
+            onChange={(event) =>
+              setValues((prev) => ({ ...prev, name: event.target.value }))
+            }
+          />
+          <InputControl
+            label='Email'
+            type='email'
+            placeholder='Enter Your Email'
+            value={values.email || ''}
+            onChange={(event) =>
+              setValues((prev) => ({ ...prev, email: event.target.value }))
+            }
+          />
+          <InputControl
+            label='Password'
+            type='password'
+            placeholder='Password'
+            value={values.pass || ''}
+            onChange={(event) =>
+              setValues((prev) => ({ ...prev, pass: event.target.value }))
+            }
+          />
+        </form>
+
+        <div className='mt-6'>
+          {errorMsg && (
+            <p className='mb-4 text-sm font-medium text-center text-red-600'>{errorMsg}</p>
+          )}
+
+          <button
+            disabled={submitButtonDisabled}
+            onClick={handleSubmission}
+            className={`w-full px-4 py-2 font-semibold text-white transition-colors bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed`}
+          >
+            {submitButtonDisabled ? 'Signing up...' : 'Sign Up'}
+          </button>
+
+          <p className='mt-4 text-sm text-center text-gray-600'>
+            Already have an account?{' '}
+            <Link to='/login' className='font-medium text-blue-600 hover:text-blue-500 hover:underline'>
+              Login
+            </Link>
+          </p>
         </div>
       </div>
-    </>
+    </PublicLayout>
   );
 }
 

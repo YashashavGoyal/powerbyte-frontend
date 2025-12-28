@@ -1,18 +1,13 @@
 import React from 'react';
 import { ResponsiveLine } from '@nivo/line';
-// import { Link } from "react-router-dom";
-
 import { useGlobalData } from '../../context/data/DataState';
 
 export default function UsageB(props) {
   const { heaterGraphCurrent, heaterGraphVoltage, heaterGraphPower } = useGlobalData();
 
   return (
-    <> {/* <canvas className="my-4 w-100" id="myChart" width="900" height="380"></canvas> */}
-      <div
-        className='predicTrend'
-        style={{ height: '50vh', width: '100%' }}
-      >
+    <>
+      <div className="w-full p-4 mb-8 h-[50vh] bg-white rounded-lg shadow-sm">
         <ResponsiveLine
           data={heaterGraphCurrent}
           margin={{ bottom: 60, left: 60, right: 30, top: 50 }}
@@ -55,10 +50,7 @@ export default function UsageB(props) {
       </div>
 
 
-      <div
-        className='predicTrend'
-        style={{ height: '50vh', width: '100%' }}
-      >
+      <div className="w-full p-4 mb-8 h-[50vh] bg-white rounded-lg shadow-sm">
         <ResponsiveLine
           data={heaterGraphVoltage}
           margin={{ bottom: 60, left: 60, right: 30, top: 50 }}
@@ -100,10 +92,7 @@ export default function UsageB(props) {
         />
       </div>
 
-      <div
-        className='predicTrend'
-        style={{ height: '50vh', width: '100%' }}
-      >
+      <div className="w-full p-4 mb-8 h-[50vh] bg-white rounded-lg shadow-sm">
         <ResponsiveLine
           data={heaterGraphPower}
           margin={{ bottom: 60, left: 60, right: 30, top: 50 }}

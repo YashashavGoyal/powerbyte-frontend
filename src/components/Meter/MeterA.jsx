@@ -15,11 +15,11 @@ export default function MeterA() {
     } = useGlobalData();
     return (
         <>
-            <div className="machine">
-                <h2>Machine-1</h2>
-                <div className="gauge-container">
-                    <div className="gauge">
-                        <h5>Zone-A Power</h5>
+            <div className="p-6 mb-6 bg-white rounded-lg shadow-sm">
+                <h2 className="mb-4 text-xl font-bold text-gray-800">Machine-1</h2>
+                <div className="flex flex-wrap items-center justify-around gap-6">
+                    <div className="flex flex-col items-center">
+                        <h5 className="mb-2 font-semibold text-gray-600 text-md">Zone-A Power</h5>
                         <div className="power">
                             <ReactSpeedometer
                                 maxValue={1000}
@@ -32,8 +32,8 @@ export default function MeterA() {
                             />
                         </div>
                     </div>
-                    <div className="gauge">
-                        <h5>Zone-A Current</h5>
+                    <div className="flex flex-col items-center">
+                        <h5 className="mb-2 font-semibold text-gray-600 text-md">Zone-A Current</h5>
                         <div className="current">
                             <ReactSpeedometer
                                 maxValue={100}
@@ -46,8 +46,8 @@ export default function MeterA() {
                             />
                         </div>
                     </div>
-                    <div className="gauge">
-                        <h5>Zone-A Voltage</h5>
+                    <div className="flex flex-col items-center">
+                        <h5 className="mb-2 font-semibold text-gray-600 text-md">Zone-A Voltage</h5>
                         <div className="voltage">
                             <ReactSpeedometer
                                 maxValue={500}
@@ -63,11 +63,11 @@ export default function MeterA() {
                 </div>
             </div>
 
-            <div className="machine">
-                <h2>Machine-2</h2>
-                <div className="gauge-container">
-                    <div className="gauge">
-                        <h5>Zone-A Power</h5>
+            <div className="p-6 mb-6 bg-white rounded-lg shadow-sm">
+                <h2 className="mb-4 text-xl font-bold text-gray-800">Machine-2</h2>
+                <div className="flex flex-wrap items-center justify-around gap-6">
+                    <div className="flex flex-col items-center">
+                        <h5 className="mb-2 font-semibold text-gray-600 text-md">Zone-A Power</h5>
                         <div className="power">
                             <ReactSpeedometer
                                 maxValue={1000}
@@ -80,8 +80,8 @@ export default function MeterA() {
                             />
                         </div>
                     </div>
-                    <div className="gauge">
-                        <h5>Zone-A Current</h5>
+                    <div className="flex flex-col items-center">
+                        <h5 className="mb-2 font-semibold text-gray-600 text-md">Zone-A Current</h5>
                         <div className="current">
                             <ReactSpeedometer
                                 maxValue={100}
@@ -94,8 +94,8 @@ export default function MeterA() {
                             />
                         </div>
                     </div>
-                    <div className="gauge">
-                        <h5>Zone-A Voltage</h5>
+                    <div className="flex flex-col items-center">
+                        <h5 className="mb-2 font-semibold text-gray-600 text-md">Zone-A Voltage</h5>
                         <div className="voltage">
                             <ReactSpeedometer
                                 maxValue={500}
@@ -111,11 +111,11 @@ export default function MeterA() {
                 </div>
             </div>
 
-            <div className="machine">
-                <h2>Machine-3</h2>
-                <div className="gauge-container">
-                    <div className="gauge">
-                        <h5>Zone-A Power</h5>
+            <div className="p-6 mb-6 bg-white rounded-lg shadow-sm">
+                <h2 className="mb-4 text-xl font-bold text-gray-800">Machine-3</h2>
+                <div className="flex flex-wrap items-center justify-around gap-6">
+                    <div className="flex flex-col items-center">
+                        <h5 className="mb-2 font-semibold text-gray-600 text-md">Zone-A Power</h5>
                         <div className="power">
                             <ReactSpeedometer
                                 maxValue={1000}
@@ -128,8 +128,8 @@ export default function MeterA() {
                             />
                         </div>
                     </div>
-                    <div className="gauge">
-                        <h5>Zone-A Current</h5>
+                    <div className="flex flex-col items-center">
+                        <h5 className="mb-2 font-semibold text-gray-600 text-md">Zone-A Current</h5>
                         <div className="current">
                             <ReactSpeedometer
                                 maxValue={100}
@@ -142,8 +142,8 @@ export default function MeterA() {
                             />
                         </div>
                     </div>
-                    <div className="gauge">
-                        <h5>Zone-A Voltage</h5>
+                    <div className="flex flex-col items-center">
+                        <h5 className="mb-2 font-semibold text-gray-600 text-md">Zone-A Voltage</h5>
                         <div className="voltage">
                             <ReactSpeedometer
                                 maxValue={500}
@@ -158,7 +158,6 @@ export default function MeterA() {
                     </div>
                 </div>
             </div>
-
         </>
     )
 }

@@ -19,7 +19,7 @@ export default function MeterB() {
                 <h2 className="mb-4 text-xl font-bold text-gray-800">Machine-1</h2>
                 <div className="flex flex-wrap items-center justify-around gap-6">
                     <div className="flex flex-col items-center">
-                        <h5 className="mb-2 font-semibold text-gray-600 text-md">Zone-A Power</h5>
+                        <h5 className="mb-2 font-semibold text-gray-600 text-md">Zone-B Power</h5>
                         <div className="power">
                             <ReactSpeedometer
                                 maxValue={1000}
@@ -33,7 +33,7 @@ export default function MeterB() {
                         </div>
                     </div>
                     <div className="flex flex-col items-center">
-                        <h5 className="mb-2 font-semibold text-gray-600 text-md">Zone-A Current</h5>
+                        <h5 className="mb-2 font-semibold text-gray-600 text-md">Zone-B Current</h5>
                         <div className="current">
                             <ReactSpeedometer
                                 maxValue={100}
@@ -47,7 +47,7 @@ export default function MeterB() {
                         </div>
                     </div>
                     <div className="flex flex-col items-center">
-                        <h5 className="mb-2 font-semibold text-gray-600 text-md">Zone-A Voltage</h5>
+                        <h5 className="mb-2 font-semibold text-gray-600 text-md">Zone-B Voltage</h5>
                         <div className="voltage">
                             <ReactSpeedometer
                                 maxValue={500}
@@ -67,7 +67,7 @@ export default function MeterB() {
                 <h2 className="mb-4 text-xl font-bold text-gray-800">Machine-2</h2>
                 <div className="flex flex-wrap items-center justify-around gap-6">
                     <div className="flex flex-col items-center">
-                        <h5 className="mb-2 font-semibold text-gray-600 text-md">Zone-A Power</h5>
+                        <h5 className="mb-2 font-semibold text-gray-600 text-md">Zone-B Power</h5>
                         <div className="power">
                             <ReactSpeedometer
                                 maxValue={1000}
@@ -81,7 +81,7 @@ export default function MeterB() {
                         </div>
                     </div>
                     <div className="flex flex-col items-center">
-                        <h5 className="mb-2 font-semibold text-gray-600 text-md">Zone-A Current</h5>
+                        <h5 className="mb-2 font-semibold text-gray-600 text-md">Zone-B Current</h5>
                         <div className="current">
                             <ReactSpeedometer
                                 maxValue={100}
@@ -95,7 +95,7 @@ export default function MeterB() {
                         </div>
                     </div>
                     <div className="flex flex-col items-center">
-                        <h5 className="mb-2 font-semibold text-gray-600 text-md">Zone-A Voltage</h5>
+                        <h5 className="mb-2 font-semibold text-gray-600 text-md">Zone-B Voltage</h5>
                         <div className="voltage">
                             <ReactSpeedometer
                                 maxValue={500}
@@ -115,7 +115,7 @@ export default function MeterB() {
                 <h2 className="mb-4 text-xl font-bold text-gray-800">Machine-3</h2>
                 <div className="flex flex-wrap items-center justify-around gap-6">
                     <div className="flex flex-col items-center">
-                        <h5 className="mb-2 font-semibold text-gray-600 text-md">Zone-A Power</h5>
+                        <h5 className="mb-2 font-semibold text-gray-600 text-md">Zone-B Power</h5>
                         <div className="power">
                             <ReactSpeedometer
                                 maxValue={1000}
@@ -129,7 +129,7 @@ export default function MeterB() {
                         </div>
                     </div>
                     <div className="flex flex-col items-center">
-                        <h5 className="mb-2 font-semibold text-gray-600 text-md">Zone-A Current</h5>
+                        <h5 className="mb-2 font-semibold text-gray-600 text-md">Zone-B Current</h5>
                         <div className="current">
                             <ReactSpeedometer
                                 maxValue={100}
@@ -143,7 +143,7 @@ export default function MeterB() {
                         </div>
                     </div>
                     <div className="flex flex-col items-center">
-                        <h5 className="mb-2 font-semibold text-gray-600 text-md">Zone-A Voltage</h5>
+                        <h5 className="mb-2 font-semibold text-gray-600 text-md">Zone-B Voltage</h5>
                         <div className="voltage">
                             <ReactSpeedometer
                                 maxValue={500}

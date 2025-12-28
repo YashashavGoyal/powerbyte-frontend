@@ -52,21 +52,17 @@ const DataState = (props) => {
 
   const [predictDataGraph, setPredictDataGraph] = useState([]);
 
-  const [sameAlert, setSameAlert] = useState(false);
   const showAlert = (device, message) => {
-    // console.log({ device, message });
-    if (sameAlert) {
-      return;
-    }
-    setSameAlert(true);
     const path = window.location.pathname;
     if (path === '/login' || path === '/signup' || path === '/') {
-      // console.log(path);
       return;
     }
-    else {
-      toast.error(`${device} ${message}`);
-      return;
+
+    const toastId = `${device}-${message}`;
+    if (!toast.isActive(toastId)) {
+      toast.error(`${device} ${message}`, {
+        toastId: toastId
+      });
     }
   };
 
@@ -384,18 +380,18 @@ const DataState = (props) => {
   //   }
   // }, [user]);
 
-  const getCsvUrl = () =>{
+  const getCsvUrl = () => {
     getDownloadURL(storageRef(storage, 'predictions_jan.csv'))
-    .then((url)=> {
-      // console.log({ url });
-      setDownloadURL(url);
-    })
+      .then((url) => {
+        // console.log({ url });
+        setDownloadURL(url);
+      })
   };
 
   const isVisible = usePageVisibility();
 
   useEffect(() => {
-    
+
     if (isVisible) {
 
       readData('Kitchen', 'Kitchen', setKitchen, kitchen);

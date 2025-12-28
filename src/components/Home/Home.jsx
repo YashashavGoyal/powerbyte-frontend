@@ -7,7 +7,7 @@ function Home(props) {
     <PublicLayout>
       <div className="flex flex-col items-center justify-center text-center text-white">
         <h1 className="mb-4 text-5xl font-extrabold tracking-tight md:text-6xl">
-          Welcome To PowerBytes
+          Welcome To PowerByte
         </h1>
         <p className="mb-8 text-xl font-light text-gray-200 md:text-2xl">
           We are pleased to welcome you

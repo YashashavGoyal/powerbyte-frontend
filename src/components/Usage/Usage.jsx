@@ -5,58 +5,56 @@ import { Link, Outlet } from 'react-router-dom';
 export default function Usage(props) {
 
   return (
-    <>
-      <main className='col-md-9 ms-sm-auto col-lg-10 px-md-4'>
-        <div className='d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom'>
-          <h1 className='h2'>Energy Consumption</h1>
-          <div className='btn-toolbar mb-2 mb-md-0'>
-            <div className='btn-group me-2'>
-              <button
-                type='button'
-                className='btn btn-sm btn-outline-secondary'
-              >
-                Share
-              </button>
-              <button
-                type='button'
-                className='btn btn-sm btn-outline-secondary'
-              >
-                Export
-              </button>
-            </div>
+    <div className="w-full">
+      {/* Header Section */}
+      <div className='flex flex-wrap items-center justify-between pb-4 mb-6 border-b border-gray-200'>
+        <h1 className='text-3xl font-bold text-gray-900'>Energy Consumption</h1>
+        <div className='flex items-center space-x-2'>
+          <div className='flex shadow-sm rounded-md'>
             <button
               type='button'
-              className='btn btn-sm btn-outline-secondary dropdown-toggle'
+              className='px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-l-md hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500'
             >
-              <span
-                data-feather='calendar'
-                className='align-text-bottom'
-              ></span>
-              This week
+              Share
+            </button>
+            <button
+              type='button'
+              className='px-4 py-2 text-sm font-medium text-gray-700 bg-white border-t border-b border-r border-gray-300 rounded-r-md hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500'
+            >
+              Export
             </button>
           </div>
+          <button
+            type='button'
+            className='inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500'
+          >
+            <span data-feather='calendar' className='w-4 h-4 mr-2 text-gray-500'></span>
+            This week
+          </button>
+        </div>
+      </div>
+
+      <div className='bg-white rounded-lg shadow-sm'>
+        {/* Recent Usage Trend Header & Zone Links */}
+        <div className="p-6 border-b border-gray-100">
+          <h3 className='mb-4 text-xl font-bold text-gray-800'>Recent Usage Trend</h3>
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+            <Link to="/panel/usage/zone_A" className="block p-4 text-center transition-all bg-white border border-gray-200 rounded-lg hover:shadow-md hover:border-blue-300 hover:bg-blue-50 group">
+              <h5 className="font-semibold text-gray-700 group-hover:text-blue-700">Zone-A</h5>
+            </Link>
+            <Link to="/panel/usage/zone_B" className="block p-4 text-center transition-all bg-white border border-gray-200 rounded-lg hover:shadow-md hover:border-green-300 hover:bg-green-50 group">
+              <h5 className="font-semibold text-gray-700 group-hover:text-green-700">Zone-B</h5>
+            </Link>
+            <Link to="/panel/usage/zone_C" className="block p-4 text-center transition-all bg-white border border-gray-200 rounded-lg hover:shadow-md hover:border-purple-300 hover:bg-purple-50 group">
+              <h5 className="font-semibold text-gray-700 group-hover:text-purple-700">Zone-C</h5>
+            </Link>
+          </div>
         </div>
 
-        {/* <canvas className="my-4 w-100" id="myChart" width="900" height="380"></canvas> */}
-
-        <div className='container-fluid'>
-          <h3 className='graph-design'>Recent Usage Trend</h3>
-          <div className="card">
-            <div className="card-body d-flex">
-              <Link to="/panel/usage/zone_A" className="card border-secondary nav-link">
-                <h5>Zone-A</h5>
-              </Link>
-              <Link to="/panel/usage/zone_B" className="card border-secondary nav-link">
-                <h5>Zone-B</h5>
-              </Link>
-              <Link to="/panel/usage/zone_C" className="card border-secondary nav-link">
-                <h5>Zone-C</h5>
-              </Link>
-            </div>
-          </div>
+        <div className="p-6">
           <Outlet />
         </div>
-      </main>
-    </>
+      </div>
+    </div>
   );
 }

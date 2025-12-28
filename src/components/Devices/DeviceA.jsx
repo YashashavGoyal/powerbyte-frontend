@@ -1,154 +1,112 @@
 import React from 'react';
-
 import { useGlobalData } from '../../context/data/DataState';
 
 export default function DeviceA() {
 
-    const { kitchen } = useGlobalData();
-    // console.log(kitchen);
+  const { kitchen } = useGlobalData();
 
-    function calculateElectricityCost(powerWatt) {
-      // Convert power from watts to kilowatts
-      const powerKW = powerWatt / 1000; // 1 kW = 1000 W
-    
-      // Calculate energy consumed per day and per month
-      const energyDayKWh = powerKW * 24; // kWh per day
-      const energyMonthKWh = energyDayKWh * 30; // kWh per month
-    
-      // Tiered pricing structure
-      let ratePerUnit;
-      if (energyMonthKWh <= 50) {
-        ratePerUnit = 2;
-      } else if (energyMonthKWh <= 150) {
-        ratePerUnit = 2.5;
-      } else if (energyMonthKWh <= 250) {
-        ratePerUnit = 5.25;
-      } else if (energyMonthKWh <= 500) {
-        ratePerUnit = 6.3;
-      } else if (energyMonthKWh <= 800) {
-        ratePerUnit = 7.1;
-      } else {
-        ratePerUnit = 7.1; // For consumption above 800 kWh
-      }
-    
-      // Calculate cost per day and per month
-      const costPerDay = (energyDayKWh * ratePerUnit).toFixed(2);
-      const costPerMonth = (energyMonthKWh * ratePerUnit).toFixed(2);
-    
-      return { costPerDay, costPerMonth };
-    }    
+  function calculateElectricityCost(powerWatt) {
+    const powerKW = powerWatt / 1000;
+    const energyDayKWh = powerKW * 24;
+    const energyMonthKWh = energyDayKWh * 30;
 
-    function bill()  {
+    let ratePerUnit;
+    if (energyMonthKWh <= 50) ratePerUnit = 2;
+    else if (energyMonthKWh <= 150) ratePerUnit = 2.5;
+    else if (energyMonthKWh <= 250) ratePerUnit = 5.25;
+    else if (energyMonthKWh <= 500) ratePerUnit = 6.3;
+    else if (energyMonthKWh <= 800) ratePerUnit = 7.1;
+    else ratePerUnit = 7.1;
 
+    const costPerDay = (energyDayKWh * ratePerUnit).toFixed(2);
+    const costPerMonth = (energyMonthKWh * ratePerUnit).toFixed(2);
 
-      return (<table className='table table-striped table-bordered'>
-      <thead className='bg-success'>
-        <tr>
-          <th
-            style={{ color: `white`, fontSize: `20px` }}
-            className='center'
-            colSpan={4}
-            scope='col'
-          >
-            Bill Generated
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr className='table-primary'>
-          <th className='center' colSpan={2} scope='col'>
-            Device Units
-          </th>
-          <th className='center' colSpan={2} scope='col'>
-            Charge (in Rs.)
-          </th>
-        </tr>
-        <tr className='table-primary'>
-          <th scope='col'>Device</th>
-          <th scope='col'>Units</th>
-          <th scope='col'>Per Day</th>
-          <th scope='col'>Per Month</th>
-        </tr>
-        <tr className='table-primary'>
-          <th scope='row'>Machine-1</th>
-          <td>{(kitchen.Bulb['ActivePower']/1000).toFixed(2)}</td>
-          <td>{calculateElectricityCost(kitchen.Bulb['ActivePower']).costPerDay}</td>
-          <td>{calculateElectricityCost(kitchen.Bulb['ActivePower']).costPerMonth}</td>
-        </tr>
-        <tr className='table-primary'>
-        <th scope='row'>Machine-2</th>
-          <td>{(kitchen.Induction['ActivePower']/1000).toFixed(2)}</td>
-          <td>{calculateElectricityCost(kitchen.Induction['ActivePower']).costPerDay}</td>
-          <td>{calculateElectricityCost(kitchen.Induction['ActivePower']).costPerMonth}</td>
-        </tr>
-        <tr className='table-primary'>
-        <th scope='row'>Machine-2</th>
-          <td>{(kitchen.Heater['ActivePower']/1000).toFixed(2)}</td>
-          <td>{calculateElectricityCost(kitchen.Heater['ActivePower']).costPerDay}</td>
-          <td>{calculateElectricityCost(kitchen.Heater['ActivePower']).costPerMonth}</td>
-        </tr>
-      </tbody>
-    </table>)
-    }
-
+    return { costPerDay, costPerMonth };
+  }
 
   return (
-    <>
-    <div className='table-responsive' style={{borderRadius: `20px`}}>
-            <table className='table table-striped table-bordered'>
-              <thead className='bg-success'>
-                <tr>
-                  <th
-                    style={{ color: `white`, fontSize: `20px` }}
-                    className='center'
-                    colSpan={4}
-                    scope='col'
-                  >
-                    Zone-A Data
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className='table-primary'>
-                  <th className='center' colSpan={2} scope='col'>
-                    Machine Temperature (oC)
-                  </th>
-                  <th className='center' colSpan={2} scope='col'>
-                    {kitchen['Temprature(oC)']} °C
-                  </th>
-                </tr>
-                <tr className='table-primary'>
-                  <th scope='col'>Device</th>
-                  <th scope='col'>Acive Power (Watt)</th>
-                  <th scope='col'>Voltage (Volt)</th>
-                  <th scope='col'>Current (A)</th>
-                </tr>
-                <tr className='table-primary'>
-                  <th scope='row'>Machine-1</th>
-                  <td>{kitchen.Bulb['ActivePower']}</td>
-                  <td>{kitchen.Bulb['Voltage(Volt)']}</td>
-                  <td>{kitchen.Bulb['Current(A)']}</td>
-                </tr>
-                <tr className='table-primary'>
-                  <th scope='row'>Machine-2</th>
-                  <td>{kitchen.Induction['ActivePower']}</td>
-                  <td>{kitchen.Induction['Voltage(Volt)']}</td>
-                  <td>{kitchen.Induction['Current(A)']}</td>
-                </tr>
-                <tr className='table-primary'>
-                  <th scope='row'>Machine-3</th>
-                  <td>{kitchen.Heater['ActivePower']}</td>
-                  <td>{kitchen.Heater['Voltage(Volt)']}</td>
-                  <td>{kitchen.Heater['Current(A)']}</td>
-                </tr>
-              </tbody>
-            </table>
-            
-            <hr />
+    <div className="space-y-8">
+      {/* Zone Data Table */}
+      <div className="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+        <div className="px-6 py-4 bg-gray-50 border-b border-gray-200 flex justify-between items-center">
+          <h3 className="text-lg font-bold text-gray-800">Zone-A Data</h3>
+          <span className="px-3 py-1 text-sm font-medium text-blue-700 bg-blue-100 rounded-full">
+            Temp: {kitchen['Temprature(oC)']} °C
+          </span>
+        </div>
 
-            {bill()}            
+        <div className="overflow-x-auto">
+          <table className="w-full text-left border-collapse">
+            <thead>
+              <tr className="bg-gray-50 border-b border-gray-100">
+                <th className="px-6 py-3 text-xs font-semibold tracking-wider text-gray-500 uppercase">Device</th>
+                <th className="px-6 py-3 text-xs font-semibold tracking-wider text-gray-500 uppercase">Active Power (Watt)</th>
+                <th className="px-6 py-3 text-xs font-semibold tracking-wider text-gray-500 uppercase">Voltage (Volt)</th>
+                <th className="px-6 py-3 text-xs font-semibold tracking-wider text-gray-500 uppercase">Current (A)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100">
+              <tr className="hover:bg-gray-50 transition-colors">
+                <td className="px-6 py-4 text-sm font-medium text-gray-900">Machine-1 (Bulb)</td>
+                <td className="px-6 py-4 text-sm text-gray-600">{kitchen.Bulb['ActivePower']} W</td>
+                <td className="px-6 py-4 text-sm text-gray-600">{kitchen.Bulb['Voltage(Volt)']} V</td>
+                <td className="px-6 py-4 text-sm text-gray-600">{kitchen.Bulb['Current(A)']} A</td>
+              </tr>
+              <tr className="hover:bg-gray-50 transition-colors">
+                <td className="px-6 py-4 text-sm font-medium text-gray-900">Machine-2 (Induction)</td>
+                <td className="px-6 py-4 text-sm text-gray-600">{kitchen.Induction['ActivePower']} W</td>
+                <td className="px-6 py-4 text-sm text-gray-600">{kitchen.Induction['Voltage(Volt)']} V</td>
+                <td className="px-6 py-4 text-sm text-gray-600">{kitchen.Induction['Current(A)']} A</td>
+              </tr>
+              <tr className="hover:bg-gray-50 transition-colors">
+                <td className="px-6 py-4 text-sm font-medium text-gray-900">Machine-3 (Heater)</td>
+                <td className="px-6 py-4 text-sm text-gray-600">{kitchen.Heater['ActivePower']} W</td>
+                <td className="px-6 py-4 text-sm text-gray-600">{kitchen.Heater['Voltage(Volt)']} V</td>
+                <td className="px-6 py-4 text-sm text-gray-600">{kitchen.Heater['Current(A)']} A</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
 
-          </div>
-    </>
+      {/* Bill Generated Table */}
+      <div className="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+        <div className="px-6 py-4 bg-green-50 border-b border-green-100">
+          <h3 className="text-lg font-bold text-green-800">Bill Estimation</h3>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="w-full text-left border-collapse">
+            <thead>
+              <tr className="bg-gray-50 border-b border-gray-100">
+                <th className="px-6 py-3 text-xs font-semibold tracking-wider text-gray-500 uppercase">Device</th>
+                <th className="px-6 py-3 text-xs font-semibold tracking-wider text-gray-500 uppercase">Units (kW)</th>
+                <th className="px-6 py-3 text-xs font-semibold tracking-wider text-gray-500 uppercase">Cost / Day (Rs)</th>
+                <th className="px-6 py-3 text-xs font-semibold tracking-wider text-gray-500 uppercase">Cost / Month (Rs)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100">
+              <tr className="hover:bg-gray-50 transition-colors">
+                <td className="px-6 py-4 text-sm font-medium text-gray-900">Machine-1</td>
+                <td className="px-6 py-4 text-sm text-gray-600">{(kitchen.Bulb['ActivePower'] / 1000).toFixed(3)} kW</td>
+                <td className="px-6 py-4 text-sm text-gray-600">{calculateElectricityCost(kitchen.Bulb['ActivePower']).costPerDay}</td>
+                <td className="px-6 py-4 text-sm text-gray-600">{calculateElectricityCost(kitchen.Bulb['ActivePower']).costPerMonth}</td>
+              </tr>
+              <tr className="hover:bg-gray-50 transition-colors">
+                <td className="px-6 py-4 text-sm font-medium text-gray-900">Machine-2</td>
+                <td className="px-6 py-4 text-sm text-gray-600">{(kitchen.Induction['ActivePower'] / 1000).toFixed(3)} kW</td>
+                <td className="px-6 py-4 text-sm text-gray-600">{calculateElectricityCost(kitchen.Induction['ActivePower']).costPerDay}</td>
+                <td className="px-6 py-4 text-sm text-gray-600">{calculateElectricityCost(kitchen.Induction['ActivePower']).costPerMonth}</td>
+              </tr>
+              <tr className="hover:bg-gray-50 transition-colors">
+                <td className="px-6 py-4 text-sm font-medium text-gray-900">Machine-3</td>
+                <td className="px-6 py-4 text-sm text-gray-600">{(kitchen.Heater['ActivePower'] / 1000).toFixed(3)} kW</td>
+                <td className="px-6 py-4 text-sm text-gray-600">{calculateElectricityCost(kitchen.Heater['ActivePower']).costPerDay}</td>
+                <td className="px-6 py-4 text-sm text-gray-600">{calculateElectricityCost(kitchen.Heater['ActivePower']).costPerMonth}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   )
 }

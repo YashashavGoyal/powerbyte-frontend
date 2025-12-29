@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import bgImage from '../../img/bg.webp';
 import logoFull from '../../img/logo-full.png';
 
-const PublicLayout = ({ children }) => {
+const PublicLayout = ({ children, fluid = false }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
@@ -48,12 +48,12 @@ const PublicLayout = ({ children }) => {
             </nav>
 
             {/* Background Section with Overlay */}
-            <div className="relative flex items-center justify-center flex-1 bg-center bg-cover" style={{ backgroundImage: `url(${bgImage})` }}>
+            <div className={`relative flex flex-1 bg-center bg-cover ${fluid ? 'items-start' : 'items-center justify-center'}`} style={{ backgroundImage: `url(${bgImage})` }}>
                 {/* Overlay */}
                 <div className="absolute inset-0 bg-black/50"></div>
 
                 {/* Content */}
-                <div className="relative z-10 w-full px-4">
+                <div className={`relative z-10 w-full ${fluid ? '' : 'px-4'}`}>
                     {children}
                 </div>
             </div>

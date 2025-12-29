@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { signOut } from 'firebase/auth';
+import { auth } from '../../firebase';
 
 export default function Sidemenu({ isOpen, setIsOpen }) {
   const location = useLocation();
@@ -8,8 +9,12 @@ export default function Sidemenu({ isOpen, setIsOpen }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const handleLogout = () => {
-    localStorage.setItem('user', false);
-    navigate('/login');
+    signOut(auth).then(() => {
+      localStorage.removeItem('user');
+      navigate('/login');
+    }).catch((error) => {
+      console.error("Logout Error:", error);
+    });
   };
 
   // Helper to determine active state

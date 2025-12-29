@@ -1,6 +1,7 @@
 import { child, get, getDatabase, ref } from 'firebase/database';
 import { createContext, useContext, useEffect, useState, useRef } from 'react';
-import { db, getDownloadURL, storage, storageRef } from '../../firebase';
+import { db, getDownloadURL, storage, storageRef, auth } from '../../firebase';
+import { onAuthStateChanged } from 'firebase/auth';
 import { limits } from '../../constants';
 import {
   arrayUnion,
@@ -20,6 +21,7 @@ export function useGlobalData() {
 const DataState = (props) => {
 
   const [downloadURL, setDownloadURL] = useState('');
+  const [user, setUser] = useState(null);
 
   const [loading, setLoading] = useState(true);
   const [kitchen, setKitchen] = useState({});
@@ -63,6 +65,14 @@ const DataState = (props) => {
   useEffect(() => {
     alertsEnabledRef.current = alertsEnabled;
   }, [alertsEnabled]);
+
+  // Track authentication state
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+    return () => unsubscribe();
+  }, []);
 
   const toggleAlerts = () => {
     // console.log("toggleAlerts called. Previous state enabled:", alertsEnabled);
@@ -427,8 +437,9 @@ const DataState = (props) => {
   const isVisible = usePageVisibility();
 
   useEffect(() => {
+    let intervalId;
 
-    if (isVisible) {
+    if (isVisible && user) {
 
       readData('Kitchen', 'Kitchen', setKitchen, kitchen);
 
@@ -438,17 +449,20 @@ const DataState = (props) => {
       fetchPridictData('predictions102', 'Line102', 'data');
       getCsvUrl();
 
-      setInterval(() => {
+      intervalId = setInterval(() => {
         readData('Kitchen', 'Kitchen', setKitchen, kitchen);
         fetchData('Kitchen', 'Bulb', 'current');
         fetchData('Kitchen', 'Induction', 'current');
         fetchData('Kitchen', 'Heater', 'current');
         fetchPridictData('predictions102', 'Line102', 'data');
       }, 10000);
-      // eslint-disable-next-line
-
     }
-  }, []);
+
+    return () => {
+      if (intervalId) clearInterval(intervalId);
+    };
+    // eslint-disable-next-line
+  }, [isVisible, user]);
 
 
   // useEffect(() => {

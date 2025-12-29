@@ -272,7 +272,9 @@ function Home(props) {
               <div className="absolute inset-0 bg-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
               <div className="text-7xl mb-6 opacity-30 group-hover:opacity-100 transition-all transform group-hover:scale-110 duration-300">📑</div>
               <h3 className="text-2xl font-bold text-gray-500 group-hover:text-white transition-colors">View Project Slides</h3>
-              <button className="mt-6 px-6 py-2 bg-gray-800 hover:bg-gray-700 text-white rounded-lg text-sm font-medium transition-colors border border-gray-600">
+              <button className="mt-6 px-6 py-2 bg-gray-800 hover:bg-gray-700 text-white rounded-lg text-sm font-medium transition-colors border border-gray-600 relative z-10"
+                onClick={() => alert("Document will be available soon")}
+              >
                 Click to Open
               </button>
             </div>
@@ -328,7 +330,7 @@ function Home(props) {
             <p className="text-gray-600 text-sm">
               © {new Date().getFullYear()} PowerByte Inc. All rights reserved.
             </p>
-            <div className="flex items-center gap-2 text-sm text-gray-500">
+            <div className="flex flex-col md:flex-row items-center gap-2 text-sm text-gray-500">
               <span>Designed & Developed by</span>
               <span className="text-gray-300 font-semibold">Team Bright Sparks 🚀</span>
             </div>

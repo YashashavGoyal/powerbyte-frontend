@@ -28,6 +28,7 @@ import NotFound from './components/NotFound/NotFound';
 import Navbar from './components/Navbar/Navbar';
 import DataState from './context/data/DataState';
 import Layout from './components/Layout/Layout';
+import TitleUpdater from './components/Common/TitleUpdater';
 import DeviceA from './components/Devices/DeviceA';
 import DevicesB from './components/Devices/DevicesB';
 import DevicesC from './components/Devices/DevicesC';
@@ -67,6 +68,7 @@ function App() {
       <DataState>
         <Router>
           <Navbar />
+          <TitleUpdater />
           <div className='container-fluid'>
             <div className='row'>
               <Routes>

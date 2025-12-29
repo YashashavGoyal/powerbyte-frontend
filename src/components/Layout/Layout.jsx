@@ -1,5 +1,5 @@
 import React from 'react';
-import Sidemenu from '../SideMenu/SideMenu';
+import Sidemenu from '../SideMenu/Sidemenu';
 import { Outlet } from 'react-router-dom';
 import Alerts from '../Alerts/Alerts';
 import { useGlobalData } from '../../context/data/DataState';

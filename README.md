@@ -1,70 +1,91 @@
-# Getting Started with Create React App
+# PowerByte - Smart Energy Monitoring System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+PowerByte is a modern, responsive web application designed for real-time energy monitoring and management. It provides users with a comprehensive dashboard to track voltage, current, power usage, and energy consumption across various devices. 
 
-## Available Scripts
+Built with performance and user experience in mind, PowerByte leverages modern web technologies to deliver actionable insights into your energy usage patterns.
 
-In the project directory, you can run:
+## 🚀 Features
 
-### `npm start`
+-   **Real-Time Dashboard**: Monitor live metrics for Voltage (V), Current (A), Power (W), and Energy (kWh) with dynamic gauges and counters.
+-   **Interactive Visualizations**:
+    -   **Line Charts**: Track power consumption trends over time.
+    -   **Bump Charts**: Visualize device usage rankings.
+    -   **Speedometers**: Instant feedback on current load status.
+-   **Device Management**: granular tracking of individual devices and their consumption status.
+-   **Energy Calculator**: Estimate costs and savings based on usage patterns.
+-   **Smart Alerts**: System notifications for abnormal reading or thresholds.
+-   **Responsive Design**: Fully optimized for desktop, tablet, and mobile devices using Tailwind CSS.
+-   **Secure Authentication**: User login and registration powered by Firebase Auth.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🛠️ Tech Stack
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+-   **Frontend Framework**: [React](https://reactjs.org/) (bootstrapped with [Vite](https://vitejs.dev/))
+-   **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+-   **Backend & Auth**: [Firebase](https://firebase.google.com/)
+-   **Data Visualization**:
+    -   [Chart.js](https://www.chartjs.org/) & [React Chartjs 2](https://react-chartjs-2.js.org/)
+    -   [Nivo Charts](https://nivo.rocks/) (Bump, Line)
+    -   [React D3 Speedometer](https://github.com/palerdot/react-d3-speedometer)
+-   **Routing**: [React Router v6](https://reactrouter.com/)
+-   **Notifications**: [React Toastify](https://fkhadra.github.io/react-toastify/)
 
-### `npm test`
+## 🏁 Getting Started
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Follow these steps to get the project running on your local machine.
 
-### `npm run build`
+### Prerequisites
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Ensure you have [Node.js](https://nodejs.org/) installed on your machine.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Installation
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1.  **Clone the repository**
+    ```bash
+    git clone https://github.com/YashashavGoyal/powerbyte-frontend.git
+    cd powerbyte-frontend
+    ```
 
-### `npm run eject`
+2.  **Install dependencies**
+    ```bash
+    npm install
+    ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3.  **Run the development server**
+    ```bash
+    npm run dev
+    ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+4.  **Open in Browser**
+    Visit `http://localhost:5173` (or the port shown in your terminal) to view the application.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 📜 Scripts
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+-   `npm run dev`: Starts the development server including hot module replacement.
+-   `npm run build`: Bundles the app into static files for production.
+-   `npm run preview`: Preview the production build locally.
 
-## Learn More
+## 🔐 Configuration
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+This project relies on **Firebase** for backend services. Ensure you have a valid Firebase configuration.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The configuration usually resides in `src/firebase.js`. You may need to create a `.env` file or update the config object with your own Firebase project credentials if you are forking this repo.
 
-### Code Splitting
+```javascript
+// Example src/firebase.js structure
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_PROJECT_ID.appspot.com",
+  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+  appId: "YOUR_APP_ID"
+};
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 🤝 Contributing
 
-### Analyzing the Bundle Size
+Contributions, issues, and feature requests are welcome!
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 📄 License
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is open-source and available under the [MIT License](LICENSE).

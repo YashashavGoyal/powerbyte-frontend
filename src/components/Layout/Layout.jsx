@@ -22,23 +22,24 @@ function Layout() {
 
       <div className='flex flex-col flex-1 min-w-0 transition-all duration-300 ease-in-out'>
         {/* Mobile Header */}
-        <header className="flex items-center px-4 py-3 bg-white border-b border-gray-200 md:hidden sm:px-6 lg:px-8">
-          <button
-            type="button"
-            className="text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
-            onClick={() => setSidebarOpen(true)}
-          >
-            <span className="sr-only">Open sidebar</span>
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
-          <span className="ml-4 text-lg font-bold text-gray-900">PowerByte Panel</span>
-
-          <div className="flex items-center ml-auto">
+        <header className="flex flex-col items-center px-4 py-3 bg-white border-b border-gray-200 md:hidden sm:px-6 lg:px-8">
+          <div className="flex justify-between w-full">
+            <button
+              type="button"
+              className="text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
+              onClick={() => setSidebarOpen(true)}
+            >
+              <span className="sr-only">Open sidebar</span>
+              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+            <span className="ml-4 text-lg font-bold text-gray-900">PowerByte Panel</span>
+          </div>
+          <div className="flex justify-center w-full">
             <button
               onClick={toggleAlerts}
-              className="relative p-2 text-gray-500 rounded-full hover:bg-gray-100 focus:outline-none transition-colors"
+              className="relative flex items-center p-2 text-gray-500 rounded-full hover:bg-gray-100 focus:outline-none transition-colors"
             >
               {alertsEnabled ? (
                 <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -50,6 +51,9 @@ function Layout() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
                 </svg>
               )}
+              <span className="ml-2 text-sm font-medium sm:inline">
+                {alertsEnabled ? "Mute Alerts" : "Enable Alerts"}
+              </span>
 
               {!alertsEnabled && alertCount > 0 && (
                 <span className="absolute top-0 right-0 inline-flex items-center justify-center px-1.5 py-0.5 text-xs font-bold leading-none text-red-100 transform translate-x-1/4 -translate-y-1/4 bg-red-600 rounded-full">
@@ -68,7 +72,7 @@ function Layout() {
           <div className="flex items-center">
             <button
               onClick={toggleAlerts}
-              className="relative p-2 text-gray-500 rounded-full hover:bg-gray-100 focus:outline-none transition-colors"
+              className="relative flex items-center p-2 text-gray-500 rounded-full hover:bg-gray-100 focus:outline-none transition-colors"
               title={alertsEnabled ? "Mute Alerts" : "Enable Alerts"}
             >
               {alertsEnabled ? (
@@ -81,6 +85,9 @@ function Layout() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
                 </svg>
               )}
+              <span className="ml-2 text-sm font-medium">
+                {alertsEnabled ? "Mute Alerts" : "Enable Alerts"}
+              </span>
 
               {!alertsEnabled && alertCount > 0 && (
                 <span className="absolute top-0 right-0 inline-flex items-center justify-center px-1.5 py-0.5 text-xs font-bold leading-none text-red-100 transform translate-x-1/4 -translate-y-1/4 bg-red-600 rounded-full">
@@ -96,7 +103,7 @@ function Layout() {
           <Outlet />
         </main>
       </div>
-    </div>
+    </div >
   );
 }
 

@@ -4,6 +4,11 @@ PowerByte is a modern, responsive web application designed for real-time energy 
 
 Built with performance and user experience in mind, PowerByte leverages modern web technologies to deliver actionable insights into your energy usage patterns.
 
+## 🔴 Live Demo & Access
+**View the Live Dashboard:** [powerbyte.app](https://powerbyte.vercel.app/)
+
+> 🔐 **Guest Access:** No signup required! Simply click the **"Guest Login"** button on the login screen to instantly access the full dashboard.
+
 ## 🚀 Features
 
 -   **Real-Time Dashboard**: Monitor live metrics for Voltage (V), Current (A), Power (W), and Energy (kWh) with dynamic gauges and counters.

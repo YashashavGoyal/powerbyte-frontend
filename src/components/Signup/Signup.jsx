@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword, updateProfile, signInAnonymously } from 'firebase/auth';
 
 import InputControl from '../InputControl/InputControl';
 import { auth } from '../../firebase';
@@ -37,6 +37,21 @@ function Signup(props) {
         });
         setUserLoggedin();
         localStorage.setItem("user", true)
+        navigate('/panel/dashboard');
+      })
+      .catch((err) => {
+        setSubmitButtonDisabled(false);
+        setErrorMsg(err.message);
+      });
+  };
+
+  const handleGuestLogin = () => {
+    setSubmitButtonDisabled(true);
+    signInAnonymously(auth)
+      .then(() => {
+        setSubmitButtonDisabled(false);
+        setUserLoggedin();
+        localStorage.setItem("user", true);
         navigate('/panel/dashboard');
       })
       .catch((err) => {
@@ -92,6 +107,14 @@ function Signup(props) {
             className={`w-full px-4 py-2 font-semibold text-white transition-colors bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed`}
           >
             {submitButtonDisabled ? 'Signing up...' : 'Sign Up'}
+          </button>
+
+          <button
+            disabled={submitButtonDisabled}
+            onClick={handleGuestLogin}
+            className={`w-full px-4 py-2 mt-4 font-semibold text-blue-600 transition-colors bg-white border border-blue-600 rounded-lg hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed`}
+          >
+            Guest Login
           </button>
 
           <p className='mt-4 text-sm text-center text-gray-600'>

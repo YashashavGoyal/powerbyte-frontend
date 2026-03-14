@@ -4,7 +4,26 @@ import PublicLayout from "../Layout/PublicLayout";
 function Home(props) {
   return (
     <PublicLayout fluid={true}>
-      <div className="flex flex-col text-white w-full">
+      <div className="flex flex-col text-white w-full relative">
+
+        {/* --- New Website Redirect Banner --- */}
+        <div className="w-[90%] md:w-full mt-24 mb-4 bg-gradient-to-r from-blue-600/90 to-purple-600/90 backdrop-blur-md p-6 sm:p-8 rounded-3xl shadow-[0_0_40px_rgba(59,130,246,0.3)] z-50 flex flex-col sm:flex-row items-center justify-between border border-white/20 mx-auto max-w-5xl gap-6 transform transition-all hover:scale-[1.02]">
+          <div className="flex items-center gap-6 text-center sm:text-left">
+            <div className="bg-white/20 p-4 rounded-2xl hidden sm:block">
+              <span className="text-4xl block animate-bounce">🚀</span>
+            </div>
+            <div>
+              <h3 className="text-xl md:text-3xl font-extrabold text-white mb-2 tracking-wide drop-shadow-md">We've Upgraded to CarbonX!</h3>
+              <p className="text-sm md:text-lg text-blue-50 font-medium max-w-xl leading-relaxed">Experience our new liquid glass UI, AI health monitoring, and better performance on our brand new platform.</p>
+            </div>
+          </div>
+          <a 
+            href="https://carbonx-rlye.onrender.com/"
+            className="px-8 py-4 bg-white text-purple-700 text-sm md:text-lg font-bold rounded-full hover:bg-gray-100 hover:scale-105 transition-all shadow-[0_0_20px_rgba(255,255,255,0.4)] whitespace-nowrap whitespace-pre-line ring-4 ring-white/30"
+          >
+            Visit New Website
+          </a>
+        </div>
 
         {/* --- Hero Section --- */}
         <section className="flex flex-col items-center justify-center min-h-[85vh] text-center px-4 w-full">
